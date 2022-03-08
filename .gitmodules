@@ -9,7 +9,7 @@
 	url = https://github.com/ikalnytskyi/termcolor
 [submodule "ext/glew"]
 	path = ext/glew
-	url = https://github.com/DrLSimon/glew
+	url = https://github.com/DrLSimon/glew.git
 [submodule "ext/glfw"]
 	path = ext/glfw
 	url = https://github.com/DrLSimon/glfw
