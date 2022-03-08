@@ -26,16 +26,16 @@ void ConquererApplication::resize(GLFWwindow *window, int frameBufferWidth, int 
 
 void ConquererApplication::keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods) {
   ConquererApplication& app = *static_cast<ConquererApplication*>(glfwGetWindowUserPointer(window));
-//  if (action == GLFW_PRESS){
-//    switch(key){
-//      case GLFW_KEY_ENTER:
-//        app.nextStage();
-//          return;
-//      default:
-//        break;
-//    }
-//  }
-//  app.m_stage->keyCallback(window, key, scancode, action, mods);
+  if (action == GLFW_PRESS){
+    switch(key){
+      case GLFW_KEY_ENTER:
+        app.nextStage();
+          return;
+      default:
+        break;
+    }
+  }
+  app.m_stage->keyCallback(window, key, scancode, action, mods);
 }
 
 void ConquererApplication::setCallbacks() {

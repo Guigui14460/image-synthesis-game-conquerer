@@ -43,7 +43,10 @@ public:
    * @param wOverH aspect ratio
    */
   void setWOverH(float wOverH);
-
+  
+  glm::vec2 getMiddleOfScreen(uint width, uint height, uint fontSize);
+  glm::vec2 getMiddleOfRow(uint width, uint height, uint fontSize);
+;
 private:
   uint m_width;   ///< width of the viewport
   uint m_height;  ///< height of the viewport

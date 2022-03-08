@@ -11,9 +11,10 @@ StartStage::StartStage()
   glfwGetFramebufferSize(window, &width, &height);
 
   this->m_text = std::unique_ptr<TextPrinter>(new TextPrinter(width, height));
+  this->m_text->printText("CONQUERER", 4, 2, 6, {1.f, 0.f, 0.f});
   const glm::vec3 color(0.f, 0.f, 0.f);
-  this->m_text->printText("Press Enter", 4, 12, 5, color);
-  this->m_text->printText(" to  START ", 4, 13, 5, color);
+  this->m_text->printText("Press Enter", 7, 12, 4, color);
+  this->m_text->printText(" to  START ", 7, 13, 4, color);
 }
 
 StartStage::~StartStage() {}

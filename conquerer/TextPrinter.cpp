@@ -64,6 +64,12 @@ void TextPrinter::printText(const std::string& text, uint x, uint y, uint fontsi
   m_vaos.back()->setVBO(1, uvs);
 }
 
+glm::vec2 getMiddleOfScreen(uint width, uint height, uint fontSize) {
+
+}
+
+
+
 void TextPrinter::draw()
 {
   m_program.bind();
