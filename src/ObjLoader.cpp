@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #define TINYOBJLOADER_IMPLEMENTATION
@@ -109,7 +110,21 @@ void ObjLoader::parseFile(const std::string & filename)
   std::vector<tinyobj::shape_t> shapes;
   std::vector<tinyobj::material_t> materials;
   std::string err;
-  bool ret = tinyobj::LoadObj(&attrib, &shapes, &materials, &err, filename.c_str(), m_rootDir.c_str());
+  std::string warn;
+  bool ret;
+  std::filebuf fb;
+  if (fb.open (std::string(m_rootDir) + "/" + filename, std::ios::in))
+  {
+    std::istream is(&fb);
+    ret = tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, &is);
+    fb.close();
+  } else {
+      std::cerr << "file " << filename << " could not be open" << std::endl;
+      exit(1);
+  }
+  if(!warn.empty()){
+      std::cout << warn << std::endl;
+  }
   if (!err.empty()) {
     std::cerr << err << std::endl;
   }
