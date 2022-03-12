@@ -110,21 +110,7 @@ void ObjLoader::parseFile(const std::string & filename)
   std::vector<tinyobj::shape_t> shapes;
   std::vector<tinyobj::material_t> materials;
   std::string err;
-  std::string warn;
-  bool ret;
-  std::filebuf fb;
-  if (fb.open (std::string(m_rootDir) + "/" + filename, std::ios::in))
-  {
-    std::istream is(&fb);
-    ret = tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, &is);
-    fb.close();
-  } else {
-      std::cerr << "file " << filename << " could not be open" << std::endl;
-      exit(1);
-  }
-  if(!warn.empty()){
-      std::cout << warn << std::endl;
-  }
+  bool ret = tinyobj::LoadObj(&attrib, &shapes, &materials, &err, filename.c_str(), m_rootDir.c_str());
   if (!err.empty()) {
     std::cerr << err << std::endl;
   }
