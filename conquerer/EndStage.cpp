@@ -1,9 +1,6 @@
 #include "EndStage.hpp"
-#include <GLFW/glfw3.h>
 #include <glm/ext.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-
-#include "StartStage.hpp"
 
 EndStage::EndStage()
 {
@@ -29,16 +26,8 @@ void EndStage::update() {
     // update the renderer
 }
 
-void EndStage::resize(GLFWwindow* window, int frameBufferWidth, int frameBufferHeight) {
+void EndStage::resize(GLFWwindow*, int frameBufferWidth, int frameBufferHeight) {
     // resize the renderer
     this->m_text->setWOverH(frameBufferWidth / float(frameBufferHeight));
     glViewport(0, 0, frameBufferWidth, frameBufferHeight);
-}
-
-std::unique_ptr<GameStage> StartStage::nextStage() const {
-    return std::unique_ptr<GameStage>(new EndStage());
-}
-
-std::unique_ptr<GameStage> EndStage::nextStage() const {
-    return std::unique_ptr<GameStage>(new StartStage());
 }

@@ -9,7 +9,7 @@ FullScreenApplication::FullScreenApplication(const char *title){
 }
 
 FullScreenApplication::~FullScreenApplication() {
-    this->shutDown(0);
+    this->shutDown(EXIT_SUCCESS);
 }
 
 void FullScreenApplication::mainLoop() {
@@ -42,7 +42,7 @@ glm::vec2 FullScreenApplication::getWindowSize() {
 void FullScreenApplication::initGLFW() {
     if(!glfwInit()){
         std::cerr << "ERROR::FullScreenApllication::initGLFW::GLFW_INIT_FAILED" << std::endl;
-        this->shutDown(1);
+        this->shutDown(EXIT_FAILURE);
     }
 }
 
@@ -52,7 +52,7 @@ void FullScreenApplication::initGLEW() {
     checkGLerror();
     if (GlewInitResult != GLEW_OK) {
         std::cerr << "ERROR::FullScreenApllication::initGLEW::GLEW_INIT_FAILED : " << glewGetErrorString(GlewInitResult) << std::endl;
-        this->shutDown(1);
+        this->shutDown(EXIT_FAILURE);
     }
 }
 
@@ -77,7 +77,7 @@ void FullScreenApplication::initWindow(const char *title) {
     GLFWwindow* window = glfwCreateWindow(width, height, title, monitor, NULL);
     if (!window) {
         std::cerr << "ERROR::FullScreenApplication::initWindow : Could not open a window" << std::endl;
-        this->shutDown(1);
+        this->shutDown(EXIT_FAILURE);
     }
     glfwMakeContextCurrent(window);
     glfwSetWindowUserPointer(window, this);

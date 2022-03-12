@@ -2,7 +2,6 @@
 #define __GAME_STAGE_HPP__
 #include "glApi.hpp"
 #include <GLFW/glfw3.h>
-#include "TextPrinter.hpp"
 
 class GameStage {
 public:

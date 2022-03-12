@@ -11,7 +11,7 @@ Application::Application(int windowWidth, int windowHeight, const char * title)
 
 Application::~Application()
 {
-  shutDown(0);
+  shutDown(EXIT_SUCCESS);
 }
 
 void Application::mainLoop()
@@ -34,7 +34,7 @@ void Application::mainLoop()
 void Application::initOGLContext(int windowWidth, int windowHeight, const char * title)
 {
   if (!glfwInit()) {
-    shutDown(1);
+    shutDown(EXIT_FAILURE);
   }
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 #ifdef __APPLE__
@@ -48,7 +48,7 @@ void Application::initOGLContext(int windowWidth, int windowHeight, const char *
   GLFWwindow * window = glfwCreateWindow(windowWidth, windowHeight, title, NULL, NULL);
   if (!window) {
     std::cerr << "Could not open a window" << std::endl;
-    shutDown(1);
+    shutDown(EXIT_FAILURE);
   }
   glfwMakeContextCurrent(window);
   glfwSetWindowUserPointer(window, this);
@@ -62,7 +62,7 @@ void Application::initOGLContext(int windowWidth, int windowHeight, const char *
   checkGLerror();
   if (GlewInitResult != GLEW_OK) {
     std::cerr << "ERROR: " << glewGetErrorString(GlewInitResult) << std::endl;
-    shutDown(1);
+    shutDown(EXIT_FAILURE);
   }
 
   std::cout << "Seems we made it " << std::endl;

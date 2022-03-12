@@ -112,6 +112,14 @@ add_executable(conquerer
   conquerer/TextPrinter.cpp
   conquerer/BackgroundRenderer.cpp
   conquerer/BackgroundRenderer.hpp
+  conquerer/PlayingStage.cpp
+  conquerer/PlayingStage.hpp
+  conquerer/Mesh.hpp
+  conquerer/Mesh.cpp
+  conquerer/BasicObjects.cpp
+  conquerer/BasicObjects.hpp
+
+  conquerer/GameStage.cpp
 
   conquerer/font.v.glsl
   conquerer/font.f.glsl
