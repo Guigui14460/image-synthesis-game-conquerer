@@ -33,7 +33,7 @@ public:
    * @param fillColor color (rgba) of the background of the text (defaults to white)
    * @param padding white space to to border of the filling background
    */
-  void printText(const std::string& text, uint x, uint y, uint fontsize, const glm::vec3& fontColor = glm::vec3(1, 1, 1), const glm::vec4& fillColor = glm::vec4(1, 1, 1, 0), uint padding = 0);
+  void printText(const std::string& text, float x, float y, float fontsize, const glm::vec3& fontColor = glm::vec3(1, 1, 1), const glm::vec4& fillColor = glm::vec4(1, 1, 1, 0), uint padding = 0);
 
   /// Draws all the vaos created with printText
   void draw();
@@ -43,9 +43,13 @@ public:
    * @param wOverH aspect ratio
    */
   void setWOverH(float wOverH);
-  
-  glm::vec2 getMiddleOfScreen(uint width, uint height, uint fontSize);
-  glm::vec2 getMiddleOfRow(uint width, uint height, uint fontSize);
+
+  /**
+   * @brief resizes the viewport stored in the TextPrinter object
+   * @param width width of the viewport
+   * @param height height of the viewport
+   */
+  void resize(uint width, uint height);
 ;
 private:
   uint m_width;   ///< width of the viewport

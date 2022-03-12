@@ -5,23 +5,25 @@
 
 StartStage::StartStage()
 {
-  glClearColor(1.f, 1.f, 1.f, 1.f);
-  int width, height;
-  GLFWwindow* window = glfwGetCurrentContext();
-  glfwGetFramebufferSize(window, &width, &height);
+    glClearColor(1.f, 1.f, 1.f, 1.f);
+    int width, height;
+    GLFWwindow* window = glfwGetCurrentContext();
+    glfwGetFramebufferSize(window, &width, &height);
 
-  this->m_text = std::unique_ptr<TextPrinter>(new TextPrinter(width, height));
-  this->m_text->printText("CONQUERER", 4, 2, 6, {1.f, 0.f, 0.f});
-  const glm::vec3 color(0.f, 0.f, 0.f);
-  this->m_text->printText("Press Enter", 7, 12, 4, color);
-  this->m_text->printText(" to  START ", 7, 13, 4, color);
+    this->m_text = std::unique_ptr<TextPrinter>(new TextPrinter(width, height));
+
+    this->m_text->printText("CONQUERER", 0.5, 2, 10, {1.f, 0.f, 0.f});
+
+    const glm::vec3 color(0.f, 0.f, 0.f);
+    this->m_text->printText("Press Enter", 7, 20, 4, color);
+    this->m_text->printText(" to  START ", 7, 21, 4, color);
 }
 
 StartStage::~StartStage() {}
 
 void StartStage::renderFrame() {
-  // render frame of renderer
-  this->m_text->draw();
+    // render frame of renderer
+    this->m_text->draw();
 }
 
 void StartStage::update() {
@@ -29,7 +31,8 @@ void StartStage::update() {
 }
 
 void StartStage::resize(GLFWwindow *window, int frameBufferWidth, int frameBufferHeight) {
-  // resize the renderer
-  this->m_text->setWOverH(frameBufferWidth / float(frameBufferHeight));
-  glViewport(0, 0, frameBufferWidth, frameBufferHeight);
+    // resize the renderer
+    this->m_text->resize(frameBufferWidth, frameBufferHeight);
+    this->m_text->setWOverH(frameBufferWidth / float(frameBufferHeight));
+    glViewport(0, 0, frameBufferWidth, frameBufferHeight);
 }

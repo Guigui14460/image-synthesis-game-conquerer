@@ -110,9 +110,13 @@ add_executable(conquerer
   conquerer/EndStage.cpp
   conquerer/TextPrinter.hpp
   conquerer/TextPrinter.cpp
+  conquerer/BackgroundRenderer.cpp
+  conquerer/BackgroundRenderer.hpp
 
   conquerer/font.v.glsl
   conquerer/font.f.glsl
+  conquerer/3d.v.glsl
+  conquerer/3d.f.glsl
 )
 target_link_libraries(conquerer utils ${GLFW3_LIBRARIES} ${GLEW_LIBRARIES})
 

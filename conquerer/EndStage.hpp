@@ -1,7 +1,6 @@
 #ifndef __END_STAGE_HPP__
 #define __END_STAGE_HPP__
 #include "GameStage.hpp"
-#include <GLFW/glfw3.h>
 #include "TextPrinter.hpp"
 
 class EndStage final: public GameStage {
