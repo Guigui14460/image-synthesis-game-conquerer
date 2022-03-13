@@ -5,8 +5,8 @@
 #include "BasicObjects.hpp"
 
 BackgroundRenderer::BackgroundRenderer(uint numberOfStars)
-    : m_program("conquerer/3d.v.glsl", "conquerer/3d.f.glsl"), m_view(1), m_currentTime(0), m_deltaTime(0),
-      m_eyePhi(PI / 8), m_eyeTheta(PI / 2 + PI / 10) {
+    : m_program("conquerer/3d.v.glsl", "conquerer/3d.f.glsl"), m_proj(1), m_view(1),
+      m_eyePhi(PI / 8), m_eyeTheta(PI / 2 + PI / 10), m_currentTime(0), m_deltaTime(0) {
     GLFWwindow* window = glfwGetCurrentContext();
     int windowWidth, windowHeight;
     glfwGetFramebufferSize(window, &windowWidth, &windowHeight);
@@ -28,7 +28,7 @@ void BackgroundRenderer::createVAO(uint numberOfStars) {
     std::vector<glm::vec3> points = this->generateRandomStars(numberOfStars);
     std::vector<float> sizes = this->generateRandomSizes(numberOfStars, 0.004, 0.001);
     for(uint i = 0; i < numberOfStars; i++){
-        this->m_meshes.push_back(std::shared_ptr<Mesh>(new Mesh(m_vao, points[i], points[i], glm::vec3(0.f), glm::vec3(sizes[i]))));
+        this->m_meshes.push_back(std::make_shared<Mesh>(m_vao, points[i], points[i], glm::vec3(0.f), glm::vec3(sizes[i])));
     }
 }
 

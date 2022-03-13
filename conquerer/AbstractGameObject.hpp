@@ -1,5 +1,6 @@
 #ifndef __ABSTRACT_GAME_OBJECT_HPP__
 #define __ABSTRACT_GAME_OBJECT_HPP__
+#include "Mesh.hpp"
 
 /**
  * @brief The AbstractGameObject class is an abstract class to create all the objects of the Conquerer game.
@@ -9,6 +10,9 @@ class AbstractGameObject
 public:
     AbstractGameObject() = default;
     AbstractGameObject(const AbstractGameObject& o) = default;
+
+    /// Destructor
+    virtual ~AbstractGameObject();
 
     /**
      * @brief Checks the collision between two objects
@@ -21,7 +25,8 @@ public:
     virtual bool isDestroyed() = 0;
 
 private:
-    float m_health;
+    std::shared_ptr<Mesh> m_mesh; /// The OpenGL object to display
+    float m_health; /// Health of the object
 
 };
 

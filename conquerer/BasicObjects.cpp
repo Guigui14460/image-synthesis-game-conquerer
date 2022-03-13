@@ -27,7 +27,7 @@ std::shared_ptr<VAO> BasicObjects::makeParamSurf(DiscreteLinRange rgPhi, Discret
     }
   }
 
-  std::shared_ptr<VAO> vao(new VAO(2));
+  std::shared_ptr<VAO> vao = std::make_shared<VAO>(2);
   vao->setVBO(0, positions);
   vao->setVBO(1, colors);
   vao->setIBO(ibo);
