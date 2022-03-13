@@ -2,7 +2,7 @@
 #include <glm/ext.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-StartStage::StartStage()
+StartStage::StartStage() : m_renderer(200)
 {
     glClearColor(1.f, 1.f, 1.f, 1.f);
     int width, height;
@@ -13,7 +13,7 @@ StartStage::StartStage()
 
     this->m_text->printText("CONQUERER", 0.5, 2, 10, {1.f, 0.f, 0.f});
 
-    const glm::vec3 color(0.f, 0.f, 0.f);
+    const glm::vec3 color(1.f, 1.f, 1.f);
     this->m_text->printText("Press Enter", 7, 20, 4, color);
     this->m_text->printText(" to  START ", 7, 21, 4, color);
 }
@@ -21,16 +21,21 @@ StartStage::StartStage()
 StartStage::~StartStage() {}
 
 void StartStage::renderFrame() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
     // render frame of renderer
+    this->m_renderer.renderFrame();
     this->m_text->draw();
 }
 
 void StartStage::update() {
     // update the renderer
+    this->m_renderer.update(false);
 }
 
 void StartStage::resize(GLFWwindow *window, int frameBufferWidth, int frameBufferHeight) {
     // resize the renderer
+    this->m_renderer.resize(window, frameBufferWidth, frameBufferHeight);
     this->m_text->resize(frameBufferWidth, frameBufferHeight);
     this->m_text->setWOverH(frameBufferWidth / float(frameBufferHeight));
     glViewport(0, 0, frameBufferWidth, frameBufferHeight);

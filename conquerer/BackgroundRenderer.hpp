@@ -27,7 +27,7 @@ public:
      */
     BackgroundRenderer(uint numberOfStars);
     BackgroundRenderer(const BackgroundRenderer& o) = delete; /// Copy constructor
-    BackgroundRenderer(const BackgroundRenderer&& o) = delete; /// Moving constructor
+    BackgroundRenderer(BackgroundRenderer&& o) = delete; /// Moving constructor
 
     /**
      * @brief Iniitializes the OpenGL state for this renderer.
@@ -50,8 +50,9 @@ public:
 
     /**
      * @brief Updates the scene including meshes which is time related.
+     * @param activateContinuousKeys
      */
-    void update();
+    void update(bool activateContinuousKeys = true);
 
     /**
      * @brief Method which used to interact with the keyboard user.

@@ -2,8 +2,8 @@
 #include <glm/ext.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-EndStage::EndStage()
-{
+EndStage::EndStage(const std::shared_ptr<BackgroundRenderer> renderer)
+    : m_renderer(renderer) {
     glClearColor(1, 0.7, 0.4, 1);
     int width, height;
     GLFWwindow* window = glfwGetCurrentContext();
@@ -17,17 +17,20 @@ EndStage::EndStage()
 EndStage::~EndStage() {}
 
 void EndStage::renderFrame() {
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     // render frame of renderer
+    this->m_renderer->renderFrame();
     this->m_text->draw();
 }
 
 void EndStage::update() {
     // update the renderer
+    this->m_renderer->update(false);
 }
 
-void EndStage::resize(GLFWwindow*, int frameBufferWidth, int frameBufferHeight) {
+void EndStage::resize(GLFWwindow *window, int frameBufferWidth, int frameBufferHeight) {
     // resize the renderer
+    this->m_renderer->resize(window, frameBufferWidth, frameBufferHeight);
     this->m_text->setWOverH(frameBufferWidth / float(frameBufferHeight));
     glViewport(0, 0, frameBufferWidth, frameBufferHeight);
 }

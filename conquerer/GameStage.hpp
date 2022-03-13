@@ -8,9 +8,9 @@
  */
 class GameStage {
 public:
-    GameStage() = delete; /// Default constructor
+    GameStage(); /// Default constructor
     GameStage(const GameStage& o) = delete; /// Copy constructor
-    GameStage(const GameStage &&o) = delete; /// Moving constructor
+    GameStage(GameStage &&o) = delete; /// Moving constructor
 
     /// Destructor
     virtual ~GameStage() {}

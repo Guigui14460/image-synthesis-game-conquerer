@@ -20,7 +20,7 @@ public:
          glm::vec3 rotate = glm::vec3(0.f), glm::vec3 scale = glm::vec3(1.f));
     ~Mesh() {} /// Destructor
     Mesh(const Mesh& o) = delete; /// Copy constructor
-    Mesh(const Mesh&& o) = delete; /// Moving constructor
+    Mesh(Mesh&& o) = delete; /// Moving constructor
 
     /// Gets the position the object
     inline glm::vec3 getPosition() const { return this->m_position; }

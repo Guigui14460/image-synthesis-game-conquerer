@@ -11,7 +11,7 @@ class BasicObjects
 public:
     BasicObjects() = delete; /// Default constructor
     BasicObjects(const BasicObjects& o) = delete; /// Copy constructor
-    BasicObjects(const BasicObjects &&o) = delete; /// Moving constructor
+    BasicObjects(BasicObjects &&o) = delete; /// Moving constructor
 
     /// A simple struct for discrete linear range of the form {minVal, minVal+delta,...,minVal+length}
     struct DiscreteLinRange {

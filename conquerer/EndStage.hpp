@@ -2,6 +2,7 @@
 #define __END_STAGE_HPP__
 #include "GameStage.hpp"
 #include "TextPrinter.hpp"
+#include "BackgroundRenderer.hpp"
 
 /**
  * @brief The EndStage class represents the final stage of the Conquerer application showing the winner.
@@ -9,7 +10,7 @@
 class EndStage final: public GameStage {
 public:
     /// Default constructor
-    EndStage();
+    EndStage(const std::shared_ptr<BackgroundRenderer> renderer);
 
     /// Destructor
     ~EndStage();
@@ -36,6 +37,7 @@ public:
 
 private:
     std::unique_ptr<TextPrinter> m_text; /// To display some text
+    std::shared_ptr<BackgroundRenderer> m_renderer; /// To display background model
 };
 
 #endif // __END_STAGE_HPP__

@@ -33,7 +33,9 @@ public:
     std::unique_ptr<GameStage> nextStage() const override;
 
 private:
-    BackgroundRenderer m_background_renderer; /// The background space renderer
+    std::shared_ptr<BackgroundRenderer> m_background_renderer; /// The background space renderer
+    int m_frameBufferWidth; /// The width of the current viewport
+    int m_frameBufferHeight; /// The height of the current viewport
 };
 
 #endif // __PLAYING_STAGE_HPP__

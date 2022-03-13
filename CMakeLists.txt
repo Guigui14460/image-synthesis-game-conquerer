@@ -110,14 +110,16 @@ add_executable(conquerer
   conquerer/EndStage.cpp
   conquerer/TextPrinter.hpp
   conquerer/TextPrinter.cpp
-  conquerer/BackgroundRenderer.cpp
   conquerer/BackgroundRenderer.hpp
-  conquerer/PlayingStage.cpp
+  conquerer/BackgroundRenderer.cpp
   conquerer/PlayingStage.hpp
+  conquerer/PlayingStage.cpp
   conquerer/Mesh.hpp
   conquerer/Mesh.cpp
-  conquerer/BasicObjects.cpp
   conquerer/BasicObjects.hpp
+  conquerer/BasicObjects.cpp
+  conquerer/AbstractGameObject.hpp
+  conquerer/AbstractGameObject.cpp
 
   conquerer/GameStage.cpp
 

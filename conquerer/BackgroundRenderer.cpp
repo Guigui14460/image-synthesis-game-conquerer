@@ -48,12 +48,14 @@ void BackgroundRenderer::renderFrame()
   this->m_program.unbind();
 }
 
-void BackgroundRenderer::update() {
+void BackgroundRenderer::update(bool activateContinuousKeys) {
     float prevTime = this->m_currentTime;
     this->m_currentTime = glfwGetTime();
     this->m_deltaTime = this->m_currentTime - prevTime;
 
-    this->continuousKey();
+    if(activateContinuousKeys){
+        this->continuousKey();
+    }
     // camera (create an object to handle that) -> not working here
     glm::vec3 center(0, 0, 0);
     glm::vec3 up(1, 0, 0);
