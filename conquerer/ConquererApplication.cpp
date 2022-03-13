@@ -1,5 +1,7 @@
 #include "ConquererApplication.hpp"
 #include <GLFW/glfw3.h>
+#include "StartStage.hpp"
+#include "PlayingStage.hpp"
 
 ConquererApplication::ConquererApplication()
     : WindowedApplication(1400, 850, "Conquerer Game"), m_stage(new StartStage()) {
@@ -39,7 +41,9 @@ void ConquererApplication::nextStage() {
 
 void ConquererApplication::resize(GLFWwindow *window, int frameBufferWidth, int frameBufferHeight) {
     ConquererApplication& app = *static_cast<ConquererApplication*>(glfwGetWindowUserPointer(window));
-    app.m_stage->resize(window, frameBufferWidth, frameBufferHeight);
+    if(dynamic_cast<const PlayingStage*>(app.m_stage.get()) == nullptr){
+        app.m_stage->resize(window, frameBufferWidth, frameBufferHeight);
+    }
 }
 
 void ConquererApplication::keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods) {

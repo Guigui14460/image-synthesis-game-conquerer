@@ -1,8 +1,8 @@
 #ifndef __CONQUERER_APPLICATION_HPP__
 #define __CONQUERER_APPLICATION_HPP__
 #include "FullScreenApplication.hpp"
+#include "glApi.hpp"
 #include "GameStage.hpp"
-#include "StartStage.hpp"
 
 /**
  * @brief The concrete application of the Conquerer game
@@ -29,7 +29,12 @@ private:
     /// Updates the time related members
     void update() override;
 
-    /// Window resize callback
+    /**
+     * @brief Resizes the render screen to fit with the GLFW window screen size.
+     * @param window the GLFW window object
+     * @param frameBufferWidth the new width of the frame buffer to display
+     * @param frameBufferHeight the new height of the frame buffer to display
+     */
     static void resize(GLFWwindow* window, int frameBufferWidth, int frameBufferHeight);
 
     /// Key callback
@@ -39,7 +44,7 @@ private:
     void nextStage();
 
 private:
-    std::unique_ptr<GameStage> m_stage; /// menu of the game
+    std::unique_ptr<GameStage> m_stage; /// Menu of the game
 };
 
 #endif // __CONQUERER_APPLICATION_HPP__

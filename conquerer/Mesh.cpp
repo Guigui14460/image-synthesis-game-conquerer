@@ -5,8 +5,6 @@ Mesh::Mesh(std::shared_ptr<VAO> vao, glm::vec3 position, glm::vec3 origin, glm::
     : m_vao(vao), m_position(position), m_origin(origin),
       m_rotation(rotate), m_scale(scale), m_modelMatrix(1) {}
 
-Mesh::~Mesh() {}
-
 void Mesh::move(const glm::vec3& position){
     this->m_position += position;
 }
