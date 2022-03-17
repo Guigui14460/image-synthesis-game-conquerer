@@ -35,6 +35,12 @@ public:
    */
   void printText(const std::string& text, float x, float y, float fontsize, const glm::vec3& fontColor = glm::vec3(1, 1, 1), const glm::vec4& fillColor = glm::vec4(1, 1, 1, 0), uint padding = 0);
 
+  /**
+   * @brief Removes a text (VAO)
+   * @param index index of the VAO to delete
+   */
+  void removeText(uint index);
+
   /// Draws all the vaos created with printText
   void draw();
 

@@ -120,6 +120,13 @@ add_executable(conquerer
   conquerer/BasicObjects.cpp
   conquerer/AbstractGameObject.hpp
   conquerer/AbstractGameObject.cpp
+  conquerer/Camera.hpp
+  conquerer/Camera.cpp
+  conquerer/GameOverlay.hpp
+  conquerer/GameOverlay.cpp
+  conquerer/GameLogic.hpp
+  conquerer/GameLogic.cpp
+  conquerer/CollisionShapes.hpp
 
   conquerer/GameStage.cpp
 

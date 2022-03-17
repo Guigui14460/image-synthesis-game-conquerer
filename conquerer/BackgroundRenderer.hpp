@@ -5,6 +5,7 @@
 #include <vector>
 #include <glm/ext.hpp>
 #include "Mesh.hpp"
+#include "Camera.hpp"
 
 // forward declaration
 struct GLFWwindow;
@@ -91,9 +92,7 @@ private:
     Program m_program; /// GLSL Program used for the render of 3D space
     glm::mat4 m_proj; /// Projection matrix
     glm::mat4 m_view; /// View matrix
-
-    float m_eyePhi; /// Theta angle for the camera
-    float m_eyeTheta; /// Phi angle for the camera
+    Camera m_camera; /// Camera object
 
     float m_currentTime; /// Current OpenGL time
     float m_deltaTime; /// Elapsed time between last frame and current showing frame for the animation speed

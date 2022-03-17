@@ -4,7 +4,6 @@
 
 EndStage::EndStage(const std::shared_ptr<BackgroundRenderer> renderer)
     : m_renderer(renderer) {
-    glClearColor(1, 0.7, 0.4, 1);
     int width, height;
     GLFWwindow* window = glfwGetCurrentContext();
     glfwGetFramebufferSize(window, &width, &height);

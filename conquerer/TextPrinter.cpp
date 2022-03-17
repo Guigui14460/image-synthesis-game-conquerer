@@ -65,6 +65,10 @@ void TextPrinter::printText(const std::string& text, float x, float y, float fon
     this->m_vaos.back()->setVBO(1, uvs);
 }
 
+void TextPrinter::removeText(uint index){
+    this->m_vaos.erase(this->m_vaos.begin() + index);
+}
+
 void TextPrinter::draw()
 {
     this->m_program.bind();

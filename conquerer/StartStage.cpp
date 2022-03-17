@@ -4,7 +4,6 @@
 
 StartStage::StartStage() : m_renderer(200)
 {
-    glClearColor(1.f, 1.f, 1.f, 1.f);
     int width, height;
     GLFWwindow* window = glfwGetCurrentContext();
     glfwGetFramebufferSize(window, &width, &height);

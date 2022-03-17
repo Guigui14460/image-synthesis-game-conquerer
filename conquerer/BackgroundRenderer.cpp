@@ -6,7 +6,8 @@
 
 BackgroundRenderer::BackgroundRenderer(uint numberOfStars)
     : m_program("conquerer/3d.v.glsl", "conquerer/3d.f.glsl"), m_proj(1), m_view(1),
-      m_eyePhi(PI / 8), m_eyeTheta(PI / 2 + PI / 10), m_currentTime(0), m_deltaTime(0) {
+      m_camera(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 0.f, 1.f)),
+      m_currentTime(0), m_deltaTime(0) {
     GLFWwindow* window = glfwGetCurrentContext();
     int windowWidth, windowHeight;
     glfwGetFramebufferSize(window, &windowWidth, &windowHeight);
@@ -34,18 +35,14 @@ void BackgroundRenderer::createVAO(uint numberOfStars) {
 
 void BackgroundRenderer::renderFrame()
 {
-    glClearColor(0, 0, 0, 1);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     this->m_program.bind();
 
-//    m_view = glm::mat4(1);
-
-    for(auto& vao: this->m_meshes){
-        vao->updateProgram(this->m_program, m_proj, m_view);
-        vao->render();
+    for(auto& mesh: this->m_meshes){
+        mesh->updateProgram(this->m_program, m_proj, m_view);
+        mesh->render();
     }
 
-  this->m_program.unbind();
+    this->m_program.unbind();
 }
 
 void BackgroundRenderer::update(bool activateContinuousKeys) {
@@ -56,30 +53,37 @@ void BackgroundRenderer::update(bool activateContinuousKeys) {
     if(activateContinuousKeys){
         this->continuousKey();
     }
-    // camera (create an object to handle that) -> not working here
-    glm::vec3 center(0, 0, 0);
-    glm::vec3 up(1, 0, 0);
-    glm::vec3 eyePos = 5.f * glm::vec3(glm::cos(glm::radians(m_eyePhi)) * glm::sin(glm::radians(m_eyeTheta)), glm::sin(glm::radians(m_eyePhi)) * glm::sin(glm::radians(m_eyeTheta)), glm::cos(glm::radians(m_eyeTheta)));
-    m_view = glm::lookAt(center, eyePos, up);
 
-    this->m_program.bind();
-//    this->m_program.setUniform("time", this->m_currentTime);
-    this->m_program.unbind();
+    this->m_view = this->m_camera.calculateViewMatrix();
 
-    for (auto& vao : this->m_meshes) {
-      vao->update(this->m_deltaTime);
+    for (auto& mesh : this->m_meshes) {
+        mesh->update(this->m_deltaTime);
     }
 }
+
+constexpr float ANGLE_TO_ROTATE = 30.f;
+
+void BackgroundRenderer::continuousKey() {
+    GLFWwindow * window = glfwGetCurrentContext();
+    float theta = 0, phi = 0;
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+        theta -= ANGLE_TO_ROTATE;
+    } else if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+        theta += ANGLE_TO_ROTATE;
+    }
+    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+        phi -= ANGLE_TO_ROTATE;
+    } else if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+        phi += ANGLE_TO_ROTATE;
+    }
+    this->m_camera.rotate(this->m_deltaTime, glm::vec2(phi, theta));
+}
+
 
 
 void BackgroundRenderer::resize(GLFWwindow*, int frameBufferWidth, int frameBufferHeight)
 {
-  float aspect = frameBufferHeight / float(frameBufferWidth);
-  if (aspect > 1) {
-    m_proj = glm::ortho(-1.f, 1.f, -aspect, aspect);
-  } else {
-    m_proj = glm::ortho(-1 / aspect, 1 / aspect, -1.f, 1.f);
-  }
+    this->m_proj = this->m_camera.calculateProjectionMatrix(90.f, frameBufferWidth, frameBufferHeight, 0.1f, 100.f);
 }
 
 std::vector<glm::vec3> BackgroundRenderer::generateRandomStars(uint numberOfStars) {
@@ -110,19 +114,4 @@ std::vector<float> BackgroundRenderer::generateRandomSizes(uint numberOfStars, f
     }
 
     return sizes;
-}
-
-void BackgroundRenderer::continuousKey() {
-    GLFWwindow * window = glfwGetCurrentContext();
-    const float pi = glm::pi<float>();
-    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-        m_eyeTheta += m_deltaTime * pi * 10;
-    } else if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-        m_eyeTheta -= m_deltaTime * pi * 10;
-    }
-    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-        m_eyePhi += m_deltaTime * pi * 10;
-    } else if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
-        m_eyePhi -= m_deltaTime * pi * 10;
-    }
 }
