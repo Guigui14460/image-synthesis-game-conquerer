@@ -120,6 +120,11 @@ add_executable(conquerer
   conquerer/BasicObjects.cpp
   conquerer/AbstractGameObject.hpp
   conquerer/AbstractGameObject.cpp
+  conquerer/PlayerObject.hpp
+  conquerer/PlayerObject.cpp
+  conquerer/AsteroidObject.hpp
+  conquerer/AsteroidObject.cpp
+
   conquerer/Camera.hpp
   conquerer/Camera.cpp
   conquerer/GameOverlay.hpp
@@ -134,6 +139,8 @@ add_executable(conquerer
   conquerer/font.f.glsl
   conquerer/3d.v.glsl
   conquerer/3d.f.glsl
+  conquerer/texture.v.glsl
+  conquerer/texture.f.glsl
 )
 target_link_libraries(conquerer utils ${GLFW3_LIBRARIES} ${GLEW_LIBRARIES})
 

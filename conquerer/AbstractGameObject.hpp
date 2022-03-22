@@ -12,7 +12,7 @@ public:
     AbstractGameObject(const AbstractGameObject& o) = default;
 
     /// Destructor
-    virtual ~AbstractGameObject();
+    virtual ~AbstractGameObject() {}
 
     /**
      * @brief Checks the collision between two objects
