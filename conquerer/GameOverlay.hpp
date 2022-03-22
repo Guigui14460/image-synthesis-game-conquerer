@@ -10,7 +10,7 @@ public:
     void render();
 
 private:
-    TextPrinter m_textRenderer;
+//    TextPrinter m_textRenderer;
     // TODO: add meshes for the rectangles and timer (and minimap in future)
 };
 
