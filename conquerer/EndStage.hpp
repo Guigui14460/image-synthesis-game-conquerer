@@ -38,6 +38,8 @@ public:
 private:
     std::unique_ptr<TextPrinter> m_text; /// To display some text
     std::shared_ptr<BackgroundRenderer> m_renderer; /// To display background model
+    int m_frameBufferWidth; /// The width of the current viewport
+    int m_frameBufferHeight; /// The height of the current viewport
 };
 
 #endif // __END_STAGE_HPP__

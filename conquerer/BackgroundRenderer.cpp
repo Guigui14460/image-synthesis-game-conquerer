@@ -6,7 +6,7 @@
 
 BackgroundRenderer::BackgroundRenderer(uint numberOfStars)
     : m_program("conquerer/3d.v.glsl", "conquerer/3d.f.glsl"), m_proj(1), m_view(1),
-      m_camera(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 0.f, 1.f)),
+      m_camera(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 0.f, 1.f), glm::vec3(0.f, 1.f, 0.f)),
       m_currentTime(0), m_deltaTime(0) {
     GLFWwindow* window = glfwGetCurrentContext();
     int windowWidth, windowHeight;

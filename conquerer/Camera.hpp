@@ -1,5 +1,6 @@
 #ifndef __CAMERA_HPP__
 #define __CAMERA_HPP__
+#include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
 #include <glm/mat4x4.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -45,9 +46,8 @@ public:
     /**
      * @brief Moves the camera position
      * @param deltaTime elapsed time between last and current frame
-     * @param position the position to move
      */
-    void move(const float& deltaTime, const glm::vec3& position);
+    void move(const float& deltaTime);
 
     /**
      * @brief Rotates the orientation of the camera object
@@ -70,10 +70,10 @@ public:
     glm::mat4 calculateViewMatrix();
 
 private:
-    float m_theta, m_phi; /// Angles for the camera movement
     glm::vec3 m_position; /// Camera position in the space
     glm::vec3 m_orientation; /// Camera orientation in the space
-    glm::vec3 m_worldUp; /// What is the direction of the up of the scene
+    glm::vec3 m_worldUp; /// What is the direction of the up of the whole scene
+    glm::vec3 m_up; /// Actual up of the camera
     glm::mat4 m_projectionMatrix; /// Projection matrix to make the perspective
     glm::mat4 m_viewMatrix; /// View matrix the see the object
 };
