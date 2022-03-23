@@ -22,11 +22,10 @@ enum player_t {PLAYER1, PLAYER2, COMPUTER};
 class PlayerObject: public AbstractGameObject
 {
 private:
+    player_t m_typePj;
     std::shared_ptr<Texture> m_texture;//fait avec le glApi
     std::shared_ptr<Mesh> m_mesh;//=VAO creer l'object en mémoire (prendre exemple sur le mesh)
-    glm::vec3 position;//redefinir la position lors d'un changement
     std::shared_ptr<Program> m_program;//appel du program pour y mettre les objets
-    player_t m_typePj;
 
     PlayerObject(player_t typePj, std::shared_ptr<Texture> texture,
                  std::shared_ptr<Mesh> mesh, glm::vec3 position,
@@ -63,18 +62,7 @@ public:
      */
     void update();
 
-    ~PlayerObject(){
-
-    }
-
-    bool isCollided(AbstractGameObject &other)override{
-
-    }
-
-    bool isDestroyed()override{
-
-    }
-
+    ~PlayerObject(){}
 };
 
 #endif // __PLAYER_OBJECT_HPP__

@@ -1,10 +1,11 @@
 #include "PlayerObject.hpp"
 #include "ObjLoader.hpp"
+#include "CollisionShapes.hpp"
 
 PlayerObject::PlayerObject(player_t typePj, std::shared_ptr<Texture> texture,
                            std::shared_ptr<Mesh> mesh, glm::vec3 position,
-                           std::shared_ptr<Program> program): AbstractGameObject(), m_typePj(typePj), m_texture(texture),
-                           m_mesh(mesh), position(position), m_program(program){}
+                           std::shared_ptr<Program> program): AbstractGameObject(position, 0, 0, CollisionShapes::RECTANGLE, glm::vec3(1)),
+                    m_typePj(typePj), m_texture(texture), m_mesh(mesh), m_program(program){}
 
 std::shared_ptr<PlayerObject> PlayerObject::loadObjsPlayer(player_t typePj,  glm::vec3 position, std::shared_ptr<Program> program)
 {
@@ -48,6 +49,7 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std:
     vaoSlave = vao->makeSlaveVAO();
     vaoSlave->setIBO(ibo);
     texture = std::shared_ptr<Texture>(new Texture(GL_TEXTURE_2D));
+    // TODO: texture->setData()
   }
 
   std::shared_ptr<Mesh> mesh = std::shared_ptr<Mesh>(new Mesh(vao, position));

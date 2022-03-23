@@ -1,37 +1,106 @@
 #ifndef __COLLISION_SHAPES_HPP__
 #define __COLLISION_SHAPES_HPP__
-#include <glm/vec3.hpp>
 #include <cmath>
+#include <vector>
+#include <glm/vec3.hpp>
 
 /**
  * @brief The CollisionShapes class contains all the shapes for the game to test collision between these shapes.
  */
 class CollisionShapes {
 public:
-    /// Rectangle shape (min and max for each of the 3 dimensions)
-    struct RectShape {
-        float minX, minY, minZ, maxX, maxY, maxZ;
-    };
+    enum shape_t { NULL_SHAPE = -1, POINT, SPHERE, RECTANGLE };
 
-    /// Sphere shape (position + radius)
-    struct SphereShape {
+    class Shape {
+    protected:
         glm::vec3 position;
-        float radius;
+
+    public:
+        Shape() : position(0.f) {}
+        Shape(const glm::vec3& pos): position(pos) {}
+
+        inline glm::vec3 getPosition() const { return this->position; }
+        inline void setPosition(const glm::vec3& pos) { this->position = pos; }
+        void move(const glm::vec3& pos) { this->position += pos; }
+        void rotate(const glm::vec3&) {}
+        void scale(const float) {}
+        shape_t getType() { return NULL_SHAPE; }
     };
 
     /// Point shape (position)
-    struct PointShape {
-        glm::vec3 position;
+    class PointShape: public Shape {
+    public:
+        PointShape(const glm::vec3& pos) : Shape(pos) {}
+
+        shape_t getType() { return POINT; }
     };
 
+    /// Sphere shape (position + radius)
+    class SphereShape : public Shape {
+    protected:
+        float radius;
+
+    public:
+        SphereShape(const glm::vec3& pos, const float rad): Shape(pos), radius(rad) {
+            if(radius < 0) throw "ERROR::CollisionShapes::SphereShape::SphereShape -> radius cannot be negative";
+        }
+
+        inline float getRadius() const { return this->radius; }
+        inline void setRadius(const float rad) { this->radius = rad; }
+        void scale(const float value) { this->radius *= value; }
+        shape_t getType() { return SPHERE; }
+    };
+
+    /// Rectangle shape (min and max for each of the 3 dimensions)
+    class RectShape : public Shape {
+    protected:
+        glm::vec3 min, max;
+
+    public:
+        RectShape(const glm::vec3& pos, const glm::vec3& semiSize): Shape(pos) {
+            if(semiSize.x < 0 or semiSize.y < 0 or semiSize.z < 0) throw "ERROR::CollisionShapes::RectShape::RectShape -> a semi size cannot be negative";
+            this->min = glm::vec3(pos.x - semiSize.x, pos.y - semiSize.y, pos.z - semiSize.z);
+            this->max = glm::vec3(pos.x + semiSize.x, pos.y + semiSize.y, pos.z + semiSize.z);
+        }
+
+        inline void setPosition(const glm::vec3& pos, const glm::vec3& semiSize) {
+            Shape::setPosition(pos);
+            this->min = glm::vec3(pos.x - semiSize.x, pos.y - semiSize.y, pos.z - semiSize.z);
+            this->max = glm::vec3(pos.x + semiSize.x, pos.y + semiSize.y, pos.z + semiSize.z);
+        }
+        inline glm::vec3 getMin() const { return this->min; }
+        inline glm::vec3 getMax() const { return this->max; }
+        void move(const glm::vec3& pos) {
+            Shape::move(pos);
+            this->min += pos;
+            this->max += pos;
+        }
+        void rotate(const glm::vec3& pos, const glm::vec3& semiSize) {
+            this->min = glm::vec3(pos.x - semiSize.x, pos.y - semiSize.y, pos.z - semiSize.z);
+            this->max = glm::vec3(pos.x + semiSize.x, pos.y + semiSize.y, pos.z + semiSize.z);
+        }
+        void scale(const float value) {
+            this->min -= this->position;
+            this->max -= this->position;
+
+            this->min *= value;
+            this->max *= value;
+
+            this->min += this->position;
+            this->max += this->position;
+        }
+        shape_t getType() { return RECTANGLE; }
+    };
+
+private:
     /**
      * @brief Check the collision between two points
      * @param a
      * @param b
      * @return boolean representing if there is collision between these shapes
      */
-    static bool isCollided(PointShape& a, PointShape& b) {
-        return a.position == b.position;
+    static bool isCollidedPointToPoint(PointShape& a, PointShape& b) {
+        return a.getPosition() == b.getPosition();
     }
 
     /**
@@ -40,7 +109,7 @@ public:
      * @param rect
      * @return boolean representing if there is collision between these shapes
      */
-    static bool isCollided(PointShape& point, RectShape& rect) {
+    static bool isCollidedPointToRectangle(PointShape& point, RectShape& rect) {
         return isCollided(rect, point);
     }
     /**
@@ -49,10 +118,10 @@ public:
      * @param point
      * @return boolean representing if there is collision between these shapes
      */
-    static bool isCollided(RectShape& rect, PointShape& point){
-        return (rect.minX <= point.position.x and point.position.x <= rect.maxX) and
-               (rect.minY <= point.position.y and point.position.y <= rect.maxY) and
-               (rect.minZ <= point.position.z and point.position.z <= rect.maxZ);
+    static bool isCollidedPointToRectangle(RectShape& rect, PointShape& point){
+        return (rect.getMin().x <= point.getPosition().x and point.getPosition().x <= rect.getMax().x) and
+               (rect.getMin().y <= point.getPosition().y and point.getPosition().y <= rect.getMax().y) and
+               (rect.getMin().z <= point.getPosition().z and point.getPosition().z <= rect.getMax().z);
     }
 
     /**
@@ -61,10 +130,10 @@ public:
      * @param rect2
      * @return boolean representing if there is collision between these shapes
      */
-    static bool isCollided(RectShape& rect1, RectShape& rect2){
-        return (rect1.minX <= rect2.maxX and rect1.maxX >= rect2.minX) and
-               (rect1.minY <= rect2.maxY and rect1.maxY >= rect2.minY) and
-               (rect1.minZ <= rect2.maxZ and rect1.maxZ >= rect2.minZ);
+    static bool isCollidedRectangleToRectangle(RectShape& rect1, RectShape& rect2){
+        return (rect1.getMin().x <= rect2.getMax().x and rect1.getMax().x >= rect2.getMin().x) and
+               (rect1.getMin().y <= rect2.getMax().y and rect1.getMax().y >= rect2.getMin().y) and
+               (rect1.getMin().z <= rect2.getMax().z and rect1.getMax().z >= rect2.getMin().z);
     }
 
     /**
@@ -73,7 +142,7 @@ public:
      * @param sphere
      * @return boolean representing if there is collision between these shapes
      */
-    static bool isCollided(PointShape& point, SphereShape& sphere) {
+    static bool isCollidedPointToSphere(PointShape& point, SphereShape& sphere) {
         return isCollided(sphere, point);
     }
     /**
@@ -82,13 +151,13 @@ public:
      * @param point
      * @return boolean representing if there is collision between these shapes
      */
-    static bool isCollided(SphereShape& sphere, PointShape& point) {
+    static bool isCollidedPointToSphere(SphereShape& sphere, PointShape& point) {
         float distance = sqrt(
-            pow(point.position.x - sphere.position.x, 2) +
-            pow(point.position.y - sphere.position.y, 2) +
-            pow(point.position.z - sphere.position.z, 2)
+            pow(point.getPosition().x - sphere.getPosition().x, 2) +
+            pow(point.getPosition().y - sphere.getPosition().y, 2) +
+            pow(point.getPosition().z - sphere.getPosition().z, 2)
         );
-        return distance < sphere.radius;
+        return distance < sphere.getRadius();
     }
 
     /**
@@ -97,7 +166,7 @@ public:
      * @param sphere
      * @return boolean representing if there is collision between these shapes
      */
-    static bool isCollided(RectShape& rect, SphereShape& sphere){
+    static bool isCollidedRectangleToSphere(RectShape& rect, SphereShape& sphere){
         return isCollided(sphere, rect);
     }
     /**
@@ -106,17 +175,17 @@ public:
      * @param rect
      * @return boolean representing if there is collision between these shapes
      */
-    static bool isCollided(SphereShape& sphere, RectShape& rect){
-        float x = fmax(rect.minX, fmin(sphere.x, rect.maxX));
-        float y = fmax(rect.minY, fmin(sphere.y, rect.maxY));
-        float z = fmax(rect.minZ, fmin(sphere.z, rect.maxZ));
+    static bool isCollidedRectangleToSphere(SphereShape& sphere, RectShape& rect){
+        float x = fmax(rect.getMin().x, fmin(sphere.getPosition().x, rect.getMax().x));
+        float y = fmax(rect.getMin().y, fmin(sphere.getPosition().y, rect.getMax().y));
+        float z = fmax(rect.getMin().z, fmin(sphere.getPosition().z, rect.getMax().z));
 
         float distance = sqrt(
-            pow(x - sphere.position.x, 2) +
-            pow(y - sphere.position.y, 2) +
-            pow(z - sphere.position.z, 2)
+            pow(x - sphere.getPosition().x, 2) +
+            pow(y - sphere.getPosition().y, 2) +
+            pow(z - sphere.getPosition().z, 2)
         );
-        return distance < sphere.radius;
+        return distance < sphere.getRadius();
     }
 
     /**
@@ -125,13 +194,44 @@ public:
      * @param sphere2
      * @return boolean representing if there is collision between these shapes
      */
-    static bool isCollided(SphereShape& sphere1, SphereShape& sphere2){
+    static bool isCollidedSphereToSphere(SphereShape& sphere1, SphereShape& sphere2){
         float distance = sqrt(
-            pow(sphere1.position.x - sphere2.position.x, 2) +
-            pow(sphere1.position.y - sphere2.position.y, 2) +
-            pow(sphere1.position.z - sphere2.position.z, 2)
+            pow(sphere1.getPosition().x - sphere2.getPosition().x, 2) +
+            pow(sphere1.getPosition().y - sphere2.getPosition().y, 2) +
+            pow(sphere1.getPosition().z - sphere2.getPosition().z, 2)
         );
-        return distance < (sphere1.radius + sphere2.radius);
+        return distance < (sphere1.getRadius() + sphere2.getRadius());
+    }
+public:
+    static bool isCollided(Shape& shape1, Shape& shape2){
+        if(shape1.getType() == NULL_SHAPE or shape2.getType() == NULL_SHAPE)
+            throw "ERROR::CollisionShapes::isCollided -> shape cannot be an abstract class (need to be PointShape, RectShape, SphereShape)";
+
+        if(shape1.getType() == RECTANGLE){
+            RectShape& rect1 = static_cast<RectShape&>(shape1);
+            if(shape2.getType() == RECTANGLE){
+                RectShape& rect2 = static_cast<RectShape&>(shape2);
+                return isCollidedRectangleToRectangle(rect1, rect2);
+            }
+            if(shape2.getType() == POINT){
+                PointShape& point = static_cast<PointShape&>(shape2);
+                return isCollidedPointToRectangle(point, rect1);
+            }
+            SphereShape& sphere = static_cast<SphereShape&>(shape2);
+            return isCollidedRectangleToSphere(rect1, sphere);
+        } else if(shape1.getType() == SPHERE){
+            SphereShape& sphere1 = static_cast<SphereShape&>(shape1);
+            if(shape2.getType() == POINT){
+                PointShape& point = static_cast<PointShape&>(shape2);
+                return isCollidedPointToSphere(point, sphere1);
+            }
+            SphereShape& sphere2 = static_cast<SphereShape&>(shape2);
+            return isCollidedSphereToSphere(sphere1, sphere2);
+        } else {
+            PointShape& point1 = static_cast<PointShape&>(shape1);
+            PointShape& point2 = static_cast<PointShape&>(shape2);
+            return isCollidedPointToPoint(point1, point2);
+        }
     }
 };
 
