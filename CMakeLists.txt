@@ -124,6 +124,8 @@ add_executable(conquerer
   conquerer/PlayerObject.cpp
   conquerer/AsteroidObject.hpp
   conquerer/AsteroidObject.cpp
+  conquerer/objectLoaderConqueror.hpp
+  conquerer/objectLoaderConqueror.cpp
 
   conquerer/Camera.hpp
   conquerer/Camera.cpp

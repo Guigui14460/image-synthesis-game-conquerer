@@ -1,5 +1,5 @@
 #include "PlayerObject.hpp"
-#include "ObjLoader.hpp"
+#include "objectLoaderConqueror.hpp"
 #include "CollisionShapes.hpp"
 
 PlayerObject::PlayerObject(player_t typePj, std::shared_ptr<Texture> texture,
@@ -32,16 +32,17 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjsPlayer(player_t typePj,  glm
 std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std::string & objname, const std::string & texturename, glm::vec3 position, std::shared_ptr<Program> program)
 {
   std::shared_ptr<Texture> texture;
-  ObjLoader objLoader(objname);
-  std::vector<glm::vec3> vextexPositions = objLoader.vertexPositions();
-  const std::vector<glm::vec2> & vertexUVs = objLoader.vertexUVs();
+  ObjectLoaderConqueror objLoader;
+  objLoader.LoadFromFile(objname);
+  std::vector<glm::vec3> vextexPositions = objLoader.vertexPosition();
+  const std::vector<glm::vec2> & vertexUVs = objLoader.vertexUV();
   // set up the VBOs of the master VAO
   std::shared_ptr<VAO> vao(new VAO(2));
   vao->setVBO(0, vextexPositions);
   vao->setVBO(1, vertexUVs);
   size_t nbParts = objLoader.nbIBOs();
   for (size_t k = 0; k < nbParts; k++) {
-    const std::vector<uint> & ibo = objLoader.ibo(k);
+    const std::vector<uint> & ibo = objLoader.ibos(k);
     if (ibo.size() == 0) {
       continue;
     }
