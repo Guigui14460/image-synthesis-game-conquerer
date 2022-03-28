@@ -49,7 +49,7 @@ public:
      *
      * @note More you generate phi and theta angles, more your sphere will be rounded.
      */
-    static std::shared_ptr<VAO> makeSphere(uint nbPhi, uint nbTheta, const glm::vec3& color);
+    static std::shared_ptr<VAO> makeSphere(uint nbPhi, uint nbTheta, const glm::vec3& color, const float radius = 1);
 };
 
 #endif // __BASIC_OBJECTS_HPP__

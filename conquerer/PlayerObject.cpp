@@ -4,10 +4,12 @@
 
 PlayerObject::PlayerObject(player_t typePj, std::shared_ptr<Texture> texture,
                            std::shared_ptr<Mesh> mesh, glm::vec3 position,
-                           std::shared_ptr<Program> program): AbstractGameObject(position, 0, 0, CollisionShapes::RECTANGLE, glm::vec3(1)),
-                    m_typePj(typePj), m_texture(texture), m_mesh(mesh), m_program(program){}
+                           std::shared_ptr<Program> program, const float health) : AbstractGameObject(position, 0, 0, CollisionShapes::RECTANGLE, health, glm::vec3(1)),
+                    m_typePj(typePj), m_texture(texture), m_program(program){
+    this->m_mesh = mesh;
+}
 
-std::shared_ptr<PlayerObject> PlayerObject::loadObjsPlayer(player_t typePj,  glm::vec3 position, std::shared_ptr<Program> program)
+std::shared_ptr<PlayerObject> PlayerObject::loadObjsPlayer(player_t typePj, glm::vec3 position, std::shared_ptr<Program> program, const float health)
 {
     std::string texture = "";
     std::string object = "";
@@ -25,11 +27,11 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjsPlayer(player_t typePj,  glm
         object = "objConquerer/computer/tuna/Tuna.obj";
     }
 
-    std::shared_ptr<PlayerObject> objectnew = PlayerObject::loadObjs(typePj, object, texture, position, program);
+    std::shared_ptr<PlayerObject> objectnew = PlayerObject::loadObjs(typePj, object, texture, position, program, health);
     return objectnew;
 }
 
-std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std::string & objname, const std::string & texturename, glm::vec3 position, std::shared_ptr<Program> program)
+std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std::string & objname, const std::string & texturename, glm::vec3 position, std::shared_ptr<Program> program, const float health)
 {
   std::shared_ptr<Texture> texture;
   ObjLoader objLoader(objname);
@@ -54,12 +56,12 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std:
 
   std::shared_ptr<Mesh> mesh = std::shared_ptr<Mesh>(new Mesh(vao, position));
 
-  PlayerObject objectnew (typePj,texture,mesh, position, program);
+  PlayerObject objectnew (typePj,texture,mesh, position, program, health);
 
   return std::shared_ptr<PlayerObject> (&objectnew);
 }
 
-void PlayerObject::draw(){
+void PlayerObject::draw(GLenum mode){
     m_program->bind();
 
     const int unit = 0;
@@ -67,10 +69,14 @@ void PlayerObject::draw(){
     m_texture->bind();
     m_program->setUniform("colorSampler", unit);
 
-    m_mesh->render();
+    m_mesh->render(mode);
     m_program->unbind();
 }
 
 void PlayerObject::update(){
     m_mesh->updateProgram(*m_program,glm::mat4(1),glm::mat4(1));
+}
+
+PlayerObject::player_t PlayerObject::getPlayerType() {
+    return this->m_typePj;
 }

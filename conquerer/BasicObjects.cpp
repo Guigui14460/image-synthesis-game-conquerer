@@ -34,8 +34,8 @@ std::shared_ptr<VAO> BasicObjects::makeParamSurf(DiscreteLinRange rgPhi, Discret
   return vao;
 }
 
-std::shared_ptr<VAO> BasicObjects::makeSphere(uint nbPhi, uint nbTheta, const glm::vec3& color){
-    auto posFunc = [](float phi, float theta) { return glm::vec3(cos(phi) * sin(theta), sin(phi) * sin(theta), 1 - cos(theta)); };
+std::shared_ptr<VAO> BasicObjects::makeSphere(uint nbPhi, uint nbTheta, const glm::vec3& color, const float radius){
+    auto posFunc = [&radius](float phi, float theta) { return glm::vec3(radius * cos(phi) * sin(theta), radius * sin(phi) * sin(theta), radius * (1 - cos(theta))); };
 
     const float pi = glm::pi<float>();
     return BasicObjects::makeParamSurf(DiscreteLinRange(nbPhi, 0, 2 * pi), DiscreteLinRange(nbTheta, 0, pi), posFunc, true, false, color);

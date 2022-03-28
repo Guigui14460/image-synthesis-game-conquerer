@@ -1,7 +1,7 @@
 #include "AbstractGameObject.hpp"
 
-AbstractGameObject::AbstractGameObject(const glm::vec3 position, const float theta, const float phi, const CollisionShapes::shape_t shapeType, const glm::vec3 sizes, const float radius)
-    : m_position(position), m_sizes(sizes), m_phi(phi), m_theta(theta) {
+AbstractGameObject::AbstractGameObject(const glm::vec3 position, const float theta, const float phi, const CollisionShapes::shape_t shapeType, const float health, const glm::vec3 sizes, const float radius)
+    : m_health(health), m_position(position), m_sizes(sizes), m_phi(phi), m_theta(theta) {
     switch (shapeType) {
     case CollisionShapes::RECTANGLE:
         this->m_collisionShape = CollisionShapes::RectShape(position, sizes/2.f);

@@ -124,6 +124,10 @@ add_executable(conquerer
   conquerer/PlayerObject.cpp
   conquerer/AsteroidObject.hpp
   conquerer/AsteroidObject.cpp
+  conquerer/PlanetObject.hpp
+  conquerer/PlanetObject.cpp
+  conquerer/ProjectileObject.hpp
+  conquerer/ProjectileObject.cpp
 
   conquerer/Camera.hpp
   conquerer/Camera.cpp
