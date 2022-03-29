@@ -3,6 +3,7 @@
 #include "AbstractGameObject.hpp"
 #include "glApi.hpp"
 #include "Mesh.hpp"
+#include "RenderObjectConqueror.hpp"
 
 
 enum player_t {PLAYER1, PLAYER2, COMPUTER};
@@ -26,10 +27,14 @@ private:
     std::shared_ptr<Texture> m_texture;//fait avec le glApi
     std::shared_ptr<Mesh> m_mesh;//=VAO creer l'object en mémoire (prendre exemple sur le mesh)
     std::shared_ptr<Program> m_program;//appel du program pour y mettre les objets
+    std::vector<std::shared_ptr<RenderObjectConqueror>> m_parts;
+    std::shared_ptr<Sampler> m_colormap;
+
 
     PlayerObject(player_t typePj, std::shared_ptr<Texture> texture,
                  std::shared_ptr<Mesh> mesh, glm::vec3 position,
-                 std::shared_ptr<Program> program);
+                 std::shared_ptr<Program> program, std::vector<std::shared_ptr<RenderObjectConqueror>> parts,
+                 std::shared_ptr<Sampler> m_colormap);
 
 public:
     PlayerObject() = delete;

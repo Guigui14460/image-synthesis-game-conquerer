@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include "utils.hpp"
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
 
 ObjectLoaderConqueror::ObjectLoaderConqueror(){
 
@@ -76,9 +78,10 @@ void ObjectLoaderConqueror::LoadFromFile(const std::string fileName){
         }
 //        std::cout << "blabal " << incre<< std::endl;
     }
-    std::cout << "pass\n" << vertexPositions.size() << std::endl;
-    std::cout << vertexNormals.size() << std::endl;
-    std::cout << vertexTexcoords.size() << std::endl;
+    //std::cout << "pass\n" << vertexPositions.size() << std::endl;
+    //std::cout << vertexNormals.size() << std::endl;
+    //
+    //std::cout << vertexTexcoords.size() << std::endl;
 
     ibo.push_back(vertexPositionsIndices);
     ibo.push_back(vertexTexcoordsIndices);
@@ -94,9 +97,44 @@ size_t ObjectLoaderConqueror::nbIBOs() const{
     return size;
 }
 
+Image<> ObjectLoaderConqueror::image(const std::string & name) const
+{
+    unsigned char white[4] = {255, 255, 255, 255};
+    static Image<> defaultImage(white, 1, 1, 4);
+    auto searchRes = m_images.find(name);
+    if (searchRes != m_images.end()) {
+      return searchRes->second;
+    }
+    return defaultImage;
+}
+
 const std::vector<glm::vec3> & ObjectLoaderConqueror::vertexPosition() const{
     return vertexPositions;
 }
+
+void ObjectLoaderConqueror::loadImage(std::string texture_filename)
+{
+  std::string key = texture_filename;
+  if (texture_filename.length() > 0) {
+    // Only load the texture if it is not already loaded
+    if (m_images.find(key) == m_images.end()) {
+      if (!fileExists(texture_filename)) {
+        std::cerr << "Unable to find file: " << texture_filename << std::endl;
+        exit(1);
+      }
+
+      Image<> image;
+      image.depth = 1;
+      image.data = stbi_load(texture_filename.c_str(), &image.width, &image.height, &image.channels, STBI_default);
+      if (!image.data) {
+        std::cerr << "Unable to load texture: " << texture_filename << std::endl;
+        exit(1);
+      }
+      m_images[key] = image;
+    }
+  }
+}
+
 
 const std::vector<glm::vec2> & ObjectLoaderConqueror::vertexUV() const{
     return vertexTexcoords;
