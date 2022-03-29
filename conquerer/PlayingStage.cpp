@@ -37,3 +37,27 @@ void PlayingStage::resize(GLFWwindow* window, int frameBufferWidth, int frameBuf
 
     this->m_background_renderer->resize(window, frameBufferWidth, frameBufferHeight);
 }
+
+void PlayingStage::keyCallback(GLFWwindow*, int key, int, int action, int) {
+    glm::vec2 player1CameraAngles, player2CameraAngles;
+    if(action == GLFW_PRESS) {
+        switch(key) {
+        case GLFW_KEY_Z:
+            break;
+        case GLFW_KEY_Q:
+            break;
+        case GLFW_KEY_S:
+            break;
+        case GLFW_KEY_D:
+            break;
+        case GLFW_KEY_UP:
+            break;
+        case GLFW_KEY_LEFT:
+            break;
+        case GLFW_KEY_DOWN:
+            break;
+        case GLFW_KEY_RIGHT:
+            break;
+        }
+    }
+}

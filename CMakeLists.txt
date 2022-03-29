@@ -128,6 +128,8 @@ add_executable(conquerer
   conquerer/PlanetObject.cpp
   conquerer/ProjectileObject.hpp
   conquerer/ProjectileObject.cpp
+  conquerer/Renderer.hpp
+  conquerer/Renderer.cpp
 
   conquerer/Camera.hpp
   conquerer/Camera.cpp

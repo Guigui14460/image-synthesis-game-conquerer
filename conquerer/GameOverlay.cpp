@@ -1,6 +1,11 @@
 #include "GameOverlay.hpp"
 
-GameOverlay::GameOverlay()
-{
+GameOverlay::GameOverlay() {}
+
+void GameOverlay::update(float timeToShow) {
+
+}
+
+void GameOverlay::render() {
 
 }

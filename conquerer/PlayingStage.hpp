@@ -19,7 +19,7 @@ public:
     void update() override;
 
     /// Key callback
-    void keyCallback(GLFWwindow*, int, int, int, int) override {}
+    void keyCallback(GLFWwindow*, int, int, int, int) override;
 
     /**
      * @brief Resizes the render screen to fit with the GLFW window screen size.

@@ -32,6 +32,9 @@ public:
     /// Updates objects in the environment
     void updateObjects(double actualTime);
 
+    /// Adds a projectile to the projectiles vector
+    void addProjectile(const std::shared_ptr<ProjectileObject>& o);
+
     /**
      * @brief Gets the left time of the current game
      * @param actualTime the current window time
@@ -61,8 +64,27 @@ public:
     /// Returns a vector of game objects (for rendering, etc)
     std::vector<std::shared_ptr<AbstractGameObject>> getGameObjects();
 
-    /// Adds a projectile to the projectiles vector
-    void addProjectile(const std::shared_ptr<ProjectileObject>& o);
+    std::vector<std::shared_ptr<AsteroidObject>> getAsteroidObjects() { return this->m_asteroids; }
+    std::vector<std::shared_ptr<PlanetObject>> getPlanetObjects() { return this->m_planets; }
+    std::vector<std::shared_ptr<ProjectileObject>> getProjectileObjects() { return this->m_projectiles; }
+    std::shared_ptr<PlanetObject> getTargetPlanet() { return this->m_targetPlanet; }
+
+    /// Returns player objects (first is the PLAYER1 and second the PLAYER2
+    std::vector<std::shared_ptr<PlayerObject>> getPlayers() {
+        std::vector<std::shared_ptr<PlayerObject>> vec(2);
+
+        if(this->m_player1->getPlayerType() == PlayerObject::PLAYER1)
+            vec[0] = this->m_player1;
+        else
+            vec[0] = this->m_player2;
+
+        if(this->m_player1->getPlayerType() == PlayerObject::PLAYER2)
+            vec[1] = this->m_player1;
+        else
+            vec[1] = this->m_player2;
+
+        return vec;
+    }
 
 private:
     /// Checks all collisions between objects
