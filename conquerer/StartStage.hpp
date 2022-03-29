@@ -2,7 +2,7 @@
 #define __START_STAGE_HPP__
 #include "GameStage.hpp"
 #include "TextPrinter.hpp"
-#include "BackgroundRenderer.hpp"
+#include "Renderer.hpp"
 
 /**
  * @brief The StartStage class represents the first stage of the Conquerer application showing the name of the application and allows to play the game.
@@ -37,7 +37,7 @@ public:
 
 private:
     std::unique_ptr<TextPrinter> m_text; /// To display some text
-    BackgroundRenderer m_renderer;
+    std::shared_ptr<Renderer> m_renderer;
 };
 
 #endif // __START_STAGE_HPP__

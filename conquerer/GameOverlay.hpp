@@ -1,12 +1,12 @@
-#ifndef __GAME__OVERLAY_HPP__
-#define __GAME__OVERLAY_HPP__
+#ifndef __GAME_OVERLAY_HPP__
+#define __GAME_OVERLAY_HPP__
 #include "TextPrinter.hpp"
 
 class GameOverlay {
 public:
     GameOverlay();
 
-    void update(float timeToShow);
+    void update(float deltaTime);
     void render();
 
 private:

@@ -1,6 +1,7 @@
 #ifndef __ABSTRACT_GAME_OBJECT_HPP__
 #define __ABSTRACT_GAME_OBJECT_HPP__
 #include <glm/vec3.hpp>
+#include <glm/mat4x4.hpp>
 #include <glApi.hpp>
 #include "Mesh.hpp"
 #include "CollisionShapes.hpp"
@@ -72,7 +73,7 @@ public:
     virtual void update() = 0; // TODO: lier à l'orientation de la caméra
 
     /// Draw meshes to the screen
-    virtual void draw(GLenum mode = GL_TRIANGLES) = 0;
+    virtual void draw(const glm::mat4& projViewMatrix, GLenum mode = GL_TRIANGLES) = 0;
 
     /// Gets the object health
     float getHealth() { return this->m_health; }

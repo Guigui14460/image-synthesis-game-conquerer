@@ -31,9 +31,9 @@ void Mesh::update(float deltaTime){
     // in case of animation
 }
 
-void Mesh::updateProgram(Program &prog, const glm::mat4 &projMatrix, const glm::mat4 &viewMatrix) {
+void Mesh::updateProgram(Program &prog, const glm::mat4 &projViewMatrix) {
     this->updateModelMatrix();
-    prog.setUniform("MVP", projMatrix * viewMatrix * this->m_modelMatrix);
+    prog.setUniform("MVP", projViewMatrix * this->m_modelMatrix);
 }
 
 void Mesh::render(GLenum mode) {

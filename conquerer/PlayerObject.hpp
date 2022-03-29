@@ -1,5 +1,6 @@
 #ifndef __PLAYER_OBJECT_HPP__
 #define __PLAYER_OBJECT_HPP__
+#include <glm/mat4x4.hpp>
 #include "AbstractGameObject.hpp"
 #include "glApi.hpp"
 #include "Mesh.hpp"
@@ -44,7 +45,7 @@ public:
      *
      * draw this object
      */
-    void draw(GLenum mode = GL_TRIANGLES) override;
+    void draw(const glm::mat4& projViewMatrix, GLenum mode = GL_TRIANGLES) override;
 
     /**
      * @brief update

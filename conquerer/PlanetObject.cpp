@@ -9,7 +9,8 @@ PlanetObject::PlanetObject(const glm::vec3 position, const float health, const g
     this->m_mesh = std::make_shared<Mesh>(vao, position, position);
 }
 
-void PlanetObject::draw(GLenum mode) {
+void PlanetObject::draw(const glm::mat4& projViewMatrix, GLenum mode) {
+//    this->m_mesh->updateProgram(*m_program, projViewMatrix);
     this->m_mesh->render(mode);
 }
 

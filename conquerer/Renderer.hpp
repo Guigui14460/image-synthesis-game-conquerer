@@ -1,24 +1,29 @@
 #ifndef __RENDERER_HPP__
 #define __RENDERER_HPP__
 #include <glm/mat4x4.hpp>
+#include <glm/vec2.hpp>
 #include "glApi.hpp"
 #include "Camera.hpp"
 #include "GameLogic.hpp"
 #include "BackgroundRenderer.hpp"
 #include "GameOverlay.hpp"
 
+/// structure to easily manipulate camera player objects
 struct camera_t {
     Camera camera;
-    glm::mat4 projection;
-    glm::mat4 view;
+    glm::vec2 angles;
+    camera_t(Camera cam, glm::vec2 ang) : camera(cam), angles(ang) {}
 };
 
 class Renderer {
 public:
     enum renderer_part_t {LEFT_PART, RIGHT_PART};
 
-    /// Default constructor
-    Renderer();
+    Renderer() = delete;
+    Renderer(const Renderer& o) = default;
+
+    /// Constructor
+    Renderer(bool leftPartIsPlayer1);
 
     /// Destructor
     ~Renderer() {}
@@ -40,19 +45,22 @@ public:
     /// Updates the time related objects.
     void update();
 
+    /// Updates the cameras angles of the two players
+    void cameraAnglesUpdate(glm::vec2& player1CameraAngles, glm::vec2& player2CameraAngles);
+
 private:
     /// Render part of the screen
     void renderPart(renderer_part_t part);
 
 private:
-    bool m_leftPartIsPlayer1;
-    int m_frameBufferWidth; /// The width of the current viewport
-    int m_frameBufferHeight; /// The height of the current viewport
     camera_t m_cameraPlayer1, m_cameraPlayer2;
-    float m_currentTime, m_deltaTime;
 //    GameLogic m_logic;
     BackgroundRenderer m_background;
     GameOverlay m_overlay;
+    float m_currentTime, m_deltaTime;
+    bool m_leftPartIsPlayer1;
+    int m_frameBufferWidth; /// The width of the current viewport
+    int m_frameBufferHeight; /// The height of the current viewport
 };
 
 #endif // __RENDERER_HPP__

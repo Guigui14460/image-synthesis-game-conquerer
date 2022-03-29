@@ -2,8 +2,7 @@
 #include <glm/ext.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-StartStage::StartStage() : m_renderer(200)
-{
+StartStage::StartStage() : m_renderer(new Renderer(true)) {
     int width, height;
     GLFWwindow* window = glfwGetCurrentContext();
     glfwGetFramebufferSize(window, &width, &height);
@@ -20,21 +19,19 @@ StartStage::StartStage() : m_renderer(200)
 StartStage::~StartStage() {}
 
 void StartStage::renderFrame() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
     // render frame of renderer
-    this->m_renderer.renderFrame();
+    this->m_renderer->renderFrame();
     this->m_text->draw();
 }
 
 void StartStage::update() {
     // update the renderer
-    this->m_renderer.update(false);
+    this->m_renderer->update();
 }
 
 void StartStage::resize(GLFWwindow *window, int frameBufferWidth, int frameBufferHeight) {
     // resize the renderer
-    this->m_renderer.resize(window, frameBufferWidth, frameBufferHeight);
+    this->m_renderer->resize(window, frameBufferWidth, frameBufferHeight);
     this->m_text->resize(frameBufferWidth, frameBufferHeight);
     this->m_text->setWOverH(frameBufferWidth / float(frameBufferHeight));
     glViewport(0, 0, frameBufferWidth, frameBufferHeight);

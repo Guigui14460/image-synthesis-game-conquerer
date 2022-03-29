@@ -52,7 +52,7 @@ public:
      */
     inline void setScale(const glm::vec3& scale) { this->m_scale = scale; }
 
-    void updateProgram(Program& prog, const glm::mat4& projMatrix, const glm::mat4& viewMatrix = glm::mat4(1));
+    void updateProgram(Program& prog, const glm::mat4& projViewMatrix);
 
     /**
      * @brief Updates the object with an elapsed time between the last and current frames.

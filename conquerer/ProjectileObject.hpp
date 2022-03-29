@@ -1,5 +1,6 @@
 #ifndef __PROJECTILE_OBJECT_HPP__
 #define __PROJECTILE_OBJECT_HPP__
+#include <glm/mat4x4.hpp>
 #include "AbstractGameObject.hpp"
 
 /**
@@ -27,7 +28,7 @@ public:
     void update() override;
 
     /// Draw meshes to the screen
-    void draw(GLenum mode) override;
+    void draw(const glm::mat4& projViewMatrix, GLenum mode = GL_TRIANGLES) override;
 
 private:
     projectile_t m_projectileType;

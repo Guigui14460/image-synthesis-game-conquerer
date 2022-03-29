@@ -1,63 +1,55 @@
 #include "PlayingStage.hpp"
 #include <GLFW/glfw3.h>
-#include <glm/ext.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+#include <glm/vec2.hpp>
 
-PlayingStage::PlayingStage(): m_background_renderer(new BackgroundRenderer(1000)) {
-    GLFWwindow* window = glfwGetCurrentContext();
-    glfwGetFramebufferSize(window, &this->m_frameBufferWidth, &this->m_frameBufferHeight);
-}
+constexpr float ANGLE_TO_ROTATE = 10.f;
+
+PlayingStage::PlayingStage(const std::shared_ptr<Renderer>& renderer): m_renderer(renderer) {}
 
 PlayingStage::~PlayingStage() {}
 
 void PlayingStage::renderFrame() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//    this->m_background_renderer->renderFrame();
-
-    // for the split screen support (to fix with the matrices send as uniform)
-    this->m_background_renderer->resize(nullptr, this->m_frameBufferWidth/2 - 1, this->m_frameBufferHeight);
-    glViewport(0, 0, this->m_frameBufferWidth/2, this->m_frameBufferHeight);
-    this->m_background_renderer->renderFrame();
-
-    glViewport(this->m_frameBufferWidth/2 + 1, 0, this->m_frameBufferWidth/2, this->m_frameBufferHeight);
-    this->m_background_renderer->renderFrame();
-
-    this->m_background_renderer->resize(nullptr, this->m_frameBufferWidth, this->m_frameBufferHeight);
-    glViewport(0, 0, this->m_frameBufferWidth, this->m_frameBufferHeight);
+    this->m_renderer->renderFrame();
 }
 
 void PlayingStage::update() {
-    this->m_background_renderer->update();
+    this->m_renderer->update();
 }
 
 void PlayingStage::resize(GLFWwindow* window, int frameBufferWidth, int frameBufferHeight) {
-    glViewport(0, 0, frameBufferWidth, frameBufferHeight);
-    this->m_frameBufferWidth = frameBufferWidth;
-    this->m_frameBufferHeight = frameBufferHeight;
-
-    this->m_background_renderer->resize(window, frameBufferWidth, frameBufferHeight);
+    this->m_renderer->resize(window, frameBufferWidth, frameBufferHeight);
 }
 
 void PlayingStage::keyCallback(GLFWwindow*, int key, int, int action, int) {
-    glm::vec2 player1CameraAngles, player2CameraAngles;
+    glm::vec2 player1CameraAngles(0), player2CameraAngles(0);
     if(action == GLFW_PRESS) {
         switch(key) {
         case GLFW_KEY_Z:
-            break;
-        case GLFW_KEY_Q:
+            player1CameraAngles.y -= ANGLE_TO_ROTATE;
             break;
         case GLFW_KEY_S:
+            player1CameraAngles.y += ANGLE_TO_ROTATE;
+            break;
+        case GLFW_KEY_Q:
+            player1CameraAngles.x += ANGLE_TO_ROTATE;
             break;
         case GLFW_KEY_D:
+            player1CameraAngles.x -= ANGLE_TO_ROTATE;
             break;
         case GLFW_KEY_UP:
-            break;
-        case GLFW_KEY_LEFT:
+            player2CameraAngles.y -= ANGLE_TO_ROTATE;
             break;
         case GLFW_KEY_DOWN:
+            player2CameraAngles.y += ANGLE_TO_ROTATE;
+            break;
+        case GLFW_KEY_LEFT:
+            player2CameraAngles.x += ANGLE_TO_ROTATE;
             break;
         case GLFW_KEY_RIGHT:
+            player2CameraAngles.x -= ANGLE_TO_ROTATE;
             break;
         }
     }
+
+    this->m_renderer->cameraAnglesUpdate(player1CameraAngles, player2CameraAngles);
 }

@@ -51,8 +51,10 @@ void ConquererApplication::keyCallback(GLFWwindow *window, int key, int scancode
     if (action == GLFW_PRESS){
         switch(key){
           case GLFW_KEY_ENTER:
-            app.nextStage();
-              return;
+            if(dynamic_cast<const PlayingStage*>(app.m_stage.get()) == nullptr){
+                app.nextStage();
+                return;
+            }
           default:
             break;
         }

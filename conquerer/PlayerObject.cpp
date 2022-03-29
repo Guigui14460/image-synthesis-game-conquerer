@@ -61,7 +61,10 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std:
   return std::shared_ptr<PlayerObject> (&objectnew);
 }
 
-void PlayerObject::draw(GLenum mode){
+void PlayerObject::draw(const glm::mat4& projViewMatrix, GLenum mode){
+    m_mesh->updateProgram(*m_program, projViewMatrix);
+
+    // rendering
     m_program->bind();
 
     const int unit = 0;
@@ -74,7 +77,6 @@ void PlayerObject::draw(GLenum mode){
 }
 
 void PlayerObject::update(){
-    m_mesh->updateProgram(*m_program,glm::mat4(1),glm::mat4(1));
 }
 
 PlayerObject::player_t PlayerObject::getPlayerType() {

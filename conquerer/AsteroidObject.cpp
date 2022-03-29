@@ -4,7 +4,8 @@ AsteroidObject::AsteroidObject(asteroid_t asteroidType, const glm::vec3 position
     : AbstractGameObject(position, 0, 0, CollisionShapes::RECTANGLE, health, sizes), m_asteroidType(asteroidType)
 {}
 
-void AsteroidObject::draw(GLenum mode) {
+void AsteroidObject::draw(const glm::mat4& projViewMatrix, GLenum mode) {
+//    this->m_mesh->updateProgram(*m_program, projViewMatrix);
     this->m_mesh->render(mode);
 
     // TODO: gérer les textures, etc

@@ -4,7 +4,8 @@ ProjectileObject::ProjectileObject(projectile_t projectileType, const glm::vec3 
     : AbstractGameObject(position, 0, 0, CollisionShapes::RECTANGLE, health, sizes), m_projectileType(projectileType)
 {}
 
-void ProjectileObject::draw(GLenum mode) {
+void ProjectileObject::draw(const glm::mat4& projViewMatrix, GLenum mode) {
+//    this->m_mesh->updateProgram(*m_program, projViewMatrix);
     this->m_mesh->render(mode);
 
     // TODO: gérer les textures, etc
