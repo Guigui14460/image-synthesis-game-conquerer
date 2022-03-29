@@ -1,5 +1,6 @@
 #include "PlayingStage.hpp"
 #include "PlayerObject.hpp"
+#include "glApi.hpp"
 #include <GLFW/glfw3.h>
 #include <glm/ext.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -8,7 +9,7 @@
 PlayingStage::PlayingStage(): m_background_renderer(new BackgroundRenderer(1000)) {
     GLFWwindow* window = glfwGetCurrentContext();
     glfwGetFramebufferSize(window, &this->m_frameBufferWidth, &this->m_frameBufferHeight);
-    m_player_object = PlayerObject::loadObjsPlayer(PLAYER1, {-1,2,1}, std::shared_ptr<Program>(new Program("conquerer/texture.v.glsl", "conquerer/texture.f.glsl")));
+    m_player_object = PlayerObject::loadObjsPlayer(PLAYER1, {0.f, 0.f, 1.f}, std::make_shared<Program>("conquerer/texture.v.glsl", "conquerer/texture.f.glsl"));
 }
 
 PlayingStage::~PlayingStage() {}

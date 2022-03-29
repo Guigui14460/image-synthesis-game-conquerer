@@ -1,12 +1,14 @@
 #include "PlayerObject.hpp"
 #include "objectLoaderConqueror.hpp"
 #include "CollisionShapes.hpp"
+#include "utils.hpp"
+
 #include <iostream>
 
 PlayerObject::PlayerObject(player_t typePj, std::shared_ptr<Texture> texture,
                            std::shared_ptr<Mesh> mesh, glm::vec3 position,
                            std::shared_ptr<Program> program): AbstractGameObject(position, 0, 0, CollisionShapes::RECTANGLE, glm::vec3(1)),
-                    m_typePj(typePj), m_texture(texture), m_mesh(mesh), m_program(program){}
+                    m_typePj(typePj), m_texture(texture), m_mesh(mesh), m_program(program) {}
 
 std::shared_ptr<PlayerObject> PlayerObject::loadObjsPlayer(player_t typePj,  glm::vec3 position, std::shared_ptr<Program> program)
 {
@@ -14,20 +16,20 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjsPlayer(player_t typePj,  glm
     std::string object = "";
 
     if(typePj==PLAYER1){
-        texture = "../objConquerer/PJ/dolphin/Dolphin_texture.png";
-        //object = "../objConquerer/PJ/dolphin/Dolphin.obj";
-        object = "../meshes/capsule.obj";
+        texture = absolutename("objConquerer/PJ/dolphin/Dolphin_texture.png");
+        object = absolutename("objConquerer/PJ/dolphin/Dolphin.obj");
+//        object = absolutename("meshes/Tron/TronLightCycle.obj");
     }
     if(typePj==PLAYER2){
-        texture ="../objConquerer/PJ/shark/UV Shark.png";
-        object = "../objConquerer/PJ/shark/Shark.obj";
+        texture = absolutename("objConquerer/PJ/shark/UV Shark.png");
+        object = absolutename("objConquerer/PJ/shark/Shark.obj");
     }
     if(typePj==COMPUTER){
-        texture ="../objConquerer/computer/tuna/Tuna_texture.png";
-        object = "../objConquerer/computer/tuna/Tuna.obj";
+        texture = absolutename("objConquerer/computer/tuna/Tuna_texture.png");
+        object = absolutename("objConquerer/computer/tuna/Tuna.obj");
     }
-    std::shared_ptr<PlayerObject> objectnew = PlayerObject::loadObjs(typePj, object, texture, position, program);
-    return objectnew;
+
+    return PlayerObject::loadObjs(typePj, object, texture, position, program);
 }
 
 std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std::string & objname, const std::string & texturename, glm::vec3 position, std::shared_ptr<Program> program)
@@ -35,13 +37,20 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std:
   std::shared_ptr<Texture> texture;
   ObjectLoaderConqueror objLoader;
   objLoader.LoadFromFile(objname);
-  std::cout << objname << std::endl;
+
   std::vector<glm::vec3> vextexPositions = objLoader.vertexPosition();
+  std::vector<glm::vec3> vertexColors(vextexPositions.size());
+  for(size_t i = 0; i < vertexColors.size(); i++) {
+      vertexColors[i] = {1.f, 1.f, 1.f};
+  }
   const std::vector<glm::vec2> & vertexUVs = objLoader.vertexUV();
+
   // set up the VBOs of the master VAO
   std::shared_ptr<VAO> vao(new VAO(2));
   vao->setVBO(0, vextexPositions);
-  vao->setVBO(1, vertexUVs);
+  vao->setVBO(1, vertexColors);
+//  vao->setVBO(1, vertexUVs);
+
   size_t nbParts = objLoader.nbIBOs();
   for (size_t k = 0; k < nbParts; k++) {
     const std::vector<uint> & ibo = objLoader.ibos(k);
@@ -51,15 +60,16 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std:
     std::shared_ptr<VAO> vaoSlave;
     vaoSlave = vao->makeSlaveVAO();
     vaoSlave->setIBO(ibo);
-    texture = std::shared_ptr<Texture>(new Texture(GL_TEXTURE_2D));
-    // TODO: texture->setData()
+//    texture = std::shared_ptr<Texture>(new Texture(GL_TEXTURE_2D));
+//     TODO: texture->setData()
   }
 
   std::shared_ptr<Mesh> mesh = std::shared_ptr<Mesh>(new Mesh(vao, position));
 
-  PlayerObject objectnew (typePj,texture,mesh, position, program);
+  program = std::make_shared<Program>("conquerer/3d.v.glsl", "conquerer/3d.f.glsl");
 
-  return std::shared_ptr<PlayerObject> (&objectnew);
+  PlayerObject* objectnew = new PlayerObject(typePj,texture,mesh, position, program);
+  return std::shared_ptr<PlayerObject>(objectnew);
 }
 
 void PlayerObject::draw(){
@@ -75,5 +85,5 @@ void PlayerObject::draw(){
 }
 
 void PlayerObject::update(){
-    m_mesh->updateProgram(*m_program,glm::mat4(1),glm::mat4(1));
+    m_mesh->updateProgram(*m_program, glm::mat4(1), glm::mat4(1));
 }

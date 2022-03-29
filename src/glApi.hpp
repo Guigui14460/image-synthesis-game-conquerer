@@ -326,6 +326,8 @@ public:
    */
   template <typename T> void setUniform(const std::string & name, const T & val) const;
 
+  uint getLocation() { return this->m_location; }
+
 private:
   /**
    * @brief a template wrapper for glUniform functions

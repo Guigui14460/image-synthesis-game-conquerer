@@ -1,6 +1,7 @@
 #include "objectLoaderConqueror.hpp"
 #include <iostream>
 #include <fstream>
+#include "utils.hpp"
 
 ObjectLoaderConqueror::ObjectLoaderConqueror(){
 
@@ -20,9 +21,10 @@ bool ObjectLoaderConqueror::StartWith(std::string& line, const char* text){
 }
 
 void ObjectLoaderConqueror::LoadFromFile(const std::string fileName){
+    std::cout << fileExists(fileName) << std::endl;
     std::ifstream file(fileName);
     if(!file){
-        std::cout << "ERROR::OBJLOADER::Could not open file." << std::endl;
+        std::cout << "ERROR::OBJLOADER -> Could not open file " << fileName << std::endl;
     }
     std::string line;
     std::string prefix;
@@ -32,37 +34,36 @@ void ObjectLoaderConqueror::LoadFromFile(const std::string fileName){
     int incre = 0;
     unsigned int tmpGLint;
     while(!getline(file, line).eof() && line.size()>=2){
-        std::cout << "blabal2 " << incre<< std::endl;
+//        std::cout << "blabal2 " << incre<< std::endl;
         incre ++;
+//        std::cout << "blabal3 " << line<< std::endl;
         ss.clear();
         ss.str(line);
         ss >> prefix;
-        std::cout << "blabal3 " << line<< std::endl;
+//        std::cout << "blabal4 " << line<< std::endl;
         if(prefix == "v"){
             ss >> tmpVec3.x >> tmpVec3.y >> tmpVec3.z;
             vertexPositions.push_back(tmpVec3);
-            tmpVec3 = glm::vec3();
+            tmpVec3 = glm::vec3(0);
         }else if(prefix == "vt"){
             ss >> tmpVec2.x >> tmpVec2.y;
             vertexTexcoords.push_back(tmpVec2);
-            tmpVec2 = glm::vec2();
+            tmpVec2 = glm::vec2(0);
         }else if(prefix == "vn"){
             ss >> tmpVec3.x >> tmpVec3.y >> tmpVec3.z;
             vertexNormals.push_back(tmpVec3);
-            tmpVec3 = glm::vec3();
+            tmpVec3 = glm::vec3(0);
         }else if(prefix == "f"){
             int counter = 0;
             while (!ss.eof()){
+//                std::cout << "while faces count[" << counter << "]" << std::endl;
                 ss >> tmpGLint;
                 if (counter == 0){
                     vertexPositionsIndices.push_back(tmpGLint);
-                    ibo.push_back(vertexPositionsIndices);
                 }else if (counter == 1){
                     vertexTexcoordsIndices.push_back(tmpGLint);
-                    ibo.push_back(vertexTexcoordsIndices);
-                }else if (counter == 3){
+                }else if (counter == 2){
                     vertexNormalsIndices.push_back(tmpGLint);
-                    ibo.push_back(vertexNormalsIndices);
                 }if (ss.peek() == '/') {
                     ++counter;
                     ss.ignore(1, '/');
@@ -70,14 +71,18 @@ void ObjectLoaderConqueror::LoadFromFile(const std::string fileName){
                     counter = 0;
                     ss.ignore(1, ' ');
                 }
-                std::cout << "fin "<< std::endl;
+//                std::cout << "fin "<< std::endl;
             }
         }
-        std::cout << "blabal " << incre<< std::endl;
+//        std::cout << "blabal " << incre<< std::endl;
     }
-    std::cout << "pass" << vertexPositions.size() << std::endl;
+    std::cout << "pass\n" << vertexPositions.size() << std::endl;
     std::cout << vertexNormals.size() << std::endl;
     std::cout << vertexTexcoords.size() << std::endl;
+
+    ibo.push_back(vertexPositionsIndices);
+    ibo.push_back(vertexTexcoordsIndices);
+    ibo.push_back(vertexNormalsIndices);
 }
 
 const std::vector<unsigned int> & ObjectLoaderConqueror::ibos(unsigned int k) const{
