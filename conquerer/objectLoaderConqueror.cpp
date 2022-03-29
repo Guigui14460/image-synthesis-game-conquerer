@@ -25,26 +25,35 @@ void ObjectLoaderConqueror::LoadFromFile(const std::string fileName){
         std::cout << "ERROR::OBJLOADER::Could not open file." << std::endl;
     }
     std::string line;
+    std::string prefix;
     std::stringstream ss;
     glm::vec3 tmpVec3;
     glm::vec2 tmpVec2;
+    int incre = 0;
     unsigned int tmpGLint;
-    while(std::getline(file, line)){
-        if(StartWith(line, "v")){
+    while(!getline(file, line).eof() && line.size()>=2){
+        std::cout << "blabal2 " << incre<< std::endl;
+        incre ++;
+        ss.clear();
+        ss.str(line);
+        ss >> prefix;
+        std::cout << "blabal3 " << line<< std::endl;
+        if(prefix == "v"){
             ss >> tmpVec3.x >> tmpVec3.y >> tmpVec3.z;
             vertexPositions.push_back(tmpVec3);
             tmpVec3 = glm::vec3();
-        }else if(StartWith(line, "vt")){
+        }else if(prefix == "vt"){
             ss >> tmpVec2.x >> tmpVec2.y;
             vertexTexcoords.push_back(tmpVec2);
             tmpVec2 = glm::vec2();
-        }else if(StartWith(line, "vn")){
+        }else if(prefix == "vn"){
             ss >> tmpVec3.x >> tmpVec3.y >> tmpVec3.z;
             vertexNormals.push_back(tmpVec3);
             tmpVec3 = glm::vec3();
-        }else if(StartWith(line, "f")) {
+        }else if(prefix == "f"){
             int counter = 0;
-            while (ss >> tmpGLint) {
+            while (!ss.eof()){
+                ss >> tmpGLint;
                 if (counter == 0){
                     vertexPositionsIndices.push_back(tmpGLint);
                     ibo.push_back(vertexPositionsIndices);
@@ -61,9 +70,14 @@ void ObjectLoaderConqueror::LoadFromFile(const std::string fileName){
                     counter = 0;
                     ss.ignore(1, ' ');
                 }
+                std::cout << "fin "<< std::endl;
             }
         }
+        std::cout << "blabal " << incre<< std::endl;
     }
+    std::cout << "pass" << vertexPositions.size() << std::endl;
+    std::cout << vertexNormals.size() << std::endl;
+    std::cout << vertexTexcoords.size() << std::endl;
 }
 
 const std::vector<unsigned int> & ObjectLoaderConqueror::ibos(unsigned int k) const{

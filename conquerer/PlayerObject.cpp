@@ -1,6 +1,7 @@
 #include "PlayerObject.hpp"
 #include "objectLoaderConqueror.hpp"
 #include "CollisionShapes.hpp"
+#include <iostream>
 
 PlayerObject::PlayerObject(player_t typePj, std::shared_ptr<Texture> texture,
                            std::shared_ptr<Mesh> mesh, glm::vec3 position,
@@ -13,18 +14,18 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjsPlayer(player_t typePj,  glm
     std::string object = "";
 
     if(typePj==PLAYER1){
-        texture = "objConquerer/PJ/dolphin/Dolphin_texture.png";
-        object = "objConquerer/PJ/dolphin/Dolphin.obj";
+        texture = "../objConquerer/PJ/dolphin/Dolphin_texture.png";
+        //object = "../objConquerer/PJ/dolphin/Dolphin.obj";
+        object = "../meshes/capsule.obj";
     }
     if(typePj==PLAYER2){
-        texture ="objConquerer/PJ/shark/UV Shark.png";
-        object = "objConquerer/PJ/shark/Shark.obj";
+        texture ="../objConquerer/PJ/shark/UV Shark.png";
+        object = "../objConquerer/PJ/shark/Shark.obj";
     }
     if(typePj==COMPUTER){
-        texture ="objConquerer/computer/tuna/Tuna_texture.png";
-        object = "objConquerer/computer/tuna/Tuna.obj";
+        texture ="../objConquerer/computer/tuna/Tuna_texture.png";
+        object = "../objConquerer/computer/tuna/Tuna.obj";
     }
-
     std::shared_ptr<PlayerObject> objectnew = PlayerObject::loadObjs(typePj, object, texture, position, program);
     return objectnew;
 }
@@ -34,6 +35,7 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std:
   std::shared_ptr<Texture> texture;
   ObjectLoaderConqueror objLoader;
   objLoader.LoadFromFile(objname);
+  std::cout << objname << std::endl;
   std::vector<glm::vec3> vextexPositions = objLoader.vertexPosition();
   const std::vector<glm::vec2> & vertexUVs = objLoader.vertexUV();
   // set up the VBOs of the master VAO
@@ -63,10 +65,10 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std:
 void PlayerObject::draw(){
     m_program->bind();
 
-    const int unit = 0;
-    glActiveTexture(GL_TEXTURE0 + unit);
-    m_texture->bind();
-    m_program->setUniform("colorSampler", unit);
+//    const int unit = 0;
+//    glActiveTexture(GL_TEXTURE0 + unit);
+//    m_texture->bind();
+//    m_program->setUniform("colorSampler", unit);
 
     m_mesh->render();
     m_program->unbind();

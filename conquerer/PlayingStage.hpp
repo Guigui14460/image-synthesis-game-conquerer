@@ -2,6 +2,7 @@
 #define __PLAYING_STAGE_HPP__
 #include "GameStage.hpp"
 #include "BackgroundRenderer.hpp"
+#include "PlayerObject.hpp"
 
 class PlayingStage final: public GameStage
 {
@@ -36,6 +37,7 @@ private:
     std::shared_ptr<BackgroundRenderer> m_background_renderer; /// The background space renderer
     int m_frameBufferWidth; /// The width of the current viewport
     int m_frameBufferHeight; /// The height of the current viewport
+    std::shared_ptr<PlayerObject> m_player_object;
 };
 
 #endif // __PLAYING_STAGE_HPP__
