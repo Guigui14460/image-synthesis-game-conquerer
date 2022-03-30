@@ -22,8 +22,8 @@ void Renderer::resize(GLFWwindow*, int frameBufferWidth, int frameBufferHeight) 
     this->m_frameBufferWidth = frameBufferWidth;
     this->m_frameBufferHeight = frameBufferHeight;
 
-    this->m_cameraPlayer1.camera.calculateProjectionMatrix(90., frameBufferWidth, frameBufferHeight, .1, 100.);
-    this->m_cameraPlayer2.camera.calculateProjectionMatrix(90., frameBufferWidth, frameBufferHeight, .1, 100.);
+    this->m_cameraPlayer1.camera.calculateProjectionMatrix(90., this->m_frameBufferWidth, this->m_frameBufferHeight, .1, 100.);
+    this->m_cameraPlayer2.camera.calculateProjectionMatrix(90., this->m_frameBufferWidth, this->m_frameBufferHeight, .1, 100.);
 }
 
 void Renderer::update() {
@@ -62,17 +62,16 @@ void Renderer::renderFrame() {
 
 void Renderer::renderPart(renderer_part_t part) {
     camera_t cameraToUse = this->m_cameraPlayer1;
-    int minX = 0, maxX = this->m_frameBufferWidth/2;
+    int minX = 0;
     if(part == RIGHT_PART){
-        minX = maxX + 1;
-        maxX = this->m_frameBufferWidth;
+        minX = this->m_frameBufferWidth/2 + 1;
         cameraToUse = this->m_cameraPlayer2;
     }
 
-    glViewport(minX, 0, maxX, this->m_frameBufferHeight);
-    cameraToUse.camera.calculateProjectionMatrix(90., this->m_frameBufferWidth, this->m_frameBufferHeight, .1, 100.);
+    glViewport(minX, 0, this->m_frameBufferWidth/2, this->m_frameBufferHeight);
 
-    const glm::mat4 projViewMatrix = cameraToUse.camera.getProjectionMatrix() * cameraToUse.camera.getViewMatrix();
+    const glm::mat4 proj = cameraToUse.camera.calculateProjectionMatrix(90., this->m_frameBufferWidth/2, this->m_frameBufferHeight, .1, 100.);
+    const glm::mat4 projViewMatrix = proj * cameraToUse.camera.getViewMatrix();
     this->m_background.renderFrame(projViewMatrix);
     // TODO: render other game objects
 }

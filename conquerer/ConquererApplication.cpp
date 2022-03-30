@@ -41,9 +41,7 @@ void ConquererApplication::nextStage() {
 
 void ConquererApplication::resize(GLFWwindow *window, int frameBufferWidth, int frameBufferHeight) {
     ConquererApplication& app = *static_cast<ConquererApplication*>(glfwGetWindowUserPointer(window));
-    if(dynamic_cast<const PlayingStage*>(app.m_stage.get()) == nullptr){
-        app.m_stage->resize(window, frameBufferWidth, frameBufferHeight);
-    }
+    app.m_stage->resize(window, frameBufferWidth, frameBufferHeight);
 }
 
 void ConquererApplication::keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods) {

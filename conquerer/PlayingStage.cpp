@@ -33,10 +33,10 @@ void PlayingStage::continuousKey() {
         player1CameraAngles.x += ANGLE_TO_ROTATE;
     }
     if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-        player1CameraAngles.y -= ANGLE_TO_ROTATE;
+        player1CameraAngles.y += ANGLE_TO_ROTATE;
     }
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-        player1CameraAngles.y += ANGLE_TO_ROTATE;
+        player1CameraAngles.y -= ANGLE_TO_ROTATE;
     }
 
     // player 2 keys
@@ -46,11 +46,11 @@ void PlayingStage::continuousKey() {
     if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
         player2CameraAngles.x += ANGLE_TO_ROTATE;
     }
-    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-        player2CameraAngles.y -= ANGLE_TO_ROTATE;
-    }
     if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
         player2CameraAngles.y += ANGLE_TO_ROTATE;
+    }
+    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+        player2CameraAngles.y -= ANGLE_TO_ROTATE;
     }
 
     this->m_renderer->cameraAnglesUpdate(player1CameraAngles, player2CameraAngles);
