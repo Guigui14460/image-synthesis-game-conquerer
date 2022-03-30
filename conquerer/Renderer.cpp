@@ -2,9 +2,9 @@
 #include <GLFW/glfw3.h>
 
 Renderer::Renderer(bool leftPartIsPlayer1) :
-    m_cameraPlayer1(Camera(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 0.f, 1.f), glm::vec3(0.f, 1.f, 0.f)), glm::vec2(0)),
-    m_cameraPlayer2(Camera(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 0.f, 1.f), glm::vec3(0.f, 1.f, 0.f)), glm::vec2(0)),
-    m_background(1000, 1.), m_currentTime(0), m_deltaTime(0), m_leftPartIsPlayer1(leftPartIsPlayer1) {
+    m_cameraPlayer1(Camera(glm::vec3(0.f, 0.f, -1.f), glm::vec3(0.f, 0.f, 1.f), glm::vec3(0.f, 1.f, 0.f)), glm::vec2(0)),
+    m_cameraPlayer2(Camera(glm::vec3(0.f, 0.f, -1.f), glm::vec3(0.f, 0.f, 1.f), glm::vec3(0.f, 1.f, 0.f)), glm::vec2(0)),
+    m_background(1000, 2.), m_currentTime(0), m_deltaTime(0), m_leftPartIsPlayer1(leftPartIsPlayer1) {
     GLFWwindow* window = glfwGetCurrentContext();
     glfwGetFramebufferSize(window, &this->m_frameBufferWidth, &this->m_frameBufferHeight);
 
@@ -31,8 +31,6 @@ void Renderer::update() {
     this->m_currentTime = glfwGetTime();
     this->m_deltaTime = this->m_currentTime - prevTime;
 
-    // TODO: voir bug touches + bug calcul matrices (à checker pk)
-
     this->m_cameraPlayer1.camera.calculateViewMatrix();
     this->m_cameraPlayer2.camera.calculateViewMatrix();
 
@@ -41,11 +39,15 @@ void Renderer::update() {
 }
 
 void Renderer::cameraAnglesUpdate(glm::vec2& player1CameraAngles, glm::vec2& player2CameraAngles) {
-    this->m_cameraPlayer1.angles += player1CameraAngles;
-    this->m_cameraPlayer2.angles += player2CameraAngles;
-
-    this->m_cameraPlayer1.camera.rotate(this->m_deltaTime, this->m_cameraPlayer1.angles);
-    this->m_cameraPlayer2.camera.rotate(this->m_deltaTime, this->m_cameraPlayer2.angles);
+    // TODO: update here the player orientation
+    if(player1CameraAngles.x != 0 or player1CameraAngles.y != 0){
+        this->m_cameraPlayer1.angles += player1CameraAngles;
+        this->m_cameraPlayer1.camera.rotate(this->m_deltaTime, player1CameraAngles);
+    }
+    if(player2CameraAngles.x != 0 or player2CameraAngles.y != 0){
+        this->m_cameraPlayer2.angles += player2CameraAngles;
+        this->m_cameraPlayer2.camera.rotate(this->m_deltaTime, player2CameraAngles);
+    }
 }
 
 void Renderer::renderFrame() {

@@ -8,7 +8,7 @@ void AsteroidObject::draw(const glm::mat4& projViewMatrix, GLenum mode) {
 //    this->m_mesh->updateProgram(*m_program, projViewMatrix);
     this->m_mesh->render(mode);
 
-    // TODO: gérer les textures, etc
+    // TODO: texture managing, etc
 }
 
-void AsteroidObject::update() {}
+void AsteroidObject::update(float deltaTime) {}

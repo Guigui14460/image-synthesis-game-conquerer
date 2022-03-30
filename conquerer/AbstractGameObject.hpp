@@ -65,12 +65,10 @@ public:
      */
     void scale(const float value);
 
-    // TODO: faire méthodes comme mesh pour simplifier
-
     /**
      * @brief Updates the object
      */
-    virtual void update() = 0; // TODO: lier à l'orientation de la caméra
+    virtual void update(float deltaTime) = 0;
 
     /// Draw meshes to the screen
     virtual void draw(const glm::mat4& projViewMatrix, GLenum mode = GL_TRIANGLES) = 0;
@@ -89,8 +87,10 @@ protected:
     float m_health; /// Health of the object
     glm::vec3 m_position; /// Position of the object
     glm::vec3 m_sizes; /// Vector representing the sizes of the object (width, height, depth)
-    float m_phi, m_theta; /// Direction of the point of view
     CollisionShapes::Shape m_collisionShape; /// Associated collision shape
+
+private:
+    float m_phi, m_theta; /// Direction of the point of view (for rectangle shape)
 };
 
 #endif // __ABSTRACT_GAME_OBJECT_HPP__

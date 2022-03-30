@@ -24,7 +24,7 @@ public:
     /**
      * @brief Updates the object
      */
-    void update() override;
+    void update(float deltaTime) override;
 
     /// Draw meshes to the screen
     void draw(const glm::mat4& projViewMatrix, GLenum mode = GL_TRIANGLES) override;

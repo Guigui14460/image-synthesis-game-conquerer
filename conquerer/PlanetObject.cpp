@@ -14,4 +14,4 @@ void PlanetObject::draw(const glm::mat4& projViewMatrix, GLenum mode) {
     this->m_mesh->render(mode);
 }
 
-void PlanetObject::update() {}
+void PlanetObject::update(float deltaTime) {}

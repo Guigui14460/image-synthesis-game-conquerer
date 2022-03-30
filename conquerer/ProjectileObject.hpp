@@ -1,5 +1,6 @@
 #ifndef __PROJECTILE_OBJECT_HPP__
 #define __PROJECTILE_OBJECT_HPP__
+#include <glm/vec3.hpp>
 #include <glm/mat4x4.hpp>
 #include "AbstractGameObject.hpp"
 
@@ -17,7 +18,7 @@ public:
     ProjectileObject(const ProjectileObject& o) = default;
 
     /// Constructor
-    ProjectileObject(projectile_t projectileType, const glm::vec3 position, const float health, const glm::vec3 sizes);
+    ProjectileObject(projectile_t projectileType, const glm::vec3 position, const glm::vec3 orientation, const float health, const glm::vec3 sizes);
 
     /// Destructor
     ~ProjectileObject() {}
@@ -25,13 +26,14 @@ public:
     /**
      * @brief Updates the object
      */
-    void update() override;
+    void update(float deltaTime) override;
 
     /// Draw meshes to the screen
     void draw(const glm::mat4& projViewMatrix, GLenum mode = GL_TRIANGLES) override;
 
 private:
     projectile_t m_projectileType;
+    glm::vec3 m_orientation;
 };
 
 #endif // __PROJECTILE_OBJECT_HPP__

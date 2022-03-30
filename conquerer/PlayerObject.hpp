@@ -1,6 +1,7 @@
 #ifndef __PLAYER_OBJECT_HPP__
 #define __PLAYER_OBJECT_HPP__
 #include <glm/mat4x4.hpp>
+#include <glm/vec3.hpp>
 #include "AbstractGameObject.hpp"
 #include "glApi.hpp"
 #include "Mesh.hpp"
@@ -52,15 +53,17 @@ public:
      *
      * update the program
      */
-    void update() override;
+    void update(float deltaTime) override;
 
     player_t getPlayerType();
+    void setOrientation(const glm::vec3& orientation) { this->m_orientation = orientation; }
 
 private:
     player_t m_typePj;
     std::shared_ptr<Texture> m_texture;//fait avec le glApi
 //    std::shared_ptr<Mesh> m_mesh;//=VAO creer l'object en mémoire (prendre exemple sur le mesh)
     std::shared_ptr<Program> m_program;//appel du program pour y mettre les objets
+    glm::vec3 m_orientation;
 
     PlayerObject(player_t typePj, std::shared_ptr<Texture> texture,
                  std::shared_ptr<Mesh> mesh, glm::vec3 position,

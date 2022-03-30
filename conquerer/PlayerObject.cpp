@@ -5,7 +5,8 @@
 PlayerObject::PlayerObject(player_t typePj, std::shared_ptr<Texture> texture,
                            std::shared_ptr<Mesh> mesh, glm::vec3 position,
                            std::shared_ptr<Program> program, const float health) : AbstractGameObject(position, 0, 0, CollisionShapes::RECTANGLE, health, glm::vec3(1)),
-                    m_typePj(typePj), m_texture(texture), m_program(program){
+                    m_typePj(typePj), m_texture(texture), m_program(program),
+                    m_orientation(0) {
     this->m_mesh = mesh;
 }
 
@@ -76,7 +77,8 @@ void PlayerObject::draw(const glm::mat4& projViewMatrix, GLenum mode){
     m_program->unbind();
 }
 
-void PlayerObject::update(){
+void PlayerObject::update(float deltaTime){
+    this->m_position += deltaTime * this->m_orientation;
 }
 
 PlayerObject::player_t PlayerObject::getPlayerType() {

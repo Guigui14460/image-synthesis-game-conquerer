@@ -22,6 +22,9 @@ public:
     /// Key callback
     void keyCallback(GLFWwindow*, int, int, int, int) override;
 
+    /// For key that update the rendering
+    void continuousKey();
+
     /**
      * @brief Resizes the render screen to fit with the GLFW window screen size.
      * @param window the GLFW window object
@@ -38,8 +41,3 @@ private:
 };
 
 #endif // __PLAYING_STAGE_HPP__
-
-// TODO:
-// - faire méthodes pour update le renderer
-// - créer le système pour caméra
-// - relier les camera et les objet jouables
