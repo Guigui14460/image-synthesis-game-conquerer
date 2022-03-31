@@ -9,9 +9,9 @@
 #include "PlanetObject.hpp"
 #include "ProjectileObject.hpp"
 
-#define MAX_GAME_DURATION 180.f
-#define MIN_CAPTURE_PLANET_DURATION 10.f
-#define MAX_AVAILABLE_RADIUS_FOR_PLAYER 0.9f
+constexpr float MAX_GAME_DURATION = 180.f;
+constexpr float MIN_CAPTURE_PLANET_DURATION = 10.f;
+constexpr float MAX_AVAILABLE_RADIUS_FOR_PLAYER = 0.9f;
 
 /**
  * @brief The GameLogic class represents all the logic of the Conquerer game
@@ -27,10 +27,10 @@ public:
      * @brief Launches the logic of the game
      * @param beginTime time of the beggining of the game
      */
-    void launch(double beginTime);
+    void launch(float beginTime);
 
     /// Updates objects in the environment
-    void updateObjects(double actualTime);
+    void updateObjects(float actualTime);
 
     /// Adds a projectile to the projectiles vector
     void addProjectile(const std::shared_ptr<ProjectileObject>& o);
@@ -40,14 +40,14 @@ public:
      * @param actualTime the current window time
      * @return the left time
      */
-    double getLeftTime(double actualTime);
+    float getLeftTime(float actualTime);
 
     /**
      * @brief Gets left capture time
      * @param actualTime the current window time
      * @return the left time for capturing target by ennemy
      */
-    double getLeftCaptureTime(double actualTime);
+    float getLeftCaptureTime(float actualTime);
 
     /// Checks if the game is finished or not
     bool isFinished();
@@ -101,7 +101,7 @@ private:
     std::vector<std::shared_ptr<ProjectileObject>> m_projectiles;
     PlayerObject::player_t m_winner;
     PlayerObject::player_t m_capturer = PlayerObject::NONE;
-    double m_beginTime = -1.f, m_beginCapturePlanet = -1.f;
+    float m_beginTime = -1.f, m_beginCapturePlanet = -1.f;
     bool m_beginCapture = false;
     const float m_universeRadius;
 };

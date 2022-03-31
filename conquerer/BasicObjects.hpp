@@ -50,6 +50,23 @@ public:
      * @note More you generate phi and theta angles, more your sphere will be rounded.
      */
     static std::shared_ptr<VAO> makeSphere(uint nbPhi, uint nbTheta, const glm::vec3& color, const float radius = 1);
+
+    /**
+     * @brief Generates a 3D cube.
+     * @param color the color of the cube
+     * @return a VAO (position + color) for displaying the cube
+     */
+    static std::shared_ptr<VAO> makeCube(const glm::vec3 color);
+
+    /**
+     * @brief Generates a 2D square.
+     * @param positions vertex positions
+     * @param color the color of the square
+     * @return a VAO (position + color) for displaying the square
+     *
+     * @note The two created triangles have {0, 1, 2} and {0, 2, 3} for vecrtex positions indices
+     */
+    static std::shared_ptr<VAO> makeUniformSquare(const std::vector<glm::vec2> positions, const glm::vec3 color);
 };
 
 #endif // __BASIC_OBJECTS_HPP__

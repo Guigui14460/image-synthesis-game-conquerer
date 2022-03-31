@@ -10,7 +10,7 @@ EndStage::EndStage(const std::shared_ptr<Renderer>& renderer)
 
     this->m_text = std::unique_ptr<TextPrinter>(new TextPrinter(frameBufferWidth, frameBufferHeight));
     const glm::vec3 red(1, 0, 0);
-    this->m_text->printText("GAME OVER", 1, 7, 9, red);
+    this->m_text->printText("gameover", "GAME OVER", 1, 7, 9, red);
 }
 
 EndStage::~EndStage() {}
@@ -27,6 +27,5 @@ void EndStage::update() {
 void EndStage::resize(GLFWwindow *window, int frameBufferWidth, int frameBufferHeight) {
     this->m_renderer->resize(window, frameBufferWidth, frameBufferHeight);
     this->m_text->resize(frameBufferWidth, frameBufferHeight);
-    this->m_text->setWOverH(frameBufferWidth / float(frameBufferHeight));
     glViewport(0, 0, frameBufferWidth, frameBufferHeight);
 }

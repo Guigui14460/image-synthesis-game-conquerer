@@ -1,7 +1,9 @@
 #ifndef __TEXT_PRINTER_HPP__
 #define __TEXT_PRINTER_HPP__
 #include <memory>
+#include <string>
 #include <vector>
+#include <unordered_map>
 #include "glApi.hpp"
 
 /**
@@ -23,8 +25,10 @@ public:
    * @param fontFilename filename of the font to use
    */
   TextPrinter(uint width, uint height, std::string fontFilename);
+
   /**
    * @brief Creates a VAO for displaying some text overlay
+   * @param key where to insert VAO in map
    * @param text text to display
    * @param x x-coordinates
    * @param y y-coordinates
@@ -33,22 +37,16 @@ public:
    * @param fillColor color (rgba) of the background of the text (defaults to white)
    * @param padding white space to to border of the filling background
    */
-  void printText(const std::string& text, float x, float y, float fontsize, const glm::vec3& fontColor = glm::vec3(1, 1, 1), const glm::vec4& fillColor = glm::vec4(1, 1, 1, 0), uint padding = 0);
+  void printText(const std::string& key, const std::string& text, float x, float y, float fontsize, const glm::vec3& fontColor = glm::vec3(1, 1, 1), const glm::vec4& fillColor = glm::vec4(1, 1, 1, 0), uint padding = 0);
 
   /**
    * @brief Removes a text (VAO)
-   * @param index index of the VAO to delete
+   * @param key the associated VAO to delete
    */
-  void removeText(uint index);
+  void removeText(const std::string& key);
 
   /// Draws all the vaos created with printText
   void draw();
-
-  /**
-   * @brief Sets the aspect ratio
-   * @param wOverH aspect ratio
-   */
-  void setWOverH(float wOverH);
 
   /**
    * @brief Resizes the viewport stored in the TextPrinter object
@@ -57,6 +55,17 @@ public:
    */
   void resize(uint width, uint height);
 ;
+
+private:
+  struct text_t {
+      std::shared_ptr<VAO> vao;
+      glm::vec3 color;
+      glm::vec4 fillColor;
+
+      text_t(std::shared_ptr<VAO> vao_, glm::vec3 color_, glm::vec4 fillColor_) :
+          vao(vao_), color(color_), fillColor(fillColor_) {}
+  };
+
 private:
   uint m_width;   /// Width of the viewport
   uint m_height;  /// Height of the viewport
@@ -66,9 +75,7 @@ private:
   Program m_program;                        /// GLSL program for displaying text
   Texture m_fontTexture;                    /// Texture containing all the font characters
   Sampler m_sampler;                        /// Texture sampler
-  std::vector<std::unique_ptr<VAO>> m_vaos; /// VAOs created by calling printText
-  std::vector<glm::vec3> m_colors;          /// Font colors
-  std::vector<glm::vec4> m_fillColors;      /// Fill colors
+  std::unordered_map<std::string, std::unique_ptr<text_t>> m_texts; /// texts to show
 };
 
 #endif // __TEXT_PRINTER_HPP__

@@ -11,11 +11,11 @@ GameLogic::GameLogic(std::shared_ptr<PlayerObject>& player1, std::shared_ptr<Pla
       m_asteroids(asteroids), m_planets(planets), m_winner(PlayerObject::NONE), m_universeRadius(universeRadius) {
 }
 
-void GameLogic::launch(double beginTime) {
+void GameLogic::launch(float beginTime) {
     this->m_beginTime = beginTime;
 }
 
-void GameLogic::updateObjects(double actualTime) {
+void GameLogic::updateObjects(float actualTime) {
     if(this->isFinished()) return;
 
     // if current capturer has captured the target planet
@@ -199,7 +199,7 @@ void GameLogic::removeUselessObjects() {
                  }), this->m_projectiles.end());
 }
 
-double GameLogic::getLeftTime(double actualTime) {
+float GameLogic::getLeftTime(float actualTime) {
     double value = actualTime - (this->m_beginTime + MAX_GAME_DURATION);
     if(value >= 0){
         value = 0;
@@ -207,7 +207,7 @@ double GameLogic::getLeftTime(double actualTime) {
     return value;
 }
 
-double GameLogic::getLeftCaptureTime(double actualTime) {
+float GameLogic::getLeftCaptureTime(float actualTime) {
     double value = actualTime - (this->m_beginCapturePlanet + MIN_CAPTURE_PLANET_DURATION);
     if(value >= 0){
         value = 0;

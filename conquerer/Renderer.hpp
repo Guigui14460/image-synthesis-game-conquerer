@@ -23,7 +23,7 @@ public:
     Renderer(const Renderer& o) = default;
 
     /// Constructor
-    Renderer(bool leftPartIsPlayer1);
+    Renderer(int frameBufferWidth, int frameBufferHeight, bool leftPartIsPlayer1);
 
     /// Destructor
     ~Renderer() {}

@@ -6,8 +6,8 @@
 #include "Mesh.hpp"
 #include "CollisionShapes.hpp"
 
-#define RADIUS_DEFAULT -1
-#define SIZE_DEFAULT -1
+constexpr float RADIUS_DEFAULT = -1.f;
+constexpr float SIZE_DEFAULT = -1.f;
 
 /**
  * @brief The AbstractGameObject class is an abstract class to create all the objects of the Conquerer game.

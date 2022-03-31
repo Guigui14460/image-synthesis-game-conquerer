@@ -147,6 +147,8 @@ add_executable(conquerer
   conquerer/3d.f.glsl
   conquerer/texture.v.glsl
   conquerer/texture.f.glsl
+  conquerer/2d.v.glsl
+  conquerer/2d.f.glsl
 )
 target_link_libraries(conquerer utils ${GLFW3_LIBRARIES} ${GLEW_LIBRARIES})
 

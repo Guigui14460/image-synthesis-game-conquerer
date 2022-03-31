@@ -1,13 +1,11 @@
 #include "Renderer.hpp"
 #include <GLFW/glfw3.h>
 
-Renderer::Renderer(bool leftPartIsPlayer1) :
+Renderer::Renderer(int frameBufferWidth, int frameBufferHeight, bool leftPartIsPlayer1) :
     m_cameraPlayer1(Camera(glm::vec3(0.f, 0.f, -1.f), glm::vec3(0.f, 0.f, 1.f), glm::vec3(0.f, 1.f, 0.f)), glm::vec2(0)),
     m_cameraPlayer2(Camera(glm::vec3(0.f, 0.f, -1.f), glm::vec3(0.f, 0.f, 1.f), glm::vec3(0.f, 1.f, 0.f)), glm::vec2(0)),
-    m_background(1000, 2.), m_currentTime(0), m_deltaTime(0), m_leftPartIsPlayer1(leftPartIsPlayer1) {
-    GLFWwindow* window = glfwGetCurrentContext();
-    glfwGetFramebufferSize(window, &this->m_frameBufferWidth, &this->m_frameBufferHeight);
-
+    m_overlay(frameBufferWidth, frameBufferHeight) , m_background(1000, 2.), m_currentTime(0), m_deltaTime(0),
+    m_leftPartIsPlayer1(leftPartIsPlayer1), m_frameBufferWidth(frameBufferWidth), m_frameBufferHeight(frameBufferHeight) {
     this->initGLState();
 }
 
@@ -57,7 +55,7 @@ void Renderer::renderFrame() {
     this->renderPart(RIGHT_PART);
 
     glViewport(0, 0, this->m_frameBufferWidth, this->m_frameBufferHeight);
-    this->m_overlay.render();
+    this->m_overlay.draw();
 }
 
 void Renderer::renderPart(renderer_part_t part) {
