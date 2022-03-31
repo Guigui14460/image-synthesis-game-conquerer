@@ -1,7 +1,7 @@
 #include "RenderObjectConqueror.hpp"
 
-RenderObjectConqueror::RenderObjectConqueror(std::shared_ptr<VAO> vao, std::shared_ptr<Program> program, std::shared_ptr<Texture> texture)
-    : m_vao(vao), m_program(program), m_texture(texture)
+RenderObjectConqueror::RenderObjectConqueror(std::shared_ptr<VAO> vao, std::shared_ptr<Program> program, const glm::vec3 & diffuse,std::shared_ptr<Texture> texture)
+    : m_vao(vao), m_program(program), m_diffuse(diffuse), m_texture(texture)
 {
 }
 

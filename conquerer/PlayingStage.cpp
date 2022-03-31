@@ -9,7 +9,7 @@
 PlayingStage::PlayingStage(): m_background_renderer(new BackgroundRenderer(1000)) {
     GLFWwindow* window = glfwGetCurrentContext();
     glfwGetFramebufferSize(window, &this->m_frameBufferWidth, &this->m_frameBufferHeight);
-    m_player_object = PlayerObject::loadObjsPlayer(PLAYER1, {-5.f, -5.f, 35.f}, std::make_shared<Program>("conquerer/texture.v.glsl", "conquerer/texture.f.glsl"));
+    m_player_object = PlayerObject::loadObjsPlayer(PLAYER1, {0.f, 0.f, 3.f}, std::make_shared<Program>("conquerer/texture.v.glsl", "conquerer/texture.f.glsl"));
     glClearColor(1., 1., 1., 1.);
 }
 
@@ -18,7 +18,9 @@ PlayingStage::~PlayingStage() {}
 void PlayingStage::renderFrame() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 //    this->m_background_renderer->renderFrame();
+
     m_player_object->draw();
+
 
     // for the split screen support (to fix with the matrices send as uniform)
 //    this->m_background_renderer->resize(nullptr, this->m_frameBufferWidth/2 - 1, this->m_frameBufferHeight);

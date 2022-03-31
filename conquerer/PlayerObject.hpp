@@ -33,7 +33,8 @@ private:
 
     PlayerObject(player_t typePj, std::shared_ptr<Texture> texture,
                  std::shared_ptr<Mesh> mesh, glm::vec3 position,
-                 std::shared_ptr<Program> program, std::vector<std::shared_ptr<RenderObjectConqueror>> parts,
+                 std::shared_ptr<Program> program,
+                 std::vector<std::shared_ptr<RenderObjectConqueror>> parts,
                  std::shared_ptr<Sampler> m_colormap);
 
 public:

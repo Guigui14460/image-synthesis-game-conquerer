@@ -1,7 +1,8 @@
 #include "PlayerObject.hpp"
-#include "objectLoaderConqueror.hpp"
+
 #include "CollisionShapes.hpp"
 #include "utils.hpp"
+#include "ObjLoader.hpp"
 
 #include <iostream>
 
@@ -9,19 +10,20 @@ PlayerObject::PlayerObject(player_t typePj, std::shared_ptr<Texture> texture,
                            std::shared_ptr<Mesh> mesh, glm::vec3 position,
                            std::shared_ptr<Program> program, std::vector<std::shared_ptr<RenderObjectConqueror>> parts,
                            std::shared_ptr<Sampler> colormap): AbstractGameObject(position, 0, 0, CollisionShapes::RECTANGLE, glm::vec3(1)),
-                    m_typePj(typePj), m_texture(texture), m_mesh(mesh), m_program(program), m_parts(parts), m_colormap(colormap){}
+                    m_typePj(typePj), m_texture(texture), m_mesh(mesh), m_program(program), m_parts(parts), m_colormap(colormap){
+                    }
 
 std::shared_ptr<PlayerObject> PlayerObject::loadObjsPlayer(player_t typePj,  glm::vec3 position, std::shared_ptr<Program> program)
 {
     std::string texture = "";
     std::string object = "";
 
-    if(typePj==PLAYER1){
+    if(typePj==COMPUTER){
         texture = absolutename("objConquerer/PJ/dolphin/Dolphin_texture.png");
         object = absolutename("objConquerer/PJ/dolphin/Dolphin.obj");
 //        object = absolutename("meshes/Tron/TronLightCycle.obj");
     }
-    if(typePj==COMPUTER){
+    if(typePj==PLAYER1){
         texture = absolutename("objConquerer/PJ/shark/UV Shark.png");
         object = absolutename("objConquerer/PJ/shark/Shark.obj");
     }
@@ -35,6 +37,45 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjsPlayer(player_t typePj,  glm
 
 std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std::string & objname, const std::string & texturename, glm::vec3 position, std::shared_ptr<Program> program)
 {
+    ObjLoader objLoader(objname);
+    std::vector<std::shared_ptr<RenderObjectConqueror>> parts;
+    const std::vector<SimpleMaterial> & materials = objLoader.materials();
+    std::vector<glm::vec3> vextexPositions = objLoader.vertexPositions();
+    const std::vector<glm::vec2> & vertexUVs = objLoader.vertexUVs();
+    // set up the VBOs of the master VAO
+    std::shared_ptr<VAO> vao(new VAO(2));
+    vao->setVBO(0, vextexPositions);
+    vao->setVBO(1, vertexUVs);
+    size_t nbParts = objLoader.nbIBOs();
+
+    for (size_t k = 0; k < nbParts; k++) {
+      const std::vector<uint> & ibo = objLoader.ibo(k);
+      if (ibo.size() == 0) {
+        continue;
+      }
+      std::shared_ptr<VAO> vaoSlave;
+      vaoSlave = vao->makeSlaveVAO();//récupère les vbo et les met dans le slaveVAO
+      vaoSlave->setIBO(ibo);
+      const SimpleMaterial & material = materials[k];
+      Image<> colorMap = objLoader.image(material.diffuseTexName);
+ std::shared_ptr<Texture> texture(new Texture(GL_TEXTURE_2D));
+      texture->setData(colorMap);
+      RenderObjectConqueror* part = new RenderObjectConqueror(vaoSlave, program, material.diffuse, texture);
+      parts.push_back(std::shared_ptr<RenderObjectConqueror>(part));
+    }
+    std::shared_ptr<Sampler> colorMap(new Sampler(0));
+
+    colorMap->setParameter(GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    colorMap->setParameter(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+ std::shared_ptr<Texture> texture(new Texture(GL_TEXTURE_2D));
+
+
+    std::shared_ptr<Mesh> mesh = std::shared_ptr<Mesh>(new Mesh(vao, position));
+    PlayerObject* objectnew = new PlayerObject(typePj,texture,mesh, position, program, parts, colorMap);
+    return std::shared_ptr<PlayerObject>(objectnew);
+    /*
+     *il y a un affichage ici mais en forme de triangle dans le haut de la vue qui bouge en même temps que l'on bouge
+     *
   std::vector<std::shared_ptr<RenderObjectConqueror>> parts;
   std::shared_ptr<Texture> texture;
   ObjectLoaderConqueror objLoader;
@@ -83,11 +124,15 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std:
 
   PlayerObject* objectnew = new PlayerObject(typePj,texture,mesh, position, program, parts, colormap);
   return std::shared_ptr<PlayerObject>(objectnew);
+
+  **/
 }
 
 void PlayerObject::draw(){
     m_program->bind();
     update();
+
+
     if (m_colormap) {
       m_colormap->bind();
     }

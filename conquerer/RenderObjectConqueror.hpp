@@ -6,7 +6,7 @@
 class RenderObjectConqueror
 {
 public:
-    RenderObjectConqueror(std::shared_ptr<VAO> vao, std::shared_ptr<Program> program, std::shared_ptr<Texture> texture);
+    RenderObjectConqueror(std::shared_ptr<VAO> vao, std::shared_ptr<Program> program, const glm::vec3 & diffuse,std::shared_ptr<Texture> texture);
     void draw(Sampler * colormap);
     void update(const glm::mat4 & mw);
     const std::shared_ptr<Texture> texture() const;
@@ -16,6 +16,7 @@ public:
 private:
     std::shared_ptr<Texture> m_texture;
     std::shared_ptr<Program> m_program;
+    const glm::vec3 & m_diffuse;
     std::shared_ptr<VAO> m_vao;
 };
 

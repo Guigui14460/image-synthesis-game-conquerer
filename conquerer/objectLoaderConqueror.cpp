@@ -1,4 +1,4 @@
-#include "objectLoaderConqueror.hpp"
+/***#include "objectLoaderConqueror.hpp"
 #include <iostream>
 #include <fstream>
 #include "utils.hpp"
@@ -64,11 +64,13 @@ void ObjectLoaderConqueror::LoadFromFile(const std::string fileName){
                     vertexPositionsIndices.push_back(tmpGLint);
                 }else if (counter == 1){
                     vertexTexcoordsIndices.push_back(tmpGLint);
-                }else if (counter == 2){
+                }else if (counter == 3){
                     vertexNormalsIndices.push_back(tmpGLint);
+                std::cout << "avv " << ss.peek() <<std::endl;
                 }if (ss.peek() == '/') {
                     ++counter;
                     ss.ignore(1, '/');
+
                 }else if (ss.peek() == ' ') {
                     counter = 0;
                     ss.ignore(1, ' ');
@@ -143,3 +145,4 @@ const std::vector<glm::vec2> & ObjectLoaderConqueror::vertexUV() const{
 const std::vector<glm::vec3> & ObjectLoaderConqueror::vertexNormal() const{
     return vertexNormals;
 }
+***/
