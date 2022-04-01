@@ -1,0 +1,1 @@
+/usr/bin/g++    -rdynamic CMakeFiles/obj2glitter.dir/examples/obj2glitter.cpp.o  -o obj2glitter  libutils.a -lGL -lGLU -lGLEW 

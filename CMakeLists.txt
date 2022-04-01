@@ -128,6 +128,9 @@ add_executable(conquerer
   conquerer/objectLoaderConqueror.cpp
   conquerer/RenderObjectConqueror.hpp
   conquerer/RenderObjectConqueror.cpp
+  conquerer/Model.hpp
+  conquerer/Model.cpp
+  conquerer/OBJLoader.hpp
 
   conquerer/Camera.hpp
   conquerer/Camera.cpp

@@ -1,0 +1,58 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_10d0a/fast && /usr/bin/make -f CMakeFiles/cmTC_10d0a.dir/build.make CMakeFiles/cmTC_10d0a.dir/build
+make[1] : on entre dans le répertoire « /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles/CMakeTmp »
+Building C object CMakeFiles/cmTC_10d0a.dir/src.c.o
+/usr/bin/gcc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_10d0a.dir/src.c.o   -c "/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles/CMakeTmp/src.c"
+Linking C executable cmTC_10d0a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_10d0a.dir/link.txt --verbose=1
+/usr/bin/gcc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_10d0a.dir/src.c.o  -o cmTC_10d0a 
+/usr/bin/ld : CMakeFiles/cmTC_10d0a.dir/src.c.o : dans la fonction « main » :
+src.c:(.text+0x46) : référence indéfinie vers « pthread_create »
+/usr/bin/ld : src.c:(.text+0x52) : référence indéfinie vers « pthread_detach »
+/usr/bin/ld : src.c:(.text+0x63) : référence indéfinie vers « pthread_join »
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_10d0a.dir/build.make:87 : cmTC_10d0a] Erreur 1
+make[1] : on quitte le répertoire « /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles/CMakeTmp »
+make: *** [Makefile:121 : cmTC_10d0a/fast] Erreur 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_af9e3/fast && /usr/bin/make -f CMakeFiles/cmTC_af9e3.dir/build.make CMakeFiles/cmTC_af9e3.dir/build
+make[1] : on entre dans le répertoire « /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles/CMakeTmp »
+Building C object CMakeFiles/cmTC_af9e3.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_af9e3.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_af9e3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_af9e3.dir/link.txt --verbose=1
+/usr/bin/gcc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_af9e3.dir/CheckFunctionExists.c.o  -o cmTC_af9e3  -lpthreads 
+/usr/bin/ld : ne peut trouver -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_af9e3.dir/build.make:87 : cmTC_af9e3] Erreur 1
+make[1] : on quitte le répertoire « /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles/CMakeTmp »
+make: *** [Makefile:121 : cmTC_af9e3/fast] Erreur 2
+
+
+

@@ -229,6 +229,7 @@ private:
   uint m_location;                             ///< GPU location of the VAO
   std::vector<std::shared_ptr<Buffer>> m_vbos; ///< List of the VBOs
   Buffer m_ibo;                                ///< IBO
+  bool m_iboHasBeenAdded = false;
 };
 
 /**
@@ -540,6 +541,7 @@ template <typename T> void VAO::setIBO(const std::vector<T> & values)
   this->m_ibo.setData(values);
   this->m_ibo.bind();
   this->unbind();
+  this->m_iboHasBeenAdded = true;
 }
 
 template <typename T> void Program::setUniform(const std::string & name, const T & val) const

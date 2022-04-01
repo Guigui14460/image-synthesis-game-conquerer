@@ -71,8 +71,8 @@ void VAO::encapsulateVBO(unsigned int attributeIndex) const
 
   this->bind();
   vbo->bind();
-  glEnableVertexAttribArray(attributeIndex);
   glVertexAttribPointer(attributeIndex, vbo->attributeSize(), vbo->attributeType(), GL_FALSE, 0, 0);
+  glEnableVertexAttribArray(attributeIndex);
   this->unbind();
 }
 
@@ -92,7 +92,11 @@ std::shared_ptr<VAO> VAO::makeSlaveVAO() const
 void VAO::draw(GLenum mode) const
 {
   this->bind();
-  glDrawElements(mode, this->m_ibo.attributeCount() * this->m_ibo.attributeSize(), this->m_ibo.attributeType(), 0);
+  if(this->m_iboHasBeenAdded) {
+    glDrawElements(mode, this->m_ibo.attributeCount() * this->m_ibo.attributeSize(), this->m_ibo.attributeType(), 0);
+  } else {
+    glDrawArrays(mode, 0, this->m_vbos[0]->attributeCount() * this->m_vbos[0]->attributeSize());
+  }
   this->unbind();
 }
 
