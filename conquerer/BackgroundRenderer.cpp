@@ -38,7 +38,8 @@ void BackgroundRenderer::renderFrame()
     this->m_program.bind();
 
     for(auto& mesh: this->m_meshes){
-        mesh->render(this->m_program, m_proj * m_view);
+        mesh->updateProgram(this->m_program, m_proj, m_view);
+        mesh->render();
     }
 
     this->m_program.unbind();

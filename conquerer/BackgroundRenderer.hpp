@@ -65,6 +65,9 @@ public:
      */
     void renderFrame();
 
+    glm::mat4 getViewMatrix() { return this->m_view; }
+    glm::mat4 getProjMatrix() { return this->m_proj; }
+
 private:
     /**
      * @brief Generates random stars.

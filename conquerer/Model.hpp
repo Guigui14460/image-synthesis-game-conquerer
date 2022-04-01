@@ -1,4 +1,4 @@
-#ifndef MODEL_HEADER_H_
+/****#ifndef MODEL_HEADER_H_
 #define MODEL_HEADER_H_
 
 #include <vector>
@@ -39,4 +39,4 @@ public:
 	void render(Shader* shader);
 };
 
-#endif // !MODEL_HEADER_H_
+#endif // !MODEL_HEADER_H_***/

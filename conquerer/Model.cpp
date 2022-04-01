@@ -1,4 +1,4 @@
-#include "Model.hpp"
+/****#include "Model.hpp"
 
 Model::Model(glm::vec3 position, Material* material,
 	Texture* textureDiffuse, Texture* textureSpecular,
@@ -84,3 +84,4 @@ void Model::render(Shader* shader) {
 
 	shader->deactivate();
 }
+***/

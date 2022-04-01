@@ -2,7 +2,8 @@
 #define __PLAYER_OBJECT_HPP__
 #include "AbstractGameObject.hpp"
 #include "glApi.hpp"
-#include "Model.hpp"
+#include "Mesh.hpp"
+#include "RenderObjectConqueror.hpp"
 
 
 enum player_t {PLAYER1, PLAYER2, COMPUTER};
@@ -19,52 +20,56 @@ enum player_t {PLAYER1, PLAYER2, COMPUTER};
  * shoot system
  */
 
-class PlayerObject: public AbstractGameObject {
+class PlayerObject: public AbstractGameObject
+{
+private:
+    player_t m_typePj;
+//    RenderObjectConqueror m_objects;
+    std::shared_ptr<RenderObject> m_object;
+    std::shared_ptr<Program> m_program;//appel du program pour y mettre les objets
+    //std::vector<std::shared_ptr<RenderObjectConqueror>> m_parts;
+    std::shared_ptr<Sampler> m_colormap;
+
+
+    PlayerObject(player_t typePj, std::shared_ptr<RenderObject> object, glm::vec3 position,
+                 std::shared_ptr<Program> program,
+                 //std::vector<std::shared_ptr<RenderObjectConqueror>> parts,
+                 std::shared_ptr<Sampler> m_colormap);
+
 public:
     PlayerObject() = delete;
-    PlayerObject(const PlayerObject &) = delete;
-    ~PlayerObject(){}
+    PlayerObject(const PlayerObject &)= delete;
 
     /**
      * @brief loadObjsPlayer
      * @param typePj
      * @return object of the player choice because of player's type
      */
-    static std::shared_ptr<PlayerObject> loadObjsPlayer(player_t typePj, std::shared_ptr<Program> program, glm::vec3 position, glm::vec3 rotation = glm::vec3(0.f), glm::vec3 scale = glm::vec3(1.f));
-
-    /**
-     * @brief draw
-     *
-     * draw this object
-     */
-    void draw();
-
-    /**
-     * @brief update
-     *
-     * update the program
-     */
-    void update() override;
-
-private:
-    PlayerObject(player_t typePj, std::shared_ptr<Model> model, std::shared_ptr<Mesh> mesh, std::shared_ptr<VAO> vao,
-                 std::shared_ptr<Program> program, std::shared_ptr<Sampler> colormap,
-                 glm::vec3 position);
+    static std::shared_ptr<PlayerObject> loadObjsPlayer(player_t typePj,  glm::vec3 position, std::shared_ptr<Program> program);
 
     /**
      * @brief loadObjs
      * @param objname
      * @return the good object with his different values
      */
-    static std::shared_ptr<PlayerObject> loadObjs(player_t typePj, const std::string & objname, const std::string & texturename, std::shared_ptr<Program> program, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);
+    static std::shared_ptr<PlayerObject> loadObjs(player_t typePj, const std::string & objname, const std::string & texturename,glm::vec3 position, std::shared_ptr<Program> program);
+    /**
+     * @brief draw
+     *
+     * draw this object
+     */
+    void draw(const glm::mat4 & view, const glm::mat4 & projection);
 
-private:
-    player_t m_typePj;
-    std::shared_ptr<VAO> m_vao;
-    std::shared_ptr<Mesh> m_mesh;
-    std::shared_ptr<Model> m_model; //=VAO creer l'object en mémoire (prendre exemple sur le mesh)
-    std::shared_ptr<Program> m_program; //appel du program pour y mettre les objets
-    std::shared_ptr<Sampler> m_colormap;
+    /**
+     * @brief update
+     *
+     * update the program
+     */
+    void update(const glm::mat4 & view, const glm::mat4 & projection);
+
+    void update() override {}
+
+    ~PlayerObject(){}
 };
 
 #endif // __PLAYER_OBJECT_HPP__
