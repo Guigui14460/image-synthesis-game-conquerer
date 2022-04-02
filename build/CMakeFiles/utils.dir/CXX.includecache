@@ -6,50 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../ext/glfw/include/GLFW/glfw3.h
-stddef.h
--
-stdint.h
--
-GLES/gl.h
--
-GLES/glext.h
--
-GLES2/gl2.h
--
-GLES2/gl2ext.h
--
-GLES3/gl3.h
--
-GLES2/gl2ext.h
--
-GLES3/gl31.h
--
-GLES2/gl2ext.h
--
-GLES3/gl32.h
--
-GLES2/gl2ext.h
--
-OpenGL/gl3.h
--
-OpenGL/gl3ext.h
--
-GL/glcorearb.h
--
-OpenGL/gl.h
--
-OpenGL/glu.h
--
-GL/gl.h
--
-GL/glext.h
--
-GL/glu.h
--
-vulkan/vulkan.h
--
-
 ../ext/glm/glm/common.hpp
 detail/setup.hpp
 ../ext/glm/glm/detail/setup.hpp
@@ -872,82 +828,6 @@ detail/setup.hpp
 detail/func_vector_relational.inl
 ../ext/glm/glm/detail/func_vector_relational.inl
 
-../ext/stb/stb_image.h
-stb_image.h
-../ext/stb/stb_image.h
-stdio.h
--
-stdlib.h
--
-stdarg.h
--
-stddef.h
--
-stdlib.h
--
-string.h
--
-limits.h
--
-math.h
--
-stdio.h
--
-assert.h
--
-stdint.h
--
-emmintrin.h
--
-intrin.h
--
-arm_neon.h
--
-
-../ext/tinyobjloader/tiny_obj_loader.h
-map
--
-string
--
-vector
--
-cassert
--
-cctype
--
-cmath
--
-cstddef
--
-cstdlib
--
-cstring
--
-utility
--
-fstream
--
-sstream
--
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/Application.cpp
-Application.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/Application.hpp
-GL/glew.h
--
-GLFW/glfw3.h
--
-iostream
--
-utils.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/utils.hpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/Application.hpp
-memory
--
-string
--
-
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/AttributeProperties.hpp
 GL/glew.h
 -
@@ -955,62 +835,6 @@ glm/glm.hpp
 -
 
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/Image.hpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/ObjLoader.cpp
-iostream
--
-fstream
--
-stb_image.h
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/stb_image.h
-ObjLoader.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/ObjLoader.hpp
-Serialize.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/Serialize.hpp
-utils.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/utils.hpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/ObjLoader.hpp
-glm/glm.hpp
--
-memory
--
-string
--
-unordered_map
--
-vector
--
-Image.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/Image.hpp
-SimpleMaterial.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/SimpleMaterial.hpp
-tiny_obj_loader.h
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/tiny_obj_loader.h
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/Serialize.cpp
-Serialize.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/Serialize.hpp
-cstring
--
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/Serialize.hpp
-cstdint
--
-fstream
--
-string
--
-vector
--
-glm/glm.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/glm/glm.hpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/SimpleMaterial.hpp
-glm/glm.hpp
--
-string
--
 
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/glApi.cpp
 fstream
@@ -1043,20 +867,6 @@ AttributeProperties.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/AttributeProperties.hpp
 Image.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/Image.hpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/utils.cpp
-utils.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/utils.hpp
-cstring
--
-glm/glm.hpp
--
-GL/glew.h
--
-fstream
--
-iostream
--
 
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/src/utils.hpp
 string
