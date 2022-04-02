@@ -38,14 +38,13 @@ void BackgroundRenderer::renderFrame()
     this->m_program.bind();
 
     for(auto& mesh: this->m_meshes){
-        mesh->updateProgram(this->m_program, m_proj, m_view);
-        mesh->render();
+        mesh->render(this->m_program, this->m_camera.getViewMatrix(), this->m_camera.getProjectionMatrix());
     }
 
     this->m_program.unbind();
 }
 
-void BackgroundRenderer::update(bool activateContinuousKeys) {
+void BackgroundRenderer::update(float deltaTime, bool activateContinuousKeys) {
     float prevTime = this->m_currentTime;
     this->m_currentTime = glfwGetTime();
     this->m_deltaTime = this->m_currentTime - prevTime;

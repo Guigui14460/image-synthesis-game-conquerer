@@ -52,7 +52,7 @@ public:
      */
     inline void setScale(const glm::vec3& scale) { this->m_scale = scale; }
 
-    void updateProgram(Program& prog, const glm::mat4& projMatrix, const glm::mat4& viewMatrix = glm::mat4(1));
+    void updateProgram(Program& prog, const glm::mat4 & view, const glm::mat4 & projection);
 
     /**
      * @brief Updates the object with an elapsed time between the last and current frames.
@@ -82,7 +82,7 @@ public:
      * @brief Renders a single frame of the object to the screen.
      * @param mode how to display the VAO (triangles, quads, polygons, etc)
      */
-    void render(GLenum mode = GL_TRIANGLES);
+    void render(Program& prog, const glm::mat4 & view, const glm::mat4 & projection, GLenum mode = GL_TRIANGLES);
 
 private:
     /// Updates the model matric of the object.

@@ -35,7 +35,7 @@ void PlayingStage::renderFrame() {
 }
 
 void PlayingStage::update() {
-    this->m_background_renderer->update();
+    this->m_background_renderer->update(0);
 }
 
 void PlayingStage::resize(GLFWwindow* window, int frameBufferWidth, int frameBufferHeight) {

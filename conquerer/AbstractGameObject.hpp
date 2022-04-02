@@ -34,7 +34,7 @@ public:
     void move(const glm::vec3& pos);
     void rotate(const glm::vec2& angles);
     void scale(const float value);
-    virtual void update() = 0;
+    virtual void update(float deltaTime) = 0;
 
     /// Remove some health from the object
     float removeHealth(const float health);

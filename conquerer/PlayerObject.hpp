@@ -1,8 +1,10 @@
 #ifndef __PLAYER_OBJECT_HPP__
 #define __PLAYER_OBJECT_HPP__
+#include <glm/vec3.hpp>
+#include <glm/mat4x4.hpp>
+
 #include "AbstractGameObject.hpp"
 #include "glApi.hpp"
-#include "Mesh.hpp"
 #include "RenderObjectConqueror.hpp"
 
 
@@ -20,22 +22,7 @@ enum player_t {PLAYER1, PLAYER2, COMPUTER};
  * shoot system
  */
 
-class PlayerObject: public AbstractGameObject
-{
-private:
-    player_t m_typePj;
-//    RenderObjectConqueror m_objects;
-    std::shared_ptr<RenderObject> m_object;
-    std::shared_ptr<Program> m_program;//appel du program pour y mettre les objets
-    //std::vector<std::shared_ptr<RenderObjectConqueror>> m_parts;
-    std::shared_ptr<Sampler> m_colormap;
-
-
-    PlayerObject(player_t typePj, std::shared_ptr<RenderObject> object, glm::vec3 position,
-                 std::shared_ptr<Program> program,
-                 //std::vector<std::shared_ptr<RenderObjectConqueror>> parts,
-                 std::shared_ptr<Sampler> m_colormap);
-
+class PlayerObject: public AbstractGameObject {
 public:
     PlayerObject() = delete;
     PlayerObject(const PlayerObject &)= delete;
@@ -45,14 +32,14 @@ public:
      * @param typePj
      * @return object of the player choice because of player's type
      */
-    static std::shared_ptr<PlayerObject> loadObjsPlayer(player_t typePj,  glm::vec3 position, std::shared_ptr<Program> program);
+    static std::shared_ptr<PlayerObject> loadObjsPlayer(player_t typePj, glm::vec3 position, std::shared_ptr<Program> program);
 
     /**
      * @brief loadObjs
      * @param objname
      * @return the good object with his different values
      */
-    static std::shared_ptr<PlayerObject> loadObjs(player_t typePj, const std::string & objname, const std::string & texturename,glm::vec3 position, std::shared_ptr<Program> program);
+    static std::shared_ptr<PlayerObject> loadObjs(player_t typePj, const std::string & objname, glm::vec3 position, std::shared_ptr<Program> program);
     /**
      * @brief draw
      *
@@ -65,11 +52,19 @@ public:
      *
      * update the program
      */
-    void update(const glm::mat4 & view, const glm::mat4 & projection);
+    void updateProgram(const glm::mat4 & view, const glm::mat4 & projection);
 
-    void update() override {}
+    void update(float deltaTime) override;
 
-    ~PlayerObject(){}
+private:
+    player_t m_typePj;
+    std::shared_ptr<RenderObject> m_object;
+    std::shared_ptr<Program> m_program;//appel du program pour y mettre les objets
+    std::shared_ptr<Sampler> m_colormap;
+
+
+    PlayerObject(player_t typePj, std::shared_ptr<RenderObject> object, glm::vec3 position,
+                 std::shared_ptr<Program> program, std::shared_ptr<Sampler> m_colormap);
 };
 
 #endif // __PLAYER_OBJECT_HPP__

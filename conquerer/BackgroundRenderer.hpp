@@ -53,7 +53,7 @@ public:
      * @brief Updates the scene including meshes which is time related.
      * @param activateContinuousKeys
      */
-    void update(bool activateContinuousKeys = true);
+    void update(float deltaTime, bool activateContinuousKeys = true);
 
     /**
      * @brief Method which used to interact with the keyboard user.
