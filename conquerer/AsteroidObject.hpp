@@ -1,11 +1,16 @@
 #ifndef __ASTEROID_OBJECT_HPP__
 #define __ASTEROID_OBJECT_HPP__
+<<<<<<< HEAD
 #include <glm/vec3.hpp>
 #include <glm/mat4x4.hpp>
 
 #include "glApi.hpp"
 #include "AbstractGameObject.hpp"
 #include "RenderObjectConqueror.hpp"
+=======
+#include <glm/mat4x4.hpp>
+#include "AbstractGameObject.hpp"
+>>>>>>> origin/game_logic
 
 /**
  * @brief Choice and creation of asteroid in the game's universe
@@ -16,6 +21,7 @@ public:
 
     /// Default constructor
     AsteroidObject() = delete;
+<<<<<<< HEAD
     /// Copy constructor
     AsteroidObject(const AsteroidObject& o) = default;
     /// Destructor
@@ -70,6 +76,28 @@ private:
     std::shared_ptr<RenderObject> m_object;
     std::shared_ptr<Program> m_program;//appel du program pour y mettre les objets
     std::shared_ptr<Sampler> m_colormap;
+=======
+
+    /// Copy constructor
+    AsteroidObject(const AsteroidObject& o) = default;
+
+    /// Constructor
+    AsteroidObject(asteroid_t asteroidType, const glm::vec3 position, const float health, const glm::vec3 sizes);
+
+    /// Destructor
+    ~AsteroidObject() {}
+
+    /**
+     * @brief Updates the object
+     */
+    void update(float deltaTime) override;
+
+    /// Draw meshes to the screen
+    void draw(const glm::mat4& projViewMatrix, GLenum mode = GL_TRIANGLES) override;
+
+private:
+    asteroid_t m_asteroidType;
+>>>>>>> origin/game_logic
 };
 
 #endif // __ASTEROID_OBJECT_HPP__

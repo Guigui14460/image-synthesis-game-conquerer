@@ -29,7 +29,11 @@ public:
     void update(float deltaTime) override;
 
     /// Draw meshes to the screen
+<<<<<<< HEAD
     void draw(const glm::mat4 & view, const glm::mat4 & projection, GLenum mode = GL_TRIANGLES) override;
+=======
+    void draw(const glm::mat4& projViewMatrix, GLenum mode = GL_TRIANGLES) override;
+>>>>>>> origin/game_logic
 
 private:
     projectile_t m_projectileType;

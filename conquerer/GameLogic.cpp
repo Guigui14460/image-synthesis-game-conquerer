@@ -6,9 +6,15 @@
 
 GameLogic::GameLogic(std::shared_ptr<PlayerObject>& player1, std::shared_ptr<PlayerObject>& player2,
                      std::shared_ptr<PlanetObject>& target, std::vector<std::shared_ptr<AsteroidObject>>& asteroids,
+<<<<<<< HEAD
                      std::vector<std::shared_ptr<PlanetObject>>& planets, const float universeRadius, const glm::vec3& origin)
     : m_player1(player1), m_player2(player2), m_targetPlanet(target),
       m_asteroids(asteroids), m_planets(planets), m_winner(PlayerObject::NONE), m_universeRadius(universeRadius), m_origin(origin) {
+=======
+                     std::vector<std::shared_ptr<PlanetObject>>& planets, const float universeRadius)
+    : m_player1(player1), m_player2(player2), m_targetPlanet(target),
+      m_asteroids(asteroids), m_planets(planets), m_winner(PlayerObject::NONE), m_universeRadius(universeRadius) {
+>>>>>>> origin/game_logic
 }
 
 void GameLogic::launch(float beginTime) {
@@ -24,10 +30,17 @@ void GameLogic::updateObjects(float actualTime) {
         return;
     }
 
+<<<<<<< HEAD
 //    if(glm::distance(this->m_player1->getPosition(), m_origin) >= MAX_AVAILABLE_RADIUS_FOR_PLAYER * this->m_universeRadius) {
 //        this->m_player1->inverseOrientation();
 //    }
 //    if(glm::distance(this->m_player2->getPosition(), m_origin) >= MAX_AVAILABLE_RADIUS_FOR_PLAYER * this->m_universeRadius) {
+=======
+//    if(glm::distance(this->m_player1->getPosition(), {0.f, 0.f, 0.f}) >= MAX_AVAILABLE_RADIUS_FOR_PLAYER * this->m_universeRadius) {
+//        this->m_player1->inverseOrientation();
+//    }
+//    if(glm::distance(this->m_player2->getPosition(), {0.f, 0.f, 0.f}) >= MAX_AVAILABLE_RADIUS_FOR_PLAYER * this->m_universeRadius) {
+>>>>>>> origin/game_logic
 //        this->m_player2->inverseOrientation();
 //    }
 

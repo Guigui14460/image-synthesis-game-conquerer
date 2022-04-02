@@ -124,6 +124,7 @@ add_executable(conquerer
   conquerer/PlayerObject.cpp
   conquerer/AsteroidObject.hpp
   conquerer/AsteroidObject.cpp
+<<<<<<< HEAD
   conquerer/objectLoaderConqueror.hpp
   conquerer/objectLoaderConqueror.cpp
   conquerer/RenderObjectConqueror.hpp
@@ -136,6 +137,14 @@ add_executable(conquerer
   conquerer/PlanetObject.hpp
   conquerer/PlanetObject.cpp
 
+=======
+  conquerer/PlanetObject.hpp
+  conquerer/PlanetObject.cpp
+  conquerer/ProjectileObject.hpp
+  conquerer/ProjectileObject.cpp
+  conquerer/Renderer.hpp
+  conquerer/Renderer.cpp
+>>>>>>> origin/game_logic
 
   conquerer/Camera.hpp
   conquerer/Camera.cpp
@@ -153,6 +162,8 @@ add_executable(conquerer
   conquerer/3d.f.glsl
   conquerer/texture.v.glsl
   conquerer/texture.f.glsl
+  conquerer/2d.v.glsl
+  conquerer/2d.f.glsl
 )
 target_link_libraries(conquerer utils ${GLFW3_LIBRARIES} ${GLEW_LIBRARIES})
 

@@ -529,10 +529,8 @@ template <typename T> void VAO::setVBO(uint attributeIndex, const std::vector<T>
   }
 
   Buffer* vbo = this->m_vbos.at(attributeIndex).get();
-  //this->bind();
   vbo->setData(values);
   this->encapsulateVBO(attributeIndex);
-  //this->unbind();
 }
 
 template <typename T> void VAO::setIBO(const std::vector<T> & values)

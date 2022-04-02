@@ -2,6 +2,7 @@
 #include "PlayerObject.hpp"
 #include "glApi.hpp"
 #include <GLFW/glfw3.h>
+<<<<<<< HEAD
 
 #include <glm/vec2.hpp>
 
@@ -9,6 +10,14 @@ constexpr float ANGLE_TO_ROTATE = 40.f;
 
 PlayingStage::PlayingStage(const std::shared_ptr<Renderer>& renderer): m_renderer(renderer) {}
 
+=======
+#include <glm/vec2.hpp>
+
+constexpr float ANGLE_TO_ROTATE = 40.f;
+
+PlayingStage::PlayingStage(const std::shared_ptr<Renderer>& renderer): m_renderer(renderer) {}
+
+>>>>>>> origin/game_logic
 PlayingStage::~PlayingStage() {}
 
 void PlayingStage::renderFrame() {

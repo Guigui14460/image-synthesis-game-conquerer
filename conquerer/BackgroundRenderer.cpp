@@ -17,12 +17,21 @@ void BackgroundRenderer::createVAO(uint numberOfStars, float universeRadius) {
     }
 }
 
+<<<<<<< HEAD
 void BackgroundRenderer::renderFrame(const glm::mat4 & view, const glm::mat4 & projection)
+=======
+void BackgroundRenderer::renderFrame(const glm::mat4& projViewMatrix)
+>>>>>>> origin/game_logic
 {
     this->m_program.bind();
 
     for(auto& mesh: this->m_meshes){
+<<<<<<< HEAD
         mesh->render(this->m_program, view, projection);
+=======
+        mesh->updateProgram(this->m_program, projViewMatrix);
+        mesh->render();
+>>>>>>> origin/game_logic
     }
 
     this->m_program.unbind();

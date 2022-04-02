@@ -21,7 +21,11 @@ public:
     /// Constructor
     GameLogic(std::shared_ptr<PlayerObject>& player1, std::shared_ptr<PlayerObject>& player2,
               std::shared_ptr<PlanetObject>& target, std::vector<std::shared_ptr<AsteroidObject>>& asteroids,
+<<<<<<< HEAD
               std::vector<std::shared_ptr<PlanetObject>>& planets, const float universeRadius, const glm::vec3& origin);
+=======
+              std::vector<std::shared_ptr<PlanetObject>>& planets, const float universeRadius);
+>>>>>>> origin/game_logic
 
     /**
      * @brief Launches the logic of the game
@@ -94,17 +98,28 @@ private:
     void removeUselessObjects();
 
 private:
+<<<<<<< HEAD
     std::shared_ptr<PlayerObject> m_player1, m_player2;
     std::shared_ptr<PlanetObject> m_targetPlanet;
     std::vector<std::shared_ptr<AsteroidObject>> m_asteroids;
     std::vector<std::shared_ptr<PlanetObject>> m_planets;
+=======
+    std::shared_ptr<PlayerObject>& m_player1, m_player2;
+    std::shared_ptr<PlanetObject>& m_targetPlanet;
+    std::vector<std::shared_ptr<AsteroidObject>>& m_asteroids;
+    std::vector<std::shared_ptr<PlanetObject>>& m_planets;
+>>>>>>> origin/game_logic
     std::vector<std::shared_ptr<ProjectileObject>> m_projectiles;
     PlayerObject::player_t m_winner;
     PlayerObject::player_t m_capturer = PlayerObject::NONE;
     float m_beginTime = -1.f, m_beginCapturePlanet = -1.f;
     bool m_beginCapture = false;
+<<<<<<< HEAD
     float m_universeRadius;
     glm::vec3 m_origin;
+=======
+    const float m_universeRadius;
+>>>>>>> origin/game_logic
 };
 
 #endif // __GAME_LOGIC_HPP__

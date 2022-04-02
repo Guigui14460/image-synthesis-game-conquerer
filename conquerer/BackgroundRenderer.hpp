@@ -38,7 +38,11 @@ public:
     /**
      * @brief Renders a single frame.
      */
+<<<<<<< HEAD
     void renderFrame(const glm::mat4 & view, const glm::mat4 & projection);
+=======
+    void renderFrame(const glm::mat4& projViewMatrix);
+>>>>>>> origin/game_logic
 
 private:
     /**

@@ -9,14 +9,24 @@
 #include <glm/gtx/transform.hpp>
 #include <iostream>
 
+<<<<<<< HEAD
 PlayerObject::PlayerObject(player_t typePj, std::shared_ptr<RenderObject> object, glm::vec3 position,
                            std::shared_ptr<Program> program, //std::vector<std::shared_ptr<RenderObjectConqueror>> parts,
                            std::shared_ptr<Sampler> colormap): AbstractGameObject(position, 0, 0, CollisionShapes::RECTANGLE, 0,glm::vec3(1)),
                     m_typePj(typePj), m_object(object), m_program(program), //m_parts(parts),
                     m_colormap(colormap){
                     }
+=======
+PlayerObject::PlayerObject(player_t typePj, std::shared_ptr<Texture> texture,
+                           std::shared_ptr<Mesh> mesh, glm::vec3 position,
+                           std::shared_ptr<Program> program, const float health) : AbstractGameObject(position, 0, 0, CollisionShapes::RECTANGLE, health, glm::vec3(1)),
+                    m_typePj(typePj), m_texture(texture), m_program(program),
+                    m_orientation(0) {
+    this->m_mesh = mesh;
+}
+>>>>>>> origin/game_logic
 
-std::shared_ptr<PlayerObject> PlayerObject::loadObjsPlayer(player_t typePj,  glm::vec3 position, std::shared_ptr<Program> program)
+std::shared_ptr<PlayerObject> PlayerObject::loadObjsPlayer(player_t typePj, glm::vec3 position, std::shared_ptr<Program> program, const float health)
 {
     std::string texture = "";
     std::string object = "";
@@ -37,10 +47,15 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjsPlayer(player_t typePj,  glm
         object = absolutename("objConquerer/asteroid/tuna/Tuna.obj");
     }
 
+<<<<<<< HEAD
     return PlayerObject::loadObjs(typePj, object, texture, position, program);
+=======
+    std::shared_ptr<PlayerObject> objectnew = PlayerObject::loadObjs(typePj, object, texture, position, program, health);
+    return objectnew;
+>>>>>>> origin/game_logic
 }
 
-std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std::string & objname, const std::string & texturename, glm::vec3 position, std::shared_ptr<Program> program)
+std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std::string & objname, const std::string & texturename, glm::vec3 position, std::shared_ptr<Program> program, const float health)
 {
 /*    ObjLoader objLoader(objname);
     std::vector<std::shared_ptr<RenderObjectConqueror>> parts;
@@ -116,6 +131,7 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std:
 
   std::shared_ptr<Mesh> mesh = std::shared_ptr<Mesh>(new Mesh(vao, position));
 
+<<<<<<< HEAD
 //  program = std::make_shared<Program>("conquerer/3d.v.glsl", "conquerer/3d.f.glsl");
 */
   std::shared_ptr<Sampler> colormap = std::shared_ptr<Sampler>(new Sampler(0));
@@ -131,15 +147,26 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std:
 
   PlayerObject* objectnew = new PlayerObject(typePj, obj, position, program, colormap);
   return std::shared_ptr<PlayerObject>(objectnew);
+=======
+  PlayerObject objectnew (typePj,texture,mesh, position, program, health);
+>>>>>>> origin/game_logic
 
 }
 
+<<<<<<< HEAD
 void PlayerObject::draw(const glm::mat4 & view, const glm::mat4 & projection, GLenum mode){
     std::cout<<"poisson"<< std::endl;
+=======
+void PlayerObject::draw(const glm::mat4& projViewMatrix, GLenum mode){
+    m_mesh->updateProgram(*m_program, projViewMatrix);
+
+    // rendering
+>>>>>>> origin/game_logic
     m_program->bind();
     update(view, projection);
 
 
+<<<<<<< HEAD
     if (m_colormap) {
       m_colormap->bind();
     }
@@ -168,6 +195,14 @@ void PlayerObject::update(const glm::mat4 & view, const glm::mat4 & projection){
 
 void PlayerObject::update(float deltaTime){
 
+=======
+    m_mesh->render(mode);
+    m_program->unbind();
+}
+
+void PlayerObject::update(float deltaTime){
+    this->m_position += deltaTime * this->m_orientation;
+>>>>>>> origin/game_logic
 }
 
 PlayerObject::player_t PlayerObject::getPlayerType() {

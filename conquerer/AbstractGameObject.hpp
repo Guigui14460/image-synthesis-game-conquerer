@@ -71,7 +71,11 @@ public:
     virtual void update(float deltaTime) = 0;
 
     /// Draw meshes to the screen
+<<<<<<< HEAD
     virtual void draw(const glm::mat4 & view, const glm::mat4 & projection, GLenum mode = GL_TRIANGLES) = 0;
+=======
+    virtual void draw(const glm::mat4& projViewMatrix, GLenum mode = GL_TRIANGLES) = 0;
+>>>>>>> origin/game_logic
 
     /// Gets the object health
     float getHealth() { return this->m_health; }

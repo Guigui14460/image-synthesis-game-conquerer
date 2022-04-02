@@ -52,7 +52,11 @@ public:
      */
     inline void setScale(const glm::vec3& scale) { this->m_scale = scale; }
 
+<<<<<<< HEAD
     void updateProgram(Program& prog, const glm::mat4 & view, const glm::mat4 & projection);
+=======
+    void updateProgram(Program& prog, const glm::mat4& projViewMatrix);
+>>>>>>> origin/game_logic
 
     /**
      * @brief Updates the object with an elapsed time between the last and current frames.
