@@ -38,13 +38,13 @@ public:
     player_t getPlayerType();
 
     void setOrientation(const glm::vec3& orientation) {
+        //this->rotate(orientation- this->m_orientation);
         this->m_orientation = orientation;
-        // TODO: faire la même pour camera
     }
 
     void inverseOrientation() {
-        this->m_orientation *= 1;
-        // TODO: faire la même pour camera
+        this->m_orientation *= -1;
+        this->m_rotation *= -1;
     }
 
 private:

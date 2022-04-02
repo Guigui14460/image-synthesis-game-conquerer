@@ -11,7 +11,7 @@ void BackgroundRenderer::createVAO(uint numberOfStars, float universeRadius, con
     std::vector<glm::vec3> points = this->generateRandomStars(numberOfStars, universeRadius);
     std::vector<float> sizes = this->generateRandomSizes(numberOfStars, 0.004, 0.001);
     for(uint i = 0; i < numberOfStars; i++){
-        this->m_stars.push_back(std::shared_ptr<PlanetObject>(new PlanetObject(0, points[i], origin, glm::vec3(0.f), glm::vec3(sizes[i]), glm::vec3(1.f), 1.f)));
+        this->m_stars.push_back(std::shared_ptr<PlanetObject>(new PlanetObject(0, points[i], origin, glm::vec3(0.f), glm::vec3(sizes[i]), glm::vec3(1.f), 20.f)));
     }
 }
 

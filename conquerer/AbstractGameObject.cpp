@@ -88,5 +88,6 @@ bool AbstractGameObject::isDestroyed() {
 }
 
 void AbstractGameObject::draw(const glm::mat4 & view, const glm::mat4 & projection, GLenum mode) {
+    this->updateModelMatrix();
     this->m_object->render(*this->m_program.get(), this->m_modelMatrix, view, projection, mode);
 }

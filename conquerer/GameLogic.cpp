@@ -218,7 +218,7 @@ float GameLogic::getLeftCaptureTime(float actualTime) {
 }
 
 bool GameLogic::isFinished() {
-    std::cout << (this->m_winner != PlayerObject::NONE) << std::endl;
+    std::cout <<"gameLogic " <<(this->m_winner != PlayerObject::NONE) << std::endl;
     return this->m_winner != PlayerObject::NONE;
 }
 

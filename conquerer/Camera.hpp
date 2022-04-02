@@ -30,7 +30,7 @@ public:
      * @brief Sets a new position for the camera object
      * @param position new camera position
      */
-    inline void setPosition(const glm::vec3& position) { this->m_position = glm::normalize(position); }
+    inline void setPosition(const glm::vec3& position) { this->m_position = (position); }
 
     /**
      * @brief Sets a new direction for the camera object

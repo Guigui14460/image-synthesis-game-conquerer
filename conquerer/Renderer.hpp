@@ -55,9 +55,24 @@ private:
     void initGLState() const;
 
     void initGameLogic(float universeRadius, const glm::vec3& origin);
+    
+    /**
+     * @brief calculPositionPlanet
+     * @return a vertex in 3 dimension for planet's position
+     */
+    glm::vec3 calculPositionPlanet();
+
+    /**
+     * @brief calculPlacementObject
+     * @return a 3 dimension's vertex for player object's position
+     */
+    glm::vec3 calculPlacementObject(glm::vec3 vertPlanet);
 
 private:
-    std::shared_ptr<PlayerObject> m_player_object;
+    std::shared_ptr<PlayerObject> m_player1_object;
+    std::shared_ptr<PlayerObject> m_player2_object;
+    std::shared_ptr<PlanetObject> m_target;
+    float m_universeRadius;
 
     camera_t m_cameraPlayer1, m_cameraPlayer2;
     std::shared_ptr<GameLogic> m_logic;

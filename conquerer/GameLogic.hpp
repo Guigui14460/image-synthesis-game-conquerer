@@ -11,7 +11,7 @@
 
 constexpr float MAX_GAME_DURATION = 10.f;
 constexpr float MIN_CAPTURE_PLANET_DURATION = 10.f;
-constexpr float MAX_AVAILABLE_RADIUS_FOR_PLAYER = 0.9f;
+constexpr float MAX_AVAILABLE_RADIUS_FOR_PLAYER = 1.5f;
 
 /**
  * @brief The GameLogic class represents all the logic of the Conquerer game
