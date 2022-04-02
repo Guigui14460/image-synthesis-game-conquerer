@@ -1884,6 +1884,20 @@ AttributeProperties.hpp
 Image.hpp
 ../src/Image.hpp
 
+../src/utils.hpp
+string
+-
+
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/AbstractGameObject.cpp
+AbstractGameObject.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/AbstractGameObject.hpp
+glm/gtc/matrix_transform.hpp
+-
+Mesh.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Mesh.hpp
+RenderObjectConqueror.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/RenderObjectConqueror.hpp
+
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/AbstractGameObject.hpp
 glm/vec3.hpp
 -
@@ -1900,6 +1914,16 @@ glm/mat4x4.hpp
 glApi.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/glApi.hpp
 
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/AsteroidObject.cpp
+AsteroidObject.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/AsteroidObject.hpp
+glm/gtc/matrix_transform.hpp
+-
+CollisionShapes.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/CollisionShapes.hpp
+utils.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/utils.hpp
+
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/AsteroidObject.hpp
 glm/vec3.hpp
 -
@@ -1911,6 +1935,14 @@ AbstractGameObject.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/AbstractGameObject.hpp
 RenderObjectConqueror.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/RenderObjectConqueror.hpp
+
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/BackgroundRenderer.cpp
+BackgroundRenderer.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/BackgroundRenderer.hpp
+random
+-
+BasicObjects.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/BasicObjects.hpp
 
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/BackgroundRenderer.hpp
 vector
@@ -1969,6 +2001,8 @@ GameStage.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/EndStage.cpp
 EndStage.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/EndStage.hpp
+unordered_map
+-
 glm/ext.hpp
 -
 glm/gtc/matrix_transform.hpp
@@ -2060,6 +2094,14 @@ glApi.hpp
 AbstractRenderObject.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/AbstractRenderObject.hpp
 
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlanetObject.cpp
+PlanetObject.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlanetObject.hpp
+BasicObjects.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/BasicObjects.hpp
+Mesh.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Mesh.hpp
+
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlanetObject.hpp
 glm/vec3.hpp
 -
@@ -2071,6 +2113,16 @@ glApi.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/glApi.hpp
 Mesh.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Mesh.hpp
+
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlayerObject.cpp
+PlayerObject.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlayerObject.hpp
+CollisionShapes.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/CollisionShapes.hpp
+utils.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/utils.hpp
+glm/gtc/matrix_transform.hpp
+-
 
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlayerObject.hpp
 glm/vec3.hpp
@@ -2105,6 +2157,16 @@ Renderer.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Renderer.hpp
 PlayerObject.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlayerObject.hpp
+
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/ProjectileObject.cpp
+ProjectileObject.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/ProjectileObject.hpp
+glm/gtc/matrix_transform.hpp
+-
+CollisionShapes.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/CollisionShapes.hpp
+utils.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/utils.hpp
 
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/ProjectileObject.hpp
 glm/vec3.hpp

@@ -19,7 +19,7 @@ void GameLogic::updateObjects(float actualTime) {
     if(not this->isLaunched() or this->isFinished()) return;
 
     // if current capturer has captured the target planet
-    if(this->isTargetCaptureBegan() and this->getLeftCaptureTime(actualTime) == 0) {
+    if(this->isTargetCaptureBegan() /*and this->getLeftCaptureTime(actualTime) == 0*/) {
         this->m_winner = this->m_capturer;
         return;
     }
@@ -37,6 +37,7 @@ void GameLogic::updateObjects(float actualTime) {
     // checks if a player is in the target planet
     bool p1InTarget = this->m_player1->isCollided(*this->m_targetPlanet.get());
     bool p2InTarget = this->m_player2->isCollided(*this->m_targetPlanet.get());
+
     if(this->m_capturer == PlayerObject::NONE) {
         if(p1InTarget and p2InTarget) {
             if(this->m_player1->getHealth() == this->m_player2->getHealth()) {

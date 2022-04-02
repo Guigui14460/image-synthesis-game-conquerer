@@ -36,7 +36,7 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std:
                                                      const glm::vec3& position, const glm::vec3& origin, const glm::vec3& rotation, const glm::vec3& scale) {
     std::shared_ptr<RenderObject> obj = RenderObject::createWavefrontInstance(objname);
 
-    glm::vec3 sizes(1.f);
+    glm::vec3 sizes(0.5f);
     PlayerObject* objectnew = new PlayerObject(typePj, obj, program, health, position, origin, rotation, scale, sizes);
     return std::shared_ptr<PlayerObject>(objectnew);
 }
