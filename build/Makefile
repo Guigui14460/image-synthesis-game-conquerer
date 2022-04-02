@@ -538,33 +538,6 @@ conquerer/Mesh.cpp.s:
 	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.s
 .PHONY : conquerer/Mesh.cpp.s
 
-conquerer/Model.o: conquerer/Model.cpp.o
-
-.PHONY : conquerer/Model.o
-
-# target to build an object file
-conquerer/Model.cpp.o:
-	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/Model.cpp.o
-.PHONY : conquerer/Model.cpp.o
-
-conquerer/Model.i: conquerer/Model.cpp.i
-
-.PHONY : conquerer/Model.i
-
-# target to preprocess a source file
-conquerer/Model.cpp.i:
-	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/Model.cpp.i
-.PHONY : conquerer/Model.cpp.i
-
-conquerer/Model.s: conquerer/Model.cpp.s
-
-.PHONY : conquerer/Model.s
-
-# target to generate assembly for a file
-conquerer/Model.cpp.s:
-	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/Model.cpp.s
-.PHONY : conquerer/Model.cpp.s
-
 conquerer/PlanetObject.o: conquerer/PlanetObject.cpp.o
 
 .PHONY : conquerer/PlanetObject.o
@@ -645,6 +618,33 @@ conquerer/PlayingStage.s: conquerer/PlayingStage.cpp.s
 conquerer/PlayingStage.cpp.s:
 	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/PlayingStage.cpp.s
 .PHONY : conquerer/PlayingStage.cpp.s
+
+conquerer/ProjectileObject.o: conquerer/ProjectileObject.cpp.o
+
+.PHONY : conquerer/ProjectileObject.o
+
+# target to build an object file
+conquerer/ProjectileObject.cpp.o:
+	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o
+.PHONY : conquerer/ProjectileObject.cpp.o
+
+conquerer/ProjectileObject.i: conquerer/ProjectileObject.cpp.i
+
+.PHONY : conquerer/ProjectileObject.i
+
+# target to preprocess a source file
+conquerer/ProjectileObject.cpp.i:
+	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.i
+.PHONY : conquerer/ProjectileObject.cpp.i
+
+conquerer/ProjectileObject.s: conquerer/ProjectileObject.cpp.s
+
+.PHONY : conquerer/ProjectileObject.s
+
+# target to generate assembly for a file
+conquerer/ProjectileObject.cpp.s:
+	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.s
+.PHONY : conquerer/ProjectileObject.cpp.s
 
 conquerer/RenderObjectConqueror.o: conquerer/RenderObjectConqueror.cpp.o
 
@@ -780,33 +780,6 @@ conquerer/main.s: conquerer/main.cpp.s
 conquerer/main.cpp.s:
 	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/main.cpp.s
 .PHONY : conquerer/main.cpp.s
-
-conquerer/objectLoaderConqueror.o: conquerer/objectLoaderConqueror.cpp.o
-
-.PHONY : conquerer/objectLoaderConqueror.o
-
-# target to build an object file
-conquerer/objectLoaderConqueror.cpp.o:
-	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/objectLoaderConqueror.cpp.o
-.PHONY : conquerer/objectLoaderConqueror.cpp.o
-
-conquerer/objectLoaderConqueror.i: conquerer/objectLoaderConqueror.cpp.i
-
-.PHONY : conquerer/objectLoaderConqueror.i
-
-# target to preprocess a source file
-conquerer/objectLoaderConqueror.cpp.i:
-	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/objectLoaderConqueror.cpp.i
-.PHONY : conquerer/objectLoaderConqueror.cpp.i
-
-conquerer/objectLoaderConqueror.s: conquerer/objectLoaderConqueror.cpp.s
-
-.PHONY : conquerer/objectLoaderConqueror.s
-
-# target to generate assembly for a file
-conquerer/objectLoaderConqueror.cpp.s:
-	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/objectLoaderConqueror.cpp.s
-.PHONY : conquerer/objectLoaderConqueror.cpp.s
 
 examples/PA1Application.o: examples/PA1Application.cpp.o
 
@@ -1346,9 +1319,6 @@ help:
 	@echo "... conquerer/Mesh.o"
 	@echo "... conquerer/Mesh.i"
 	@echo "... conquerer/Mesh.s"
-	@echo "... conquerer/Model.o"
-	@echo "... conquerer/Model.i"
-	@echo "... conquerer/Model.s"
 	@echo "... conquerer/PlanetObject.o"
 	@echo "... conquerer/PlanetObject.i"
 	@echo "... conquerer/PlanetObject.s"
@@ -1358,6 +1328,9 @@ help:
 	@echo "... conquerer/PlayingStage.o"
 	@echo "... conquerer/PlayingStage.i"
 	@echo "... conquerer/PlayingStage.s"
+	@echo "... conquerer/ProjectileObject.o"
+	@echo "... conquerer/ProjectileObject.i"
+	@echo "... conquerer/ProjectileObject.s"
 	@echo "... conquerer/RenderObjectConqueror.o"
 	@echo "... conquerer/RenderObjectConqueror.i"
 	@echo "... conquerer/RenderObjectConqueror.s"
@@ -1373,9 +1346,6 @@ help:
 	@echo "... conquerer/main.o"
 	@echo "... conquerer/main.i"
 	@echo "... conquerer/main.s"
-	@echo "... conquerer/objectLoaderConqueror.o"
-	@echo "... conquerer/objectLoaderConqueror.i"
-	@echo "... conquerer/objectLoaderConqueror.s"
 	@echo "... examples/PA1Application.o"
 	@echo "... examples/PA1Application.i"
 	@echo "... examples/PA1Application.s"

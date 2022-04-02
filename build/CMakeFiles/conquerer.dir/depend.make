@@ -64,6 +64,10 @@ CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../ext/glm/glm/ext/
 CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../ext/glm/glm/fwd.hpp
 CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../ext/glm/glm/geometric.hpp
 CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../ext/glm/glm/glm.hpp
+CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../ext/glm/glm/gtc/constants.hpp
+CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../ext/glm/glm/gtc/constants.inl
+CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../ext/glm/glm/gtc/matrix_transform.hpp
+CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../ext/glm/glm/gtc/matrix_transform.inl
 CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../ext/glm/glm/integer.hpp
 CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../ext/glm/glm/mat2x2.hpp
 CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../ext/glm/glm/mat2x3.hpp
@@ -92,8 +96,10 @@ CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../src/Image.hpp
 CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../src/glApi.hpp
 CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../conquerer/AbstractGameObject.cpp
 CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../conquerer/AbstractGameObject.hpp
+CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../conquerer/AbstractRenderObject.hpp
 CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../conquerer/CollisionShapes.hpp
 CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../conquerer/Mesh.hpp
+CMakeFiles/conquerer.dir/conquerer/AbstractGameObject.cpp.o: ../conquerer/RenderObjectConqueror.hpp
 
 CMakeFiles/conquerer.dir/conquerer/AsteroidObject.cpp.o: ../ext/glm/glm/common.hpp
 CMakeFiles/conquerer.dir/conquerer/AsteroidObject.cpp.o: ../ext/glm/glm/detail/_fixes.hpp
@@ -190,6 +196,7 @@ CMakeFiles/conquerer.dir/conquerer/AsteroidObject.cpp.o: ../src/Image.hpp
 CMakeFiles/conquerer.dir/conquerer/AsteroidObject.cpp.o: ../src/glApi.hpp
 CMakeFiles/conquerer.dir/conquerer/AsteroidObject.cpp.o: ../src/utils.hpp
 CMakeFiles/conquerer.dir/conquerer/AsteroidObject.cpp.o: ../conquerer/AbstractGameObject.hpp
+CMakeFiles/conquerer.dir/conquerer/AsteroidObject.cpp.o: ../conquerer/AbstractRenderObject.hpp
 CMakeFiles/conquerer.dir/conquerer/AsteroidObject.cpp.o: ../conquerer/AsteroidObject.cpp
 CMakeFiles/conquerer.dir/conquerer/AsteroidObject.cpp.o: ../conquerer/AsteroidObject.hpp
 CMakeFiles/conquerer.dir/conquerer/AsteroidObject.cpp.o: ../conquerer/CollisionShapes.hpp
@@ -422,10 +429,14 @@ CMakeFiles/conquerer.dir/conquerer/BackgroundRenderer.cpp.o: ../ext/glm/glm/vect
 CMakeFiles/conquerer.dir/conquerer/BackgroundRenderer.cpp.o: ../src/AttributeProperties.hpp
 CMakeFiles/conquerer.dir/conquerer/BackgroundRenderer.cpp.o: ../src/Image.hpp
 CMakeFiles/conquerer.dir/conquerer/BackgroundRenderer.cpp.o: ../src/glApi.hpp
+CMakeFiles/conquerer.dir/conquerer/BackgroundRenderer.cpp.o: ../conquerer/AbstractGameObject.hpp
+CMakeFiles/conquerer.dir/conquerer/BackgroundRenderer.cpp.o: ../conquerer/AbstractRenderObject.hpp
 CMakeFiles/conquerer.dir/conquerer/BackgroundRenderer.cpp.o: ../conquerer/BackgroundRenderer.cpp
 CMakeFiles/conquerer.dir/conquerer/BackgroundRenderer.cpp.o: ../conquerer/BackgroundRenderer.hpp
 CMakeFiles/conquerer.dir/conquerer/BackgroundRenderer.cpp.o: ../conquerer/BasicObjects.hpp
+CMakeFiles/conquerer.dir/conquerer/BackgroundRenderer.cpp.o: ../conquerer/CollisionShapes.hpp
 CMakeFiles/conquerer.dir/conquerer/BackgroundRenderer.cpp.o: ../conquerer/Mesh.hpp
+CMakeFiles/conquerer.dir/conquerer/BackgroundRenderer.cpp.o: ../conquerer/PlanetObject.hpp
 
 CMakeFiles/conquerer.dir/conquerer/BasicObjects.cpp.o: ../ext/glm/glm/common.hpp
 CMakeFiles/conquerer.dir/conquerer/BasicObjects.cpp.o: ../ext/glm/glm/detail/_fixes.hpp
@@ -966,6 +977,7 @@ CMakeFiles/conquerer.dir/conquerer/ConquererApplication.cpp.o: ../src/AttributeP
 CMakeFiles/conquerer.dir/conquerer/ConquererApplication.cpp.o: ../src/Image.hpp
 CMakeFiles/conquerer.dir/conquerer/ConquererApplication.cpp.o: ../src/glApi.hpp
 CMakeFiles/conquerer.dir/conquerer/ConquererApplication.cpp.o: ../conquerer/AbstractGameObject.hpp
+CMakeFiles/conquerer.dir/conquerer/ConquererApplication.cpp.o: ../conquerer/AbstractRenderObject.hpp
 CMakeFiles/conquerer.dir/conquerer/ConquererApplication.cpp.o: ../conquerer/AsteroidObject.hpp
 CMakeFiles/conquerer.dir/conquerer/ConquererApplication.cpp.o: ../conquerer/BackgroundRenderer.hpp
 CMakeFiles/conquerer.dir/conquerer/ConquererApplication.cpp.o: ../conquerer/Camera.hpp
@@ -1214,6 +1226,7 @@ CMakeFiles/conquerer.dir/conquerer/EndStage.cpp.o: ../src/AttributeProperties.hp
 CMakeFiles/conquerer.dir/conquerer/EndStage.cpp.o: ../src/Image.hpp
 CMakeFiles/conquerer.dir/conquerer/EndStage.cpp.o: ../src/glApi.hpp
 CMakeFiles/conquerer.dir/conquerer/EndStage.cpp.o: ../conquerer/AbstractGameObject.hpp
+CMakeFiles/conquerer.dir/conquerer/EndStage.cpp.o: ../conquerer/AbstractRenderObject.hpp
 CMakeFiles/conquerer.dir/conquerer/EndStage.cpp.o: ../conquerer/AsteroidObject.hpp
 CMakeFiles/conquerer.dir/conquerer/EndStage.cpp.o: ../conquerer/BackgroundRenderer.hpp
 CMakeFiles/conquerer.dir/conquerer/EndStage.cpp.o: ../conquerer/Camera.hpp
@@ -1338,6 +1351,7 @@ CMakeFiles/conquerer.dir/conquerer/GameLogic.cpp.o: ../src/AttributeProperties.h
 CMakeFiles/conquerer.dir/conquerer/GameLogic.cpp.o: ../src/Image.hpp
 CMakeFiles/conquerer.dir/conquerer/GameLogic.cpp.o: ../src/glApi.hpp
 CMakeFiles/conquerer.dir/conquerer/GameLogic.cpp.o: ../conquerer/AbstractGameObject.hpp
+CMakeFiles/conquerer.dir/conquerer/GameLogic.cpp.o: ../conquerer/AbstractRenderObject.hpp
 CMakeFiles/conquerer.dir/conquerer/GameLogic.cpp.o: ../conquerer/AsteroidObject.hpp
 CMakeFiles/conquerer.dir/conquerer/GameLogic.cpp.o: ../conquerer/CollisionShapes.hpp
 CMakeFiles/conquerer.dir/conquerer/GameLogic.cpp.o: ../conquerer/GameLogic.cpp
@@ -1438,6 +1452,7 @@ CMakeFiles/conquerer.dir/conquerer/GameOverlay.cpp.o: ../src/AttributeProperties
 CMakeFiles/conquerer.dir/conquerer/GameOverlay.cpp.o: ../src/Image.hpp
 CMakeFiles/conquerer.dir/conquerer/GameOverlay.cpp.o: ../src/glApi.hpp
 CMakeFiles/conquerer.dir/conquerer/GameOverlay.cpp.o: ../conquerer/AbstractGameObject.hpp
+CMakeFiles/conquerer.dir/conquerer/GameOverlay.cpp.o: ../conquerer/AbstractRenderObject.hpp
 CMakeFiles/conquerer.dir/conquerer/GameOverlay.cpp.o: ../conquerer/AsteroidObject.hpp
 CMakeFiles/conquerer.dir/conquerer/GameOverlay.cpp.o: ../conquerer/BasicObjects.hpp
 CMakeFiles/conquerer.dir/conquerer/GameOverlay.cpp.o: ../conquerer/CollisionShapes.hpp
@@ -1679,6 +1694,7 @@ CMakeFiles/conquerer.dir/conquerer/GameStage.cpp.o: ../src/AttributeProperties.h
 CMakeFiles/conquerer.dir/conquerer/GameStage.cpp.o: ../src/Image.hpp
 CMakeFiles/conquerer.dir/conquerer/GameStage.cpp.o: ../src/glApi.hpp
 CMakeFiles/conquerer.dir/conquerer/GameStage.cpp.o: ../conquerer/AbstractGameObject.hpp
+CMakeFiles/conquerer.dir/conquerer/GameStage.cpp.o: ../conquerer/AbstractRenderObject.hpp
 CMakeFiles/conquerer.dir/conquerer/GameStage.cpp.o: ../conquerer/AsteroidObject.hpp
 CMakeFiles/conquerer.dir/conquerer/GameStage.cpp.o: ../conquerer/BackgroundRenderer.hpp
 CMakeFiles/conquerer.dir/conquerer/GameStage.cpp.o: ../conquerer/Camera.hpp
@@ -1761,10 +1777,6 @@ CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../ext/glm/glm/ext/vec1.hpp
 CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../ext/glm/glm/fwd.hpp
 CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../ext/glm/glm/geometric.hpp
 CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../ext/glm/glm/glm.hpp
-CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../ext/glm/glm/gtc/constants.hpp
-CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../ext/glm/glm/gtc/constants.inl
-CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../ext/glm/glm/gtc/matrix_transform.hpp
-CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../ext/glm/glm/gtc/matrix_transform.inl
 CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../ext/glm/glm/integer.hpp
 CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../ext/glm/glm/mat2x2.hpp
 CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../ext/glm/glm/mat2x3.hpp
@@ -1791,10 +1803,9 @@ CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../ext/glm/glm/vector_relational.
 CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../src/AttributeProperties.hpp
 CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../src/Image.hpp
 CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../src/glApi.hpp
+CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../conquerer/AbstractRenderObject.hpp
 CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../conquerer/Mesh.cpp
 CMakeFiles/conquerer.dir/conquerer/Mesh.cpp.o: ../conquerer/Mesh.hpp
-
-CMakeFiles/conquerer.dir/conquerer/Model.cpp.o: ../conquerer/Model.cpp
 
 CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.o: ../ext/glm/glm/common.hpp
 CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.o: ../ext/glm/glm/detail/_fixes.hpp
@@ -1886,6 +1897,7 @@ CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.o: ../src/AttributePropertie
 CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.o: ../src/Image.hpp
 CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.o: ../src/glApi.hpp
 CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.o: ../conquerer/AbstractGameObject.hpp
+CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.o: ../conquerer/AbstractRenderObject.hpp
 CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.o: ../conquerer/BasicObjects.hpp
 CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.o: ../conquerer/CollisionShapes.hpp
 CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.o: ../conquerer/Mesh.hpp
@@ -1959,8 +1971,6 @@ CMakeFiles/conquerer.dir/conquerer/PlayerObject.cpp.o: ../ext/glm/glm/gtc/consta
 CMakeFiles/conquerer.dir/conquerer/PlayerObject.cpp.o: ../ext/glm/glm/gtc/constants.inl
 CMakeFiles/conquerer.dir/conquerer/PlayerObject.cpp.o: ../ext/glm/glm/gtc/matrix_transform.hpp
 CMakeFiles/conquerer.dir/conquerer/PlayerObject.cpp.o: ../ext/glm/glm/gtc/matrix_transform.inl
-CMakeFiles/conquerer.dir/conquerer/PlayerObject.cpp.o: ../ext/glm/glm/gtx/transform.hpp
-CMakeFiles/conquerer.dir/conquerer/PlayerObject.cpp.o: ../ext/glm/glm/gtx/transform.inl
 CMakeFiles/conquerer.dir/conquerer/PlayerObject.cpp.o: ../ext/glm/glm/integer.hpp
 CMakeFiles/conquerer.dir/conquerer/PlayerObject.cpp.o: ../ext/glm/glm/mat2x2.hpp
 CMakeFiles/conquerer.dir/conquerer/PlayerObject.cpp.o: ../ext/glm/glm/mat2x3.hpp
@@ -1989,6 +1999,7 @@ CMakeFiles/conquerer.dir/conquerer/PlayerObject.cpp.o: ../src/Image.hpp
 CMakeFiles/conquerer.dir/conquerer/PlayerObject.cpp.o: ../src/glApi.hpp
 CMakeFiles/conquerer.dir/conquerer/PlayerObject.cpp.o: ../src/utils.hpp
 CMakeFiles/conquerer.dir/conquerer/PlayerObject.cpp.o: ../conquerer/AbstractGameObject.hpp
+CMakeFiles/conquerer.dir/conquerer/PlayerObject.cpp.o: ../conquerer/AbstractRenderObject.hpp
 CMakeFiles/conquerer.dir/conquerer/PlayerObject.cpp.o: ../conquerer/CollisionShapes.hpp
 CMakeFiles/conquerer.dir/conquerer/PlayerObject.cpp.o: ../conquerer/Mesh.hpp
 CMakeFiles/conquerer.dir/conquerer/PlayerObject.cpp.o: ../conquerer/PlayerObject.cpp
@@ -2223,6 +2234,7 @@ CMakeFiles/conquerer.dir/conquerer/PlayingStage.cpp.o: ../src/AttributePropertie
 CMakeFiles/conquerer.dir/conquerer/PlayingStage.cpp.o: ../src/Image.hpp
 CMakeFiles/conquerer.dir/conquerer/PlayingStage.cpp.o: ../src/glApi.hpp
 CMakeFiles/conquerer.dir/conquerer/PlayingStage.cpp.o: ../conquerer/AbstractGameObject.hpp
+CMakeFiles/conquerer.dir/conquerer/PlayingStage.cpp.o: ../conquerer/AbstractRenderObject.hpp
 CMakeFiles/conquerer.dir/conquerer/PlayingStage.cpp.o: ../conquerer/AsteroidObject.hpp
 CMakeFiles/conquerer.dir/conquerer/PlayingStage.cpp.o: ../conquerer/BackgroundRenderer.hpp
 CMakeFiles/conquerer.dir/conquerer/PlayingStage.cpp.o: ../conquerer/Camera.hpp
@@ -2239,6 +2251,108 @@ CMakeFiles/conquerer.dir/conquerer/PlayingStage.cpp.o: ../conquerer/ProjectileOb
 CMakeFiles/conquerer.dir/conquerer/PlayingStage.cpp.o: ../conquerer/RenderObjectConqueror.hpp
 CMakeFiles/conquerer.dir/conquerer/PlayingStage.cpp.o: ../conquerer/Renderer.hpp
 CMakeFiles/conquerer.dir/conquerer/PlayingStage.cpp.o: ../conquerer/TextPrinter.hpp
+
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/common.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/_fixes.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/_swizzle.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/_swizzle_func.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/_vectorize.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/compute_vector_relational.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/func_common.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/func_common_simd.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/func_exponential.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/func_exponential_simd.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/func_geometric.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/func_geometric_simd.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/func_integer.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/func_integer_simd.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/func_matrix.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/func_matrix_simd.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/func_packing.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/func_packing_simd.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/func_trigonometric.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/func_trigonometric_simd.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/func_vector_relational.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/func_vector_relational_simd.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/qualifier.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/setup.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_float.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_half.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_half.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_int.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat2x2.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat2x2.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat2x3.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat2x3.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat2x4.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat2x4.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat3x2.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat3x2.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat3x3.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat3x3.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat3x4.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat3x4.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat4x2.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat4x2.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat4x3.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat4x3.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat4x4.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat4x4.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_mat4x4_simd.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_vec.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_vec1.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_vec1.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_vec2.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_vec2.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_vec3.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_vec3.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_vec4.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_vec4.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/detail/type_vec4_simd.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/exponential.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/ext/vec1.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/fwd.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/geometric.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/glm.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/gtc/constants.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/gtc/constants.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/gtc/matrix_transform.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/gtc/matrix_transform.inl
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/integer.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/mat2x2.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/mat2x3.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/mat2x4.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/mat3x2.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/mat3x3.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/mat3x4.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/mat4x2.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/mat4x3.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/mat4x4.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/matrix.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/packing.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/simd/common.h
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/simd/exponential.h
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/simd/geometric.h
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/simd/integer.h
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/simd/matrix.h
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/simd/platform.h
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/trigonometric.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/vec2.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/vec3.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/vec4.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../ext/glm/glm/vector_relational.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../src/AttributeProperties.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../src/Image.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../src/glApi.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../src/utils.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../conquerer/AbstractGameObject.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../conquerer/AbstractRenderObject.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../conquerer/CollisionShapes.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../conquerer/Mesh.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../conquerer/ProjectileObject.cpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../conquerer/ProjectileObject.hpp
+CMakeFiles/conquerer.dir/conquerer/ProjectileObject.cpp.o: ../conquerer/RenderObjectConqueror.hpp
 
 CMakeFiles/conquerer.dir/conquerer/RenderObjectConqueror.cpp.o: ../ext/glm/glm/common.hpp
 CMakeFiles/conquerer.dir/conquerer/RenderObjectConqueror.cpp.o: ../ext/glm/glm/detail/_fixes.hpp
@@ -2333,6 +2447,7 @@ CMakeFiles/conquerer.dir/conquerer/RenderObjectConqueror.cpp.o: ../src/ObjLoader
 CMakeFiles/conquerer.dir/conquerer/RenderObjectConqueror.cpp.o: ../src/SimpleMaterial.hpp
 CMakeFiles/conquerer.dir/conquerer/RenderObjectConqueror.cpp.o: ../src/glApi.hpp
 CMakeFiles/conquerer.dir/conquerer/RenderObjectConqueror.cpp.o: ../src/utils.hpp
+CMakeFiles/conquerer.dir/conquerer/RenderObjectConqueror.cpp.o: ../conquerer/AbstractRenderObject.hpp
 CMakeFiles/conquerer.dir/conquerer/RenderObjectConqueror.cpp.o: ../conquerer/RenderObjectConqueror.cpp
 CMakeFiles/conquerer.dir/conquerer/RenderObjectConqueror.cpp.o: ../conquerer/RenderObjectConqueror.hpp
 
@@ -2564,6 +2679,7 @@ CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.o: ../src/AttributeProperties.hp
 CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.o: ../src/Image.hpp
 CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.o: ../src/glApi.hpp
 CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.o: ../conquerer/AbstractGameObject.hpp
+CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.o: ../conquerer/AbstractRenderObject.hpp
 CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.o: ../conquerer/AsteroidObject.hpp
 CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.o: ../conquerer/BackgroundRenderer.hpp
 CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.o: ../conquerer/Camera.hpp
@@ -2807,6 +2923,7 @@ CMakeFiles/conquerer.dir/conquerer/StartStage.cpp.o: ../src/AttributeProperties.
 CMakeFiles/conquerer.dir/conquerer/StartStage.cpp.o: ../src/Image.hpp
 CMakeFiles/conquerer.dir/conquerer/StartStage.cpp.o: ../src/glApi.hpp
 CMakeFiles/conquerer.dir/conquerer/StartStage.cpp.o: ../conquerer/AbstractGameObject.hpp
+CMakeFiles/conquerer.dir/conquerer/StartStage.cpp.o: ../conquerer/AbstractRenderObject.hpp
 CMakeFiles/conquerer.dir/conquerer/StartStage.cpp.o: ../conquerer/AsteroidObject.hpp
 CMakeFiles/conquerer.dir/conquerer/StartStage.cpp.o: ../conquerer/BackgroundRenderer.hpp
 CMakeFiles/conquerer.dir/conquerer/StartStage.cpp.o: ../conquerer/Camera.hpp
@@ -3164,6 +3281,4 @@ CMakeFiles/conquerer.dir/conquerer/main.cpp.o: ../conquerer/ConquererApplication
 CMakeFiles/conquerer.dir/conquerer/main.cpp.o: ../conquerer/FullScreenApplication.hpp
 CMakeFiles/conquerer.dir/conquerer/main.cpp.o: ../conquerer/GameStage.hpp
 CMakeFiles/conquerer.dir/conquerer/main.cpp.o: ../conquerer/main.cpp
-
-CMakeFiles/conquerer.dir/conquerer/objectLoaderConqueror.cpp.o: ../conquerer/objectLoaderConqueror.cpp
 
