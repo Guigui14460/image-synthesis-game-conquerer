@@ -27,8 +27,10 @@ public:
     void resize(int frameBufferWidth, int frameBufferHeight);
 
     inline void setLeftTime(float leftTime) {
-        this->m_leftTime = static_cast<int>(leftTime);
-        this->m_needUpdateChrono = true;
+        if(this->m_leftTime != static_cast<int>(leftTime)) {
+            this->m_leftTime = static_cast<int>(leftTime);
+            this->m_needUpdateChrono = true;
+        }
     }
 
 private:

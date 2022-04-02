@@ -5,7 +5,7 @@ Renderer::Renderer(int frameBufferWidth, int frameBufferHeight, float universeRa
     m_cameraPlayer1(Camera(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 0.f, 1.f), glm::vec3(0.f, 1.f, 0.f)), glm::vec2(0.f)),
     m_cameraPlayer2(Camera(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 0.f, 1.f), glm::vec3(0.f, 1.f, 0.f)), glm::vec2(0.f)),
     m_background(250, universeRadius, glm::vec3(0.f)), m_overlay(frameBufferWidth, frameBufferHeight), m_currentTime(0), m_deltaTime(0),
-    m_leftPartIsPlayer1(leftPartIsPlayer1), m_frameBufferWidth(frameBufferWidth), m_frameBufferHeight(frameBufferHeight) {
+    m_leftPartIsPlayer1(leftPartIsPlayer1), m_frameBufferWidth(frameBufferWidth), m_frameBufferHeight(frameBufferHeight), m_timeCounter(0) {
     this->initGLState();
     this->initGameLogic(universeRadius, glm::vec3(0.f));
 }
@@ -38,10 +38,19 @@ void Renderer::resize(GLFWwindow*, int frameBufferWidth, int frameBufferHeight) 
     this->m_cameraPlayer2.camera.calculateProjectionMatrix(90., this->m_frameBufferWidth/2, this->m_frameBufferHeight, .1, 100.);
 }
 
+void Renderer::startGame() {
+    this->m_logic->launch(this->m_timeCounter);
+}
+
 void Renderer::update() {
     float prevTime = this->m_currentTime;
     this->m_currentTime = glfwGetTime();
     this->m_deltaTime = this->m_currentTime - prevTime;
+    this->m_timeCounter += this->m_deltaTime;
+
+    this->m_logic->updateObjects(this->m_deltaTime);
+
+    this->m_overlay.setLeftTime(this->m_logic->getLeftTime(this->m_timeCounter));
 
     this->m_cameraPlayer1.camera.calculateViewMatrix();
     this->m_cameraPlayer2.camera.calculateViewMatrix();
@@ -69,7 +78,9 @@ void Renderer::renderFrame() {
     this->renderPart(RIGHT_PART);
 
     glViewport(0, 0, this->m_frameBufferWidth, this->m_frameBufferHeight);
-    this->m_overlay.draw();
+    if(m_logic->isLaunched()){
+        this->m_overlay.draw();
+    }
 }
 
 void Renderer::renderPart(renderer_part_t part) {

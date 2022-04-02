@@ -17,8 +17,6 @@ StartStage::StartStage() {
     this->m_renderer = std::shared_ptr<Renderer>(new Renderer(width, height, 2.f, true));
 }
 
-StartStage::~StartStage() {}
-
 void StartStage::renderFrame() {
     // render frame of renderer
     this->m_renderer->renderFrame();

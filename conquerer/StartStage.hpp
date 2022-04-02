@@ -12,9 +12,6 @@ public:
     /// Default constructor
     StartStage();
 
-    /// Destructor
-    ~StartStage();
-
     /// Renders a single frame to the screen.
     void renderFrame() override;
 
@@ -31,6 +28,8 @@ public:
      * @param frameBufferHeight the new height of the frame buffer to display
      */
     void resize(GLFWwindow* window, int frameBufferWidth, int frameBufferHeight) override;
+
+    stage_t getStageType() override { return START; }
 
     /// Next stage to display
     std::unique_ptr<GameStage> nextStage() const override;

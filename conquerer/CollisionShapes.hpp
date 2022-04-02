@@ -1,6 +1,7 @@
 #ifndef __COLLISION_SHAPES_HPP__
 #define __COLLISION_SHAPES_HPP__
 #include <cmath>
+#include <memory>
 #include <vector>
 #include <glm/vec3.hpp>
 
@@ -16,8 +17,8 @@ public:
         glm::vec3 position;
 
     public:
-        Shape() : position(0.f) {}
-        Shape(const glm::vec3& pos): position(pos) {}
+        Shape() : position(0.f), type(NULL_SHAPE) {}
+        Shape(const glm::vec3& pos, shape_t shape): position(pos), type(shape) {}
 
         inline glm::vec3 getPosition() const { return this->position; }
         inline void setPosition(const glm::vec3& pos) { this->position = pos; }
@@ -25,15 +26,16 @@ public:
         void rotate(const glm::vec3&) {}
         void scale(const glm::vec3&) {}
         void scale(const float) {}
-        shape_t getType() { return NULL_SHAPE; }
+        shape_t getType() { return this->type; }
+
+    private:
+        shape_t type;
     };
 
     /// Point shape (position)
     class PointShape: public Shape {
     public:
-        PointShape(const glm::vec3& pos) : Shape(pos) {}
-
-        shape_t getType() { return POINT; }
+        PointShape(const glm::vec3& pos) : Shape(pos, POINT) {}
     };
 
     /// Sphere shape (position + radius)
@@ -42,14 +44,13 @@ public:
         float radius;
 
     public:
-        SphereShape(const glm::vec3& pos, const float rad): Shape(pos), radius(rad) {
+        SphereShape(const glm::vec3& pos, const float rad): Shape(pos, SPHERE), radius(rad) {
             if(radius < 0) throw "ERROR::CollisionShapes::SphereShape::SphereShape -> radius cannot be negative";
         }
 
         inline float getRadius() const { return this->radius; }
         inline void setRadius(const float rad) { this->radius = rad; }
         void scale(const float value) { this->radius *= value; }
-        shape_t getType() { return SPHERE; }
     };
 
     /// Rectangle shape (min and max for each of the 3 dimensions)
@@ -58,7 +59,7 @@ public:
         glm::vec3 min, max;
 
     public:
-        RectShape(const glm::vec3& pos, const glm::vec3& semiSize): Shape(pos) {
+        RectShape(const glm::vec3& pos, const glm::vec3& semiSize): Shape(pos, RECTANGLE) {
             if(semiSize.x < 0 or semiSize.y < 0 or semiSize.z < 0) throw "ERROR::CollisionShapes::RectShape::RectShape -> a semi size cannot be negative";
             this->min = glm::vec3(pos.x - semiSize.x, pos.y - semiSize.y, pos.z - semiSize.z);
             this->max = glm::vec3(pos.x + semiSize.x, pos.y + semiSize.y, pos.z + semiSize.z);
@@ -93,10 +94,8 @@ public:
             this->min += this->position;
             this->max += this->position;
         }
-        shape_t getType() { return RECTANGLE; }
     };
 
-private:
     /**
      * @brief Check the collision between two points
      * @param a
@@ -114,7 +113,7 @@ private:
      * @return boolean representing if there is collision between these shapes
      */
     static bool isCollidedPointToRectangle(PointShape& point, RectShape& rect) {
-        return isCollided(rect, point);
+        return isCollidedPointToRectangle(rect, point);
     }
     /**
      * @brief Check if a point is in a rectangle
@@ -147,7 +146,7 @@ private:
      * @return boolean representing if there is collision between these shapes
      */
     static bool isCollidedPointToSphere(PointShape& point, SphereShape& sphere) {
-        return isCollided(sphere, point);
+        return isCollidedPointToSphere(sphere, point);
     }
     /**
      * @brief Check if a point is in a sphere
@@ -171,7 +170,7 @@ private:
      * @return boolean representing if there is collision between these shapes
      */
     static bool isCollidedRectangleToSphere(RectShape& rect, SphereShape& sphere){
-        return isCollided(sphere, rect);
+        return isCollidedRectangleToSphere(sphere, rect);
     }
     /**
      * @brief Check the intersection between a rectangle and a sphere
@@ -206,35 +205,36 @@ private:
         );
         return distance < (sphere1.getRadius() + sphere2.getRadius());
     }
+
 public:
-    static bool isCollided(Shape& shape1, Shape& shape2){
-        if(shape1.getType() == NULL_SHAPE or shape2.getType() == NULL_SHAPE)
+    static bool isCollided(Shape* shape1, Shape* shape2){
+        if(shape1->getType() == NULL_SHAPE or shape2->getType() == NULL_SHAPE)
             throw "ERROR::CollisionShapes::isCollided -> shape cannot be an abstract class (need to be PointShape, RectShape, SphereShape)";
 
-        if(shape1.getType() == RECTANGLE){
-            RectShape& rect1 = static_cast<RectShape&>(shape1);
-            if(shape2.getType() == RECTANGLE){
-                RectShape& rect2 = static_cast<RectShape&>(shape2);
-                return isCollidedRectangleToRectangle(rect1, rect2);
+        if(shape1->getType() == RECTANGLE){
+            RectShape* rect1 = static_cast<RectShape*>(shape1);
+            if(shape2->getType() == RECTANGLE){
+                RectShape* rect2 = static_cast<RectShape*>(shape2);
+                return isCollidedRectangleToRectangle(*rect1, *rect2);
             }
-            if(shape2.getType() == POINT){
-                PointShape& point = static_cast<PointShape&>(shape2);
-                return isCollidedPointToRectangle(point, rect1);
+            if(shape2->getType() == POINT){
+                PointShape* point = static_cast<PointShape*>(shape2);
+                return isCollidedPointToRectangle(*point, *rect1);
             }
-            SphereShape& sphere = static_cast<SphereShape&>(shape2);
-            return isCollidedRectangleToSphere(rect1, sphere);
-        } else if(shape1.getType() == SPHERE){
-            SphereShape& sphere1 = static_cast<SphereShape&>(shape1);
-            if(shape2.getType() == POINT){
-                PointShape& point = static_cast<PointShape&>(shape2);
-                return isCollidedPointToSphere(point, sphere1);
+            SphereShape* sphere = static_cast<SphereShape*>(shape2);
+            return isCollidedRectangleToSphere(*rect1, *sphere);
+        } else if(shape1->getType() == SPHERE){
+            SphereShape* sphere1 = static_cast<SphereShape*>(shape1);
+            if(shape2->getType() == POINT){
+                PointShape* point = static_cast<PointShape*>(shape2);
+                return isCollidedPointToSphere(*point, *sphere1);
             }
-            SphereShape& sphere2 = static_cast<SphereShape&>(shape2);
-            return isCollidedSphereToSphere(sphere1, sphere2);
+            SphereShape* sphere2 = static_cast<SphereShape*>(shape2);
+            return isCollidedSphereToSphere(*sphere1, *sphere2);
         } else {
-            PointShape& point1 = static_cast<PointShape&>(shape1);
-            PointShape& point2 = static_cast<PointShape&>(shape2);
-            return isCollidedPointToPoint(point1, point2);
+            PointShape* point1 = static_cast<PointShape*>(shape1);
+            PointShape* point2 = static_cast<PointShape*>(shape2);
+            return isCollidedPointToPoint(*point1, *point2);
         }
     }
 };

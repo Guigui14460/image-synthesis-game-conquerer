@@ -9,7 +9,7 @@
 #include "PlanetObject.hpp"
 #include "ProjectileObject.hpp"
 
-constexpr float MAX_GAME_DURATION = 180.f;
+constexpr float MAX_GAME_DURATION = 10.f;
 constexpr float MIN_CAPTURE_PLANET_DURATION = 10.f;
 constexpr float MAX_AVAILABLE_RADIUS_FOR_PLAYER = 0.9f;
 
@@ -48,6 +48,9 @@ public:
      * @return the left time for capturing target by ennemy
      */
     float getLeftCaptureTime(float actualTime);
+
+    /// Checks if the game has been launched
+    bool isLaunched() { return this->m_hasBeenLaunched; }
 
     /// Checks if the game is finished or not
     bool isFinished();
@@ -102,6 +105,7 @@ private:
     bool m_beginCapture = false;
     float m_universeRadius;
     glm::vec3 m_origin;
+    bool m_hasBeenLaunched = false;
 };
 
 #endif // __GAME_LOGIC_HPP__

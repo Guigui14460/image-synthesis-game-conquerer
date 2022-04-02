@@ -12,10 +12,11 @@ GameLogic::GameLogic(std::shared_ptr<PlayerObject>& player1, std::shared_ptr<Pla
 
 void GameLogic::launch(float beginTime) {
     this->m_beginTime = beginTime;
+    this->m_hasBeenLaunched = true;
 }
 
 void GameLogic::updateObjects(float actualTime) {
-    if(this->isFinished()) return;
+    if(not this->isLaunched() or this->isFinished()) return;
 
     // if current capturer has captured the target planet
     if(this->isTargetCaptureBegan() and this->getLeftCaptureTime(actualTime) == 0) {
@@ -199,22 +200,25 @@ void GameLogic::removeUselessObjects() {
 }
 
 float GameLogic::getLeftTime(float actualTime) {
-    double value = actualTime - (this->m_beginTime + MAX_GAME_DURATION);
-    if(value >= 0){
+    double value = (this->m_beginTime + MAX_GAME_DURATION) - actualTime;
+    if(value <= 0){
         value = 0;
+        this->m_winner = PlayerObject::COMPUTER;
     }
     return value;
 }
 
 float GameLogic::getLeftCaptureTime(float actualTime) {
-    double value = actualTime - (this->m_beginCapturePlanet + MIN_CAPTURE_PLANET_DURATION);
-    if(value >= 0){
+    double value = (this->m_beginCapturePlanet + MIN_CAPTURE_PLANET_DURATION) - actualTime;
+    if(value <= 0){
         value = 0;
+        this->m_winner = this->m_capturer;
     }
     return value;
 }
 
 bool GameLogic::isFinished() {
+    std::cout << (this->m_winner != PlayerObject::NONE) << std::endl;
     return this->m_winner != PlayerObject::NONE;
 }
 

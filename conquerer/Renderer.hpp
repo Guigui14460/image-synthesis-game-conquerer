@@ -7,7 +7,6 @@
 #include "GameLogic.hpp"
 #include "BackgroundRenderer.hpp"
 #include "GameOverlay.hpp"
-
 #include "PlayerObject.hpp"
 
 /// structure to easily manipulate camera player objects
@@ -44,6 +43,10 @@ public:
     /// Updates the cameras angles of the two players
     void cameraAnglesUpdate(glm::vec2& player1CameraAngles, glm::vec2& player2CameraAngles);
 
+    void startGame();
+    bool isFinished() { return this->m_logic->isFinished(); }
+    bool isStarted() { return this->m_logic->isLaunched(); }
+
 private:
     /// Render part of the screen
     void renderPart(renderer_part_t part);
@@ -64,6 +67,7 @@ private:
     bool m_leftPartIsPlayer1;
     int m_frameBufferWidth; /// The width of the current viewport
     int m_frameBufferHeight; /// The height of the current viewport
+    float m_timeCounter;
 };
 
 #endif // __RENDERER_HPP__

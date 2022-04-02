@@ -105,6 +105,8 @@ public:
      */
     void zoom(const float& scale);
 
+    std::shared_ptr<CollisionShapes::Shape> getCollisionShape() { return this->m_collisionShape; }
+
 private:
     /// Updates the model matric of the object.
     void updateModelMatrix();
@@ -121,7 +123,7 @@ protected:
     glm::mat4 m_modelMatrix; /// The world matrix of the object
 
     float m_phi, m_theta; /// Direction of the point of view
-    CollisionShapes::Shape m_collisionShape; /// Associated collision shape
+    std::shared_ptr<CollisionShapes::Shape> m_collisionShape; /// Associated collision shape
 };
 
 #endif // __ABSTRACT_GAME_OBJECT_HPP__

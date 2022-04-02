@@ -12,17 +12,18 @@ AbstractGameObject::AbstractGameObject(std::shared_ptr<AbstractRenderObject> obj
         m_phi(phi), m_theta(theta) {
     switch (shapeType) {
     case CollisionShapes::RECTANGLE:
-        this->m_collisionShape = CollisionShapes::RectShape(position, sizes/2.f);
+        this->m_collisionShape = std::shared_ptr<CollisionShapes::RectShape>(new CollisionShapes::RectShape(position, sizes/2.f));
         break;
     case CollisionShapes::POINT:
-        this->m_collisionShape = CollisionShapes::PointShape(position);
+        this->m_collisionShape = std::shared_ptr<CollisionShapes::PointShape>(new CollisionShapes::PointShape(position));
         break;
     case CollisionShapes::SPHERE:
-        this->m_collisionShape = CollisionShapes::SphereShape(position, radius);
+        this->m_collisionShape = std::shared_ptr<CollisionShapes::SphereShape>(new CollisionShapes::SphereShape(position, radius));
         break;
     default:
         break;
     }
+
     this->updateModelMatrix();
 }
 
@@ -55,7 +56,7 @@ void AbstractGameObject::updateModelMatrix() {
 
 void AbstractGameObject::move(const glm::vec3& position){
     this->m_position += position;
-    this->m_collisionShape.move(position);
+    this->m_collisionShape->move(position);
 }
 
 void AbstractGameObject::rotate(const glm::vec3 &rotation){
@@ -66,7 +67,7 @@ void AbstractGameObject::rotate(const glm::vec3 &rotation){
 
 void AbstractGameObject::zoom(const glm::vec3 &scale){
     this->m_scale *= scale;
-    this->m_collisionShape.scale(scale);
+    this->m_collisionShape->scale(scale);
 }
 
 void AbstractGameObject::zoom(const float& value) {
@@ -79,7 +80,7 @@ float AbstractGameObject::removeHealth(const float health){
 }
 
 bool AbstractGameObject::isCollided(AbstractGameObject &other){
-    return CollisionShapes::isCollided(this->m_collisionShape, other.m_collisionShape);
+    return CollisionShapes::isCollided(this->m_collisionShape.get(), other.m_collisionShape.get());
 }
 
 bool AbstractGameObject::isDestroyed() {

@@ -61,6 +61,4 @@ void GameOverlay::draw() {
 
 void GameOverlay::resize(int frameBufferWidth, int frameBufferHeight) {
     this->m_textRenderer->resize(frameBufferWidth, frameBufferHeight);
-
-    // TODO: mettre la direction de la planète cible
 }

@@ -8,15 +8,20 @@ constexpr float ANGLE_TO_ROTATE = 40.f;
 
 PlayingStage::PlayingStage(const std::shared_ptr<Renderer>& renderer): m_renderer(renderer) {}
 
-PlayingStage::~PlayingStage() {}
-
 void PlayingStage::renderFrame() {
     this->m_renderer->renderFrame();
 }
 
 void PlayingStage::update() {
+    if(not this->m_renderer->isStarted()) {
+        this->m_renderer->startGame();
+    }
     this->continuousKey();
     this->m_renderer->update();
+}
+
+bool PlayingStage::isFinished() {
+    return this->m_renderer->isFinished();
 }
 
 void PlayingStage::resize(GLFWwindow* window, int frameBufferWidth, int frameBufferHeight) {

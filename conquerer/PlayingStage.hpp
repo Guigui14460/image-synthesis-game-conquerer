@@ -3,16 +3,12 @@
 #include "glApi.hpp"
 #include "GameStage.hpp"
 #include "Renderer.hpp"
-#include "BackgroundRenderer.hpp"
 #include "PlayerObject.hpp"
 
 class PlayingStage final: public GameStage {
 public:
     /// Default constructor
     PlayingStage(const std::shared_ptr<Renderer>& renderer);
-
-    /// Destructor
-    ~PlayingStage();
 
     /// Renders a single frame to the screen.
     void renderFrame() override;
@@ -26,6 +22,8 @@ public:
     /// For key that update the rendering
     void continuousKey();
 
+    bool isFinished();
+
     /**
      * @brief Resizes the render screen to fit with the GLFW window screen size.
      * @param window the GLFW window object
@@ -33,6 +31,8 @@ public:
      * @param frameBufferHeight the new height of the frame buffer to display
      */
     void resize(GLFWwindow* window, int frameBufferWidth, int frameBufferHeight) override;
+
+    stage_t getStageType() override { return PLAYING; }
 
     /// Next stage to display
     std::unique_ptr<GameStage> nextStage() const override;

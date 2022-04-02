@@ -13,8 +13,6 @@ EndStage::EndStage(const std::shared_ptr<Renderer>& renderer)
     this->m_text->printText("gameover", "GAME OVER", 1, 7, 9, red);
 }
 
-EndStage::~EndStage() {}
-
 void EndStage::renderFrame() {
     this->m_renderer->renderFrame();
     this->m_text->draw();

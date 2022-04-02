@@ -3,6 +3,8 @@
 #include "glApi.hpp"
 #include <GLFW/glfw3.h>
 
+enum stage_t {START, PLAYING};
+
 /**
  * @brief The GameStage class is an abstract class to be derived by the concrete stages of the Conquerer application.
  */
@@ -11,9 +13,6 @@ public:
     GameStage(); /// Default constructor
     GameStage(const GameStage& o) = delete; /// Copy constructor
     GameStage(GameStage &&o) = delete; /// Moving constructor
-
-    /// Destructor
-    virtual ~GameStage() {}
 
     /// Renders a single frame to the screen
     virtual void renderFrame() = 0;
@@ -34,6 +33,8 @@ public:
      * @param frameBufferHeight the new height of the frame buffer to display
      */
     virtual void resize(GLFWwindow* window, int frameBufferWidth, int frameBufferHeight) = 0;
+
+    virtual stage_t getStageType() = 0;
 };
 
 #endif // __GAME_STAGE_HPP__

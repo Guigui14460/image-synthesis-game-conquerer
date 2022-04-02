@@ -12,9 +12,6 @@ public:
     /// Default constructor
     EndStage(const std::shared_ptr<Renderer>& renderer);
 
-    /// Destructor
-    ~EndStage();
-
     /// Renders a single frame to the screen.
     void renderFrame() override;
 
