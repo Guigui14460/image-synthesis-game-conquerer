@@ -64,6 +64,7 @@ public:
      * @param value value to scale the object
      */
     void scale(const float value);
+<<<<<<< HEAD
 
     /**
      * @brief Updates the object
@@ -82,6 +83,9 @@ public:
 
     /// Returns the position of the object
     glm::vec3 getPosition() { return this->m_position; }
+=======
+    virtual void update(float deltaTime) = 0;
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
 
     /// Remove some health from the object
     float removeHealth(const float health);

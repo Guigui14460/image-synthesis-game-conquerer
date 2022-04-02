@@ -53,10 +53,14 @@ public:
     inline void setScale(const glm::vec3& scale) { this->m_scale = scale; }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     void updateProgram(Program& prog, const glm::mat4 & view, const glm::mat4 & projection);
 =======
     void updateProgram(Program& prog, const glm::mat4& projViewMatrix);
 >>>>>>> origin/game_logic
+=======
+    void updateProgram(Program& prog, const glm::mat4 & view, const glm::mat4 & projection);
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
 
     /**
      * @brief Updates the object with an elapsed time between the last and current frames.
@@ -86,7 +90,11 @@ public:
      * @brief Renders a single frame of the object to the screen.
      * @param mode how to display the VAO (triangles, quads, polygons, etc)
      */
+<<<<<<< HEAD
     void render(Program &prog, const glm::mat4 & view, const glm::mat4 & projection, GLenum mode = GL_TRIANGLES);
+=======
+    void render(Program& prog, const glm::mat4 & view, const glm::mat4 & projection, GLenum mode = GL_TRIANGLES);
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
 
 private:
     /// Updates the model matric of the object.

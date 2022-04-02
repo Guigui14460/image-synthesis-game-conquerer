@@ -1,16 +1,12 @@
 #include "PlayerObject.hpp"
 
-#define GLM_ENABLE_EXPERIMENTAL
-
 #include "CollisionShapes.hpp"
 #include "utils.hpp"
-//#include "objectLoaderConqueror.hpp"
 #include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/transform.hpp>
-#include <iostream>
 
 <<<<<<< HEAD
 PlayerObject::PlayerObject(player_t typePj, std::shared_ptr<RenderObject> object, glm::vec3 position,
+<<<<<<< HEAD
                            std::shared_ptr<Program> program, //std::vector<std::shared_ptr<RenderObjectConqueror>> parts,
                            std::shared_ptr<Sampler> colormap): AbstractGameObject(position, 0, 0, CollisionShapes::RECTANGLE, 0,glm::vec3(1)),
                     m_typePj(typePj), m_object(object), m_program(program), //m_parts(parts),
@@ -29,24 +25,24 @@ PlayerObject::PlayerObject(player_t typePj, std::shared_ptr<Texture> texture,
 std::shared_ptr<PlayerObject> PlayerObject::loadObjsPlayer(player_t typePj, glm::vec3 position, std::shared_ptr<Program> program, const float health)
 {
     std::string texture = "";
+=======
+                           std::shared_ptr<Program> program, std::shared_ptr<Sampler> colormap):
+    AbstractGameObject(position, 0, 0, CollisionShapes::RECTANGLE, glm::vec3(1)),
+    m_typePj(typePj), m_object(object), m_program(program), m_colormap(colormap) {}
+
+std::shared_ptr<PlayerObject> PlayerObject::loadObjsPlayer(player_t typePj,  glm::vec3 position, std::shared_ptr<Program> program) {
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
     std::string object = "";
 
-    if(typePj==COMPUTER){
-        texture = absolutename("objConquerer/PJ/dolphin/Dolphin_texture.png");
+    if(typePj == PLAYER1) {
         object = absolutename("objConquerer/PJ/dolphin/Dolphin.obj");
-
-    }
-    if(typePj==PLAYER2){
-        texture = absolutename("objConquerer/PJ/shark/UV Shark.png");
+    } else if(typePj == PLAYER2) {
         object = absolutename("objConquerer/PJ/shark/Shark.obj");
-//        texture = absolutename("objConquerer/PJ/Tron/tire-spec.jpg");
-//        object = absolutename("objConquerer/PJ/Tron/TronLightCycle.obj");
-    }
-    if(typePj==PLAYER1){
-        texture = absolutename("objConquerer/asteroid/tuna/Tuna_texture.png");
+    } else {
         object = absolutename("objConquerer/asteroid/tuna/Tuna.obj");
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     return PlayerObject::loadObjs(typePj, object, texture, position, program);
 =======
@@ -134,6 +130,12 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std:
 <<<<<<< HEAD
 //  program = std::make_shared<Program>("conquerer/3d.v.glsl", "conquerer/3d.f.glsl");
 */
+=======
+    return PlayerObject::loadObjs(typePj, object, position, program);
+}
+
+std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std::string & objname, glm::vec3 position, std::shared_ptr<Program> program) {
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
   std::shared_ptr<Sampler> colormap = std::shared_ptr<Sampler>(new Sampler(0));
   colormap->setParameter(GL_TEXTURE_MIN_FILTER, GL_LINEAR);
   colormap->setParameter(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -154,6 +156,7 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std:
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void PlayerObject::draw(const glm::mat4 & view, const glm::mat4 & projection, GLenum mode){
     std::cout<<"poisson"<< std::endl;
 =======
@@ -164,8 +167,17 @@ void PlayerObject::draw(const glm::mat4& projViewMatrix, GLenum mode){
 >>>>>>> origin/game_logic
     m_program->bind();
     update(view, projection);
+=======
+void PlayerObject::draw(const glm::mat4 & view, const glm::mat4 & projection){
+    this->m_program->bind();
+    this->updateProgram(view, projection);
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
 
+    this->m_colormap->bind();
+    this->m_object->draw();
+    this->m_colormap->unbind();
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     if (m_colormap) {
       m_colormap->bind();
@@ -178,19 +190,18 @@ void PlayerObject::draw(const glm::mat4& projViewMatrix, GLenum mode){
       m_colormap->unbind();
     }
     m_program->unbind();
+=======
+    this->m_program->unbind();
 }
 
-void PlayerObject::update(const glm::mat4 & view, const glm::mat4 & projection){
-//    m_mesh->updateProgram(*m_program, glm::mat4(1), glm::mat4(1));
-//    glm::mat4 translation = glm::translate(glm::mat4(1.f), glm::vec3(3));
-//    glm::mat4 scale       = glm::scale(glm::mat4(1.f), glm::vec3(0.5));
-//    glm::mat4 rotation    = glm::rotate(glm::mat4(1.f), 1.f, {1.f, 0.f, 0.f});
-//    rotation    = glm::rotate(rotation, 1.f, {0.f, 1.f, 0.f});
-//    rotation    = glm::rotate(rotation, 1.f, {0.f, 0.f, 1.f});
-//    m_program->setUniform("M", translation * rotation * scale);
+void PlayerObject::updateProgram(const glm::mat4 & view, const glm::mat4 & projection){
+    this->m_program->setUniform("V", view);
+    this->m_program->setUniform("P", projection);
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
+}
 
-    m_program->setUniform("V", view);
-    m_program->setUniform("P", projection);
+void PlayerObject::update(float deltaTime) {
+
 }
 
 void PlayerObject::update(float deltaTime){

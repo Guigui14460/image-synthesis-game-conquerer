@@ -32,11 +32,16 @@ void Mesh::update(float deltaTime){
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void Mesh::updateProgram(Program &prog, const glm::mat4 & view, const glm::mat4 & projection) {
+=======
+void Mesh::updateProgram(Program& prog, const glm::mat4 & view, const glm::mat4 & projection) {
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
     this->updateModelMatrix();
     prog.setUniform("M", this->m_modelMatrix);
     prog.setUniform("V", view);
     prog.setUniform("P", projection);
+<<<<<<< HEAD
 =======
 void Mesh::updateProgram(Program &prog, const glm::mat4 &projViewMatrix) {
     this->updateModelMatrix();
@@ -45,6 +50,13 @@ void Mesh::updateProgram(Program &prog, const glm::mat4 &projViewMatrix) {
 }
 
 void Mesh::render(Program &prog, const glm::mat4 & view, const glm::mat4 & projection, GLenum mode) {
+=======
+}
+
+void Mesh::render(Program& prog, const glm::mat4 & view, const glm::mat4 & projection, GLenum mode) {
+    prog.bind();
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
     this->updateProgram(prog, view, projection);
     this->m_vao->draw(mode);
+    prog.unbind();
 }

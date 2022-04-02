@@ -25,8 +25,12 @@ void PlayingStage::renderFrame() {
 }
 
 void PlayingStage::update() {
+<<<<<<< HEAD
     this->continuousKey();
     this->m_renderer->update();
+=======
+    this->m_background_renderer->update(0);
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
 }
 
 void PlayingStage::resize(GLFWwindow* window, int frameBufferWidth, int frameBufferHeight) {

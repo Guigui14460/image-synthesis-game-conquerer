@@ -27,17 +27,35 @@ void BackgroundRenderer::renderFrame(const glm::mat4& projViewMatrix)
 
     for(auto& mesh: this->m_meshes){
 <<<<<<< HEAD
+<<<<<<< HEAD
         mesh->render(this->m_program, view, projection);
 =======
         mesh->updateProgram(this->m_program, projViewMatrix);
         mesh->render();
 >>>>>>> origin/game_logic
+=======
+        mesh->render(this->m_program, this->m_camera.getViewMatrix(), this->m_camera.getProjectionMatrix());
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
     }
 
     this->m_program.unbind();
 }
 
+<<<<<<< HEAD
 void BackgroundRenderer::update(float deltaTime) {
+=======
+void BackgroundRenderer::update(float deltaTime, bool activateContinuousKeys) {
+    float prevTime = this->m_currentTime;
+    this->m_currentTime = glfwGetTime();
+    this->m_deltaTime = this->m_currentTime - prevTime;
+
+    if(activateContinuousKeys){
+        this->continuousKey();
+    }
+
+    this->m_view = this->m_camera.calculateViewMatrix();
+
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
     for (auto& mesh : this->m_meshes) {
         mesh->update(deltaTime);
     }

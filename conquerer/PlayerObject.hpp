@@ -1,10 +1,15 @@
 #ifndef __PLAYER_OBJECT_HPP__
 #define __PLAYER_OBJECT_HPP__
+<<<<<<< HEAD
 #include <glm/mat4x4.hpp>
 #include <glm/vec3.hpp>
+=======
+#include <glm/vec3.hpp>
+#include <glm/mat4x4.hpp>
+
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
 #include "AbstractGameObject.hpp"
 #include "glApi.hpp"
-#include "Mesh.hpp"
 #include "RenderObjectConqueror.hpp"
 #include <glm/vec3.hpp>
 #include <glm/mat4x4.hpp>
@@ -26,6 +31,7 @@
  * shoot system
  */
 
+<<<<<<< HEAD
 class PlayerObject: public AbstractGameObject
 {
 public:
@@ -36,6 +42,10 @@ public:
     enum player_t {PLAYER1, PLAYER2, COMPUTER, NONE};
 
 >>>>>>> origin/game_logic
+=======
+class PlayerObject: public AbstractGameObject {
+public:
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
     PlayerObject() = delete;
     PlayerObject(const PlayerObject &) = default;
 
@@ -46,14 +56,22 @@ public:
      * @param typePj
      * @return object of the player choice because of player's type
      */
+<<<<<<< HEAD
     static std::shared_ptr<PlayerObject> loadObjsPlayer(player_t typePj,  glm::vec3 position, std::shared_ptr<Program> program, const float health);
+=======
+    static std::shared_ptr<PlayerObject> loadObjsPlayer(player_t typePj, glm::vec3 position, std::shared_ptr<Program> program);
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
 
     /**
      * @brief loadObjs
      * @param objname
      * @return the good object with his different values
      */
+<<<<<<< HEAD
     static std::shared_ptr<PlayerObject> loadObjs(player_t typePj, const std::string & objname, const std::string & texturename,glm::vec3 position, std::shared_ptr<Program> program, const float health);
+=======
+    static std::shared_ptr<PlayerObject> loadObjs(player_t typePj, const std::string & objname, glm::vec3 position, std::shared_ptr<Program> program);
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
     /**
      * @brief draw
      *
@@ -71,6 +89,7 @@ public:
      * update the program
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
     void update(const glm::mat4 & view, const glm::mat4 & projection);
 
     void update(){}
@@ -87,10 +106,21 @@ private:
     std::shared_ptr<RenderObject> m_object;
     std::shared_ptr<Program> m_program;//appel du program pour y mettre les objets
     //std::vector<std::shared_ptr<RenderObjectConqueror>> m_parts;
+=======
+    void updateProgram(const glm::mat4 & view, const glm::mat4 & projection);
+
+    void update(float deltaTime) override;
+
+private:
+    player_t m_typePj;
+    std::shared_ptr<RenderObject> m_object;
+    std::shared_ptr<Program> m_program;//appel du program pour y mettre les objets
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
     std::shared_ptr<Sampler> m_colormap;
 
 
     PlayerObject(player_t typePj, std::shared_ptr<RenderObject> object, glm::vec3 position,
+<<<<<<< HEAD
                  std::shared_ptr<Program> program,
                  //std::vector<std::shared_ptr<RenderObjectConqueror>> parts,
                  std::shared_ptr<Sampler> m_colormap);
@@ -112,6 +142,9 @@ private:
                  std::shared_ptr<Program> program, const float health);
 
 >>>>>>> origin/game_logic
+=======
+                 std::shared_ptr<Program> program, std::shared_ptr<Sampler> m_colormap);
+>>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
 };
 
 #endif // __PLAYER_OBJECT_HPP__
