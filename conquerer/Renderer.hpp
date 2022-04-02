@@ -7,10 +7,8 @@
 #include "GameLogic.hpp"
 #include "BackgroundRenderer.hpp"
 #include "GameOverlay.hpp"
-<<<<<<< HEAD
+
 #include "PlayerObject.hpp"
-=======
->>>>>>> origin/game_logic
 
 /// structure to easily manipulate camera player objects
 struct camera_t {
@@ -27,21 +25,8 @@ public:
     Renderer(const Renderer& o) = default;
 
     /// Constructor
-<<<<<<< HEAD
     Renderer(int frameBufferWidth, int frameBufferHeight, float universeRadius, bool leftPartIsPlayer1);
-=======
-    Renderer(int frameBufferWidth, int frameBufferHeight, bool leftPartIsPlayer1);
->>>>>>> origin/game_logic
 
-    /// Destructor
-    ~Renderer() {}
-
-<<<<<<< HEAD
-=======
-    /// OpenGL state initialization
-    void initGLState() const;
-
->>>>>>> origin/game_logic
     /**
      * @brief Resizes the render screen to fit with the GLFW window screen size.
      * @param window the GLFW window object
@@ -63,24 +48,17 @@ private:
     /// Render part of the screen
     void renderPart(renderer_part_t part);
 
-<<<<<<< HEAD
     /// OpenGL state initialization
     void initGLState() const;
 
     void initGameLogic(float universeRadius, const glm::vec3& origin);
 
 private:
-//    std::shared_ptr<PlayerObject> m_player;
+    std::shared_ptr<PlayerObject> m_player_object;
+
     camera_t m_cameraPlayer1, m_cameraPlayer2;
     std::shared_ptr<GameLogic> m_logic;
     BackgroundRenderer m_background;
-    std::shared_ptr<PlayerObject> m_player_object;
-=======
-private:
-    camera_t m_cameraPlayer1, m_cameraPlayer2;
-//    GameLogic m_logic;
-    BackgroundRenderer m_background;
->>>>>>> origin/game_logic
     GameOverlay m_overlay;
     float m_currentTime, m_deltaTime;
     bool m_leftPartIsPlayer1;

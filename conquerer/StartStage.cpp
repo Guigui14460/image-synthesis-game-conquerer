@@ -14,11 +14,7 @@ StartStage::StartStage() {
     this->m_text->printText("enter1", "Press Enter", 7, 20, 4, color);
     this->m_text->printText("enter2", " to  START ", 7, 21, 4, color);
 
-<<<<<<< HEAD
     this->m_renderer = std::shared_ptr<Renderer>(new Renderer(width, height, 2.f, true));
-=======
-    this->m_renderer = std::shared_ptr<Renderer>(new Renderer(width, height, true));
->>>>>>> origin/game_logic
 }
 
 StartStage::~StartStage() {}

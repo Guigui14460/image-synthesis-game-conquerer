@@ -1,78 +1,32 @@
 #include "RenderObjectConqueror.hpp"
 #include "Image.hpp"
 #include "SimpleMaterial.hpp"
-
-//RenderObjectConqueror::RenderObjectConqueror(std::shared_ptr<VAO> vao, std::shared_ptr<Program> program,std::shared_ptr<Texture> texture)
-//    : m_vao(vao), m_program(program),  m_texture(texture)
-//{
-//}
-
-//void RenderObjectConqueror::draw(Sampler * colormap)
-//{
-//    m_program->bind();
-//    if (colormap) {
-//      colormap->attachTexture(*m_texture);
-//      colormap->attachToProgram(*m_program, "colorSampler", Sampler::DoNotBind);
-//    } else {
-//      const int unit = 0;
-//      glActiveTexture(GL_TEXTURE0 + unit);
-//      m_texture->bind();
-//      m_program->setUniform("colorSampler", unit);
-//    }
-//    m_vao->draw();
-//    m_program->unbind();
-//}
-
-//void RenderObjectConqueror::update(const glm::mat4 & mw, const glm::mat4 & view, glm::mat4 & projection)
-//{
-//    m_program->bind();
-//    m_program->setUniform("M", mw);
-//    m_program->unbind();
-//}
-
-//const std::shared_ptr<Texture> RenderObjectConqueror::texture() const{
-//    return m_texture;
-//}
-
-//const std::shared_ptr<Program> RenderObjectConqueror::program() const{
-//    return m_program;
-//}
-
-//const std::shared_ptr<VAO> RenderObjectConqueror::vao() const{
-//    return m_vao;
-//}
-
 #include "utils.hpp"
-#include <ObjLoader.hpp>
+#include "ObjLoader.hpp"
 
-RenderObject::RenderObject(const std::shared_ptr<Program> & program, const glm::mat4 & modelWorld) : m_program(program), m_mw(modelWorld)
-{
-  m_colormap = std::unique_ptr<Sampler>(new Sampler(0));
-}
+RenderObject::RenderObject() : AbstractRenderObject(), m_colormap(new Sampler(0)) {}
 
-void RenderObject::draw()
-{
-  update();
-  if (m_colormap) {
-    m_colormap->bind();
-  }
+void RenderObject::render(Program& prog, const glm::mat4 & model, const glm::mat4 & view, const glm::mat4 & projection, GLenum mode) {
+  prog.bind();
+
+  this->updateProgram(prog, view, projection);
+
+  this->m_colormap->bind();
   for (auto & part : m_parts) {
-    part.draw(m_colormap.get());
+    part.draw(m_colormap.get(), prog, model);
   }
-  if (m_colormap) {
-    m_colormap->unbind();
-  }
+  this->m_colormap->unbind();
+
+  prog.unbind();
 }
 
-std::shared_ptr<RenderObject> RenderObject::createWavefrontInstance(const std::shared_ptr<Program> & program, const std::string & objname, const glm::mat4 & modelWorld)
-{
-  std::shared_ptr<RenderObject> object(new RenderObject(program, modelWorld));
+std::shared_ptr<RenderObject> RenderObject::createWavefrontInstance(const std::string & objname) {
+  std::shared_ptr<RenderObject> object(new RenderObject());
   object->loadWavefront(objname);
   return object;
 }
 
-void RenderObject::loadWavefront(const std::string & objname)
-{
+void RenderObject::loadWavefront(const std::string & objname) {
   ObjLoader objLoader(objname);
   const std::vector<SimpleMaterial> & materials = objLoader.materials();
   std::vector<glm::vec3> vextexPositions = objLoader.vertexPositions();
@@ -94,7 +48,7 @@ void RenderObject::loadWavefront(const std::string & objname)
     Image<> colorMap = objLoader.image(material.diffuseTexName);
     std::shared_ptr<Texture> texture(new Texture(GL_TEXTURE_2D));
     texture->setData(colorMap);
-    m_parts.push_back(RenderObjectPart(vaoSlave, m_program, texture));
+    m_parts.push_back(RenderObjectPart(vaoSlave, texture));
   }
   m_colormap->setParameter(GL_TEXTURE_MIN_FILTER, GL_LINEAR);
   m_colormap->setParameter(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -102,37 +56,23 @@ void RenderObject::loadWavefront(const std::string & objname)
   m_colormap->setParameter(GL_TEXTURE_WRAP_T, GL_REPEAT);
 }
 
-void RenderObject::update()
-{
-  for (auto & part : m_parts) {
-    part.update(m_mw);
-  }
+void RenderObject::updateProgram(Program& prog, const glm::mat4 & view, const glm::mat4 & projection) {
+    prog.setUniform("V", view);
+    prog.setUniform("P", projection);
 }
 
-RenderObjectPart::RenderObjectPart(std::shared_ptr<VAO> vao, std::shared_ptr<Program> program, std::shared_ptr<Texture> texture)
-    : m_vao(vao), m_program(program), m_texture(texture)
+RenderObjectPart::RenderObjectPart(std::shared_ptr<VAO> vao, std::shared_ptr<Texture> texture)
+    : m_vao(vao), m_texture(texture)
 {
 }
 
-void RenderObjectPart::draw(Sampler * colormap)
-{
-  m_program->bind();
-  if (colormap) {
+void RenderObjectPart::draw(Sampler * colormap, Program& prog, const glm::mat4 & model) {
+    this->updateProgram(prog, model);
     colormap->attachTexture(*m_texture);
-    colormap->attachToProgram(*m_program, "colorSampler", Sampler::DoNotBind);
-  } else {
-    const int unit = 0;
-    glActiveTexture(GL_TEXTURE0 + unit);
-    m_texture->bind();
-    m_program->setUniform("colorSampler", unit);
-  }
-  m_vao->draw();
-  m_program->unbind();
+    colormap->attachToProgram(prog, "colorSampler", Sampler::DoNotBind);
+    m_vao->draw();
 }
 
-void RenderObjectPart::update(const glm::mat4 & mw)
-{
-  m_program->bind();
-  m_program->setUniform("M", mw);
-  m_program->unbind();
+void RenderObjectPart::updateProgram(Program& prog, const glm::mat4 & model) {
+    prog.setUniform("M", model);
 }

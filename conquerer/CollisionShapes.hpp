@@ -23,6 +23,7 @@ public:
         inline void setPosition(const glm::vec3& pos) { this->position = pos; }
         void move(const glm::vec3& pos) { this->position += pos; }
         void rotate(const glm::vec3&) {}
+        void scale(const glm::vec3&) {}
         void scale(const float) {}
         shape_t getType() { return NULL_SHAPE; }
     };
@@ -80,6 +81,9 @@ public:
             this->max = glm::vec3(pos.x + semiSize.x, pos.y + semiSize.y, pos.z + semiSize.z);
         }
         void scale(const float value) {
+            this->scale(glm::vec3(value));
+        }
+        void scale(const glm::vec3& value) {
             this->min -= this->position;
             this->max -= this->position;
 

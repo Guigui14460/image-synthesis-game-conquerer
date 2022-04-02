@@ -1,9 +1,9 @@
 #ifndef __BACKGROUND_RENDERER_HPP__
 #define __BACKGROUND_RENDERER_HPP__
-#include "glApi.hpp"
 #include <vector>
-#include "Mesh.hpp"
 #include <glm/ext.hpp>
+#include "glApi.hpp"
+#include "PlanetObject.hpp"
 
 // forward declaration
 struct GLFWwindow;
@@ -17,41 +17,26 @@ constexpr float MAX_ANGLE_BACKGROUND = 2.f * PI; /// Max angle in radius
  *
  * Render the background space with random generated stars.
  */
-class BackgroundRenderer
-{
+class BackgroundRenderer {
 public:
     /**
      * @brief Constructor.
      * @param numberOfStars
      * @param universeRadius
      */
-    BackgroundRenderer(uint numberOfStars, float universeRadius = 1.f);
+    BackgroundRenderer(uint numberOfStars, float universeRadius = 1.f, const glm::vec3& origin = glm::vec3(0.f));
     BackgroundRenderer(const BackgroundRenderer& o) = delete; /// Copy constructor
     BackgroundRenderer(BackgroundRenderer&& o) = delete; /// Moving constructor
 
     /**
      * @brief Updates the scene including meshes which is time related.
-<<<<<<< HEAD
-     * @param deltaTime
-=======
-     * @param activateContinuousKeys
-     */
-    void update(float deltaTime, bool activateContinuousKeys = true);
-
-    /**
-     * @brief Method which used to interact with the keyboard user.
->>>>>>> 76756a395e3f6928abbc77ab9f71bd0850d401ab
      */
     void update(float deltaTime);
 
     /**
      * @brief Renders a single frame.
      */
-<<<<<<< HEAD
     void renderFrame(const glm::mat4 & view, const glm::mat4 & projection);
-=======
-    void renderFrame(const glm::mat4& projViewMatrix);
->>>>>>> origin/game_logic
 
 private:
     /**
@@ -59,7 +44,7 @@ private:
      * @param numberOfStars
      * @param universeRadius
      */
-    void createVAO(uint numberOfStars, float universeRadius);
+    void createVAO(uint numberOfStars, float universeRadius, const glm::vec3& origin);
     
     /**
      * @brief Generates random stars.
@@ -83,9 +68,8 @@ private:
 
 
 private:
-    std::vector<std::shared_ptr<Mesh>> m_meshes; /// Meshes (VAO + associated model matrix)
+    std::vector<std::shared_ptr<PlanetObject>> m_stars;
     std::shared_ptr<VAO> m_vao; /// The default VAO (3D sphere)
-    Program m_program; /// GLSL Program used for the render of 3D space
 };
 
 #endif // __BACKGROUND_RENDERER_HPP__

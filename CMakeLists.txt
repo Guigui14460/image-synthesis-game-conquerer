@@ -108,14 +108,15 @@ add_executable(conquerer
   conquerer/StartStage.cpp
   conquerer/EndStage.hpp
   conquerer/EndStage.cpp
-  conquerer/TextPrinter.hpp
-  conquerer/TextPrinter.cpp
-  conquerer/BackgroundRenderer.hpp
-  conquerer/BackgroundRenderer.cpp
   conquerer/PlayingStage.hpp
   conquerer/PlayingStage.cpp
+
+  conquerer/AbstractRenderObject.hpp
   conquerer/Mesh.hpp
   conquerer/Mesh.cpp
+  conquerer/RenderObjectConqueror.hpp
+  conquerer/RenderObjectConqueror.cpp
+
   conquerer/BasicObjects.hpp
   conquerer/BasicObjects.cpp
   conquerer/AbstractGameObject.hpp
@@ -124,46 +125,36 @@ add_executable(conquerer
   conquerer/PlayerObject.cpp
   conquerer/AsteroidObject.hpp
   conquerer/AsteroidObject.cpp
-<<<<<<< HEAD
-  conquerer/objectLoaderConqueror.hpp
-  conquerer/objectLoaderConqueror.cpp
-  conquerer/RenderObjectConqueror.hpp
-  conquerer/RenderObjectConqueror.cpp
-  conquerer/Model.hpp
-  conquerer/Model.cpp
-  conquerer/OBJLoader.hpp
-  conquerer/Renderer.hpp
-  conquerer/Renderer.cpp
-  conquerer/PlanetObject.hpp
-  conquerer/PlanetObject.cpp
-
-=======
   conquerer/PlanetObject.hpp
   conquerer/PlanetObject.cpp
   conquerer/ProjectileObject.hpp
   conquerer/ProjectileObject.cpp
-  conquerer/Renderer.hpp
-  conquerer/Renderer.cpp
->>>>>>> origin/game_logic
 
+  conquerer/TextPrinter.hpp
+  conquerer/TextPrinter.cpp
+  conquerer/BackgroundRenderer.hpp
+  conquerer/BackgroundRenderer.cpp
   conquerer/Camera.hpp
   conquerer/Camera.cpp
   conquerer/GameOverlay.hpp
   conquerer/GameOverlay.cpp
+  conquerer/Renderer.hpp
+  conquerer/Renderer.cpp
+
+  conquerer/CollisionShapes.hpp
   conquerer/GameLogic.hpp
   conquerer/GameLogic.cpp
-  conquerer/CollisionShapes.hpp
 
   conquerer/GameStage.cpp
 
-  conquerer/font.v.glsl
-  conquerer/font.f.glsl
-  conquerer/3d.v.glsl
-  conquerer/3d.f.glsl
-  conquerer/texture.v.glsl
-  conquerer/texture.f.glsl
   conquerer/2d.v.glsl
   conquerer/2d.f.glsl
+  conquerer/3d.v.glsl
+  conquerer/3d.f.glsl
+  conquerer/font.v.glsl
+  conquerer/font.f.glsl
+  conquerer/texture.v.glsl
+  conquerer/texture.f.glsl
 )
 target_link_libraries(conquerer utils ${GLFW3_LIBRARIES} ${GLEW_LIBRARIES})
 

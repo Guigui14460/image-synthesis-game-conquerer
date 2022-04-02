@@ -1,20 +1,43 @@
 #include "ProjectileObject.hpp"
 
-ProjectileObject::ProjectileObject(projectile_t projectileType, const glm::vec3 position, const glm::vec3 orientation, const float health, const glm::vec3 sizes)
-    : AbstractGameObject(position, 0, 0, CollisionShapes::RECTANGLE, health, sizes), m_projectileType(projectileType), m_orientation(orientation)
-{}
+#include <glm/gtc/matrix_transform.hpp>
 
-<<<<<<< HEAD
-void ProjectileObject::draw(const glm::mat4 & view, const glm::mat4 & projection, GLenum mode) {
-//    this->m_mesh->updateProgram(*m_program, projViewMatrix);
-//    this->m_mesh->render(this->m_program, view, projection, mode);
-=======
-void ProjectileObject::draw(const glm::mat4& projViewMatrix, GLenum mode) {
-//    this->m_mesh->updateProgram(*m_program, projViewMatrix);
-    this->m_mesh->render(mode);
->>>>>>> origin/game_logic
+#include "CollisionShapes.hpp"
+#include "utils.hpp"
 
-    // TODO: texture managing, etc
+ProjectileObject::ProjectileObject(projectile_t projectileType, std::shared_ptr<RenderObject> object,
+                           std::shared_ptr<Program> program, const float& health,
+                           const glm::vec3& position, const glm::vec3& origin,
+                           const glm::vec3& rotation, const glm::vec3& scale, const glm::vec3 sizes):
+    AbstractGameObject(object, program, health, position, origin, rotation, scale, 0, 0, CollisionShapes::RECTANGLE, sizes),
+    m_projectileType(projectileType) {}
+
+std::shared_ptr<ProjectileObject> ProjectileObject::loadObjsProjectile(projectile_t projectileType, std::shared_ptr<Program> program, const float& health,
+                                                           const glm::vec3& position, const glm::vec3& origin,
+                                                           const glm::vec3& rotation, const glm::vec3& scale)
+{
+    std::string object = "";
+    if(projectileType == OCTOPUS){
+        object = absolutename("objConquerer/shoot/octopus/Octobus.obj");
+    } else {
+        object = absolutename("objConquerer/shoot/shrimp/Shrimp.obj");
+    }
+
+    return ProjectileObject::loadObjs(projectileType, object, program, health, position, origin, rotation, scale);
+}
+
+std::shared_ptr<ProjectileObject> ProjectileObject::loadObjs(projectile_t projectileType, const std::string & objname, std::shared_ptr<Program> program, const float& health,
+                                                     const glm::vec3& position, const glm::vec3& origin,
+                                                     const glm::vec3& rotation, const glm::vec3& scale) {
+    std::shared_ptr<RenderObject> obj = RenderObject::createWavefrontInstance(objname);
+
+    glm::vec3 sizes(1.f);
+    ProjectileObject* objectnew = new ProjectileObject(projectileType, obj, program, health, position, origin, rotation, scale, sizes);
+    return std::shared_ptr<ProjectileObject>(objectnew);
+}
+
+ProjectileObject::projectile_t ProjectileObject::getProjectileType() {
+    return this->m_projectileType;
 }
 
 void ProjectileObject::update(float deltaTime) {

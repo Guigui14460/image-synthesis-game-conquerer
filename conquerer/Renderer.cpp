@@ -1,11 +1,10 @@
 #include "Renderer.hpp"
 #include <GLFW/glfw3.h>
 
-<<<<<<< HEAD
 Renderer::Renderer(int frameBufferWidth, int frameBufferHeight, float universeRadius, bool leftPartIsPlayer1) :
     m_cameraPlayer1(Camera(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 0.f, 1.f), glm::vec3(0.f, 1.f, 0.f)), glm::vec2(0.f)),
     m_cameraPlayer2(Camera(glm::vec3(0.f, 0.f, 0.f), glm::vec3(0.f, 0.f, 1.f), glm::vec3(0.f, 1.f, 0.f)), glm::vec2(0.f)),
-    m_background(250, universeRadius), m_overlay(frameBufferWidth, frameBufferHeight), m_currentTime(0), m_deltaTime(0),
+    m_background(250, universeRadius, glm::vec3(0.f)), m_overlay(frameBufferWidth, frameBufferHeight), m_currentTime(0), m_deltaTime(0),
     m_leftPartIsPlayer1(leftPartIsPlayer1), m_frameBufferWidth(frameBufferWidth), m_frameBufferHeight(frameBufferHeight) {
     this->initGLState();
     this->initGameLogic(universeRadius, glm::vec3(0.f));
@@ -14,28 +13,15 @@ Renderer::Renderer(int frameBufferWidth, int frameBufferHeight, float universeRa
 void Renderer::initGLState() const {
     glClearColor(1.f, 0.f, 1.f, 1.f);
 //    glClearColor(0.f, 0.f, 0.f, 1.f);
-=======
-Renderer::Renderer(int frameBufferWidth, int frameBufferHeight, bool leftPartIsPlayer1) :
-    m_cameraPlayer1(Camera(glm::vec3(0.f, 0.f, -1.f), glm::vec3(0.f, 0.f, 1.f), glm::vec3(0.f, 1.f, 0.f)), glm::vec2(0)),
-    m_cameraPlayer2(Camera(glm::vec3(0.f, 0.f, -1.f), glm::vec3(0.f, 0.f, 1.f), glm::vec3(0.f, 1.f, 0.f)), glm::vec2(0)),
-    m_overlay(frameBufferWidth, frameBufferHeight) , m_background(1000, 2.), m_currentTime(0), m_deltaTime(0),
-    m_leftPartIsPlayer1(leftPartIsPlayer1), m_frameBufferWidth(frameBufferWidth), m_frameBufferHeight(frameBufferHeight) {
-    this->initGLState();
-}
-
-void Renderer::initGLState() const {
-    glClearColor(0.f, 0.f, 0.f, 1.f);
->>>>>>> origin/game_logic
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
 }
 
-<<<<<<< HEAD
 void Renderer::initGameLogic(float universeRadius, const glm::vec3& origin) {
     std::shared_ptr<Program> textureProgram = std::shared_ptr<Program>(new Program("conquerer/texture.v.glsl", "conquerer/texture.f.glsl"));
-    std::shared_ptr<PlayerObject> player1 = PlayerObject::loadObjsPlayer(PlayerObject::PLAYER1, glm::vec3(3.f), textureProgram);
-    std::shared_ptr<PlayerObject> player2 = PlayerObject::loadObjsPlayer(PlayerObject::PLAYER2, glm::vec3(3.f), textureProgram);
-    std::shared_ptr<PlanetObject> target = std::shared_ptr<PlanetObject>(new PlanetObject(glm::vec3(0.f), 0, glm::vec3(0.f, 0.5f, 1.f), 0.5f));
+    std::shared_ptr<PlayerObject> player1 = PlayerObject::loadObjsPlayer(PlayerObject::PLAYER1, textureProgram, 100, glm::vec3(3.f), origin, glm::vec3(0.f), glm::vec3(1.f));
+    std::shared_ptr<PlayerObject> player2 = PlayerObject::loadObjsPlayer(PlayerObject::PLAYER2, textureProgram, 100, glm::vec3(3.f), origin, glm::vec3(0.f), glm::vec3(1.f));
+    std::shared_ptr<PlanetObject> target = std::shared_ptr<PlanetObject>(new PlanetObject(0, glm::vec3(0.f), origin, glm::vec3(0.f), glm::vec3(1.f), glm::vec3(0.f, 0.5f, 1.f), 0.5f));
     std::vector<std::shared_ptr<AsteroidObject>> asteroids;
     std::vector<std::shared_ptr<PlanetObject>> planets;
     m_player_object = player1;
@@ -43,20 +29,13 @@ void Renderer::initGameLogic(float universeRadius, const glm::vec3& origin) {
     this->m_logic = std::shared_ptr<GameLogic>(new GameLogic(player1, player2, target, asteroids, planets, universeRadius, origin));
 }
 
-=======
->>>>>>> origin/game_logic
 void Renderer::resize(GLFWwindow*, int frameBufferWidth, int frameBufferHeight) {
     glViewport(0, 0, frameBufferWidth, frameBufferHeight);
     this->m_frameBufferWidth = frameBufferWidth;
     this->m_frameBufferHeight = frameBufferHeight;
 
-<<<<<<< HEAD
     this->m_cameraPlayer1.camera.calculateProjectionMatrix(90., this->m_frameBufferWidth/2, this->m_frameBufferHeight, .1, 100.);
     this->m_cameraPlayer2.camera.calculateProjectionMatrix(90., this->m_frameBufferWidth/2, this->m_frameBufferHeight, .1, 100.);
-=======
-    this->m_cameraPlayer1.camera.calculateProjectionMatrix(90., this->m_frameBufferWidth, this->m_frameBufferHeight, .1, 100.);
-    this->m_cameraPlayer2.camera.calculateProjectionMatrix(90., this->m_frameBufferWidth, this->m_frameBufferHeight, .1, 100.);
->>>>>>> origin/game_logic
 }
 
 void Renderer::update() {
@@ -103,26 +82,7 @@ void Renderer::renderPart(renderer_part_t part) {
 
     glViewport(minX, 0, this->m_frameBufferWidth/2, this->m_frameBufferHeight);
 
-<<<<<<< HEAD
     this->m_background.renderFrame(cameraToUse.camera.getViewMatrix(), cameraToUse.camera.getProjectionMatrix());
     m_player_object->draw(cameraToUse.camera.getViewMatrix(), cameraToUse.camera.getProjectionMatrix());
-
-
-//    for(const auto& player: this->m_logic->getPlayers()) {
-//        player->draw(cameraToUse.camera.getViewMatrix(), cameraToUse.camera.getProjectionMatrix());
-//    }
-//    this->m_logic->getTargetPlanet()->draw(cameraToUse.camera.getViewMatrix(), cameraToUse.camera.getProjectionMatrix());
-//    for(const auto& planet: this->m_logic->getPlanetObjects()) {
-//        planet->draw(cameraToUse.camera.getViewMatrix(), cameraToUse.camera.getProjectionMatrix());
-//    }
-//    for(const auto& asteroid: this->m_logic->getAsteroidObjects()){
-//        asteroid->draw(cameraToUse.camera.getViewMatrix(), cameraToUse.camera.getProjectionMatrix());
-//    }
-    // TODO: faire la même pour les projectiles
-=======
-    const glm::mat4 proj = cameraToUse.camera.calculateProjectionMatrix(90., this->m_frameBufferWidth/2, this->m_frameBufferHeight, .1, 100.);
-    const glm::mat4 projViewMatrix = proj * cameraToUse.camera.getViewMatrix();
-    this->m_background.renderFrame(projViewMatrix);
     // TODO: render other game objects
->>>>>>> origin/game_logic
 }

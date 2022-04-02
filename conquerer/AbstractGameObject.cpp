@@ -1,7 +1,15 @@
 #include "AbstractGameObject.hpp"
 
-AbstractGameObject::AbstractGameObject(const glm::vec3 position, const float theta, const float phi, const CollisionShapes::shape_t shapeType, const float health, const glm::vec3 sizes, const float radius)
-    : m_health(health), m_position(position), m_sizes(sizes), m_phi(phi), m_theta(theta) {
+#include <glm/gtc/matrix_transform.hpp>
+#include "Mesh.hpp"
+#include "RenderObjectConqueror.hpp"
+
+AbstractGameObject::AbstractGameObject(std::shared_ptr<AbstractRenderObject> object, std::shared_ptr<Program> program, const float& health,
+                                       const glm::vec3& position, const glm::vec3& origin, const glm::vec3& rotation, const glm::vec3& scale,
+                                       const float theta, const float phi, const CollisionShapes::shape_t shapeType, const glm::vec3 sizes, const float radius)
+    : m_object(object), m_program(program), m_health(health),
+        m_position(position), m_origin(origin), m_rotation(rotation), m_scale(scale),
+        m_phi(phi), m_theta(theta) {
     switch (shapeType) {
     case CollisionShapes::RECTANGLE:
         this->m_collisionShape = CollisionShapes::RectShape(position, sizes/2.f);
@@ -15,36 +23,54 @@ AbstractGameObject::AbstractGameObject(const glm::vec3 position, const float the
     default:
         break;
     }
+    this->updateModelMatrix();
 }
 
-void AbstractGameObject::move(const glm::vec3 &pos) {
-    this->m_position += pos;
-    this->m_collisionShape.move(pos);
-    this->m_mesh->move(pos);
+//void AbstractGameObject::rotate(const glm::vec2 &angles) {
+//    glm::vec3 rotation;
+//    this->m_theta += angles.y;
+//    this->m_phi += angles.x;
+
+//    this->m_collisionShape.rotate(rotation);
+//    if(this->m_collisionShape.getType() == CollisionShapes::RECTANGLE){
+//        rotation.x = glm::cos(glm::radians(this->m_theta)) * glm::cos(glm::radians(this->m_phi));
+//        rotation.y = glm::sin(glm::radians(this->m_phi));
+//        rotation.z = glm::sin(glm::radians(this->m_theta)) * glm::cos(glm::radians(this->m_phi));
+//        rotation = glm::normalize(rotation);
+
+//        CollisionShapes::RectShape& rect = static_cast<CollisionShapes::RectShape&>(this->m_collisionShape);
+//        rect.rotate(this->m_position, rotation);
+//    }
+//}
+
+void AbstractGameObject::updateModelMatrix() {
+    this->m_modelMatrix = glm::mat4(1.f);
+    this->m_modelMatrix = glm::translate(this->m_modelMatrix, this->m_origin);
+    this->m_modelMatrix = glm::rotate(this->m_modelMatrix, glm::radians(this->m_rotation.x), glm::vec3(1.f, 0.f, 0.f));
+    this->m_modelMatrix = glm::rotate(this->m_modelMatrix, glm::radians(this->m_rotation.y), glm::vec3(0.f, 1.f, 0.f));
+    this->m_modelMatrix = glm::rotate(this->m_modelMatrix, glm::radians(this->m_rotation.y), glm::vec3(0.f, 0.f, 1.f));
+    this->m_modelMatrix = glm::translate(this->m_modelMatrix, this->m_position - this->m_origin);
+    this->m_modelMatrix = glm::scale(this->m_modelMatrix, this->m_scale);
 }
 
-void AbstractGameObject::rotate(const glm::vec2 &angles) {
-    this->m_theta += angles.y;
-    this->m_phi += angles.x;
-
-    glm::vec3 rotation;
-    rotation.x = glm::cos(glm::radians(this->m_theta)) * glm::cos(glm::radians(this->m_phi));
-    rotation.y = glm::sin(glm::radians(this->m_phi));
-    rotation.z = glm::sin(glm::radians(this->m_theta)) * glm::cos(glm::radians(this->m_phi));
-    rotation = glm::normalize(rotation);
-
-    this->m_collisionShape.rotate(rotation);
-    if(this->m_collisionShape.getType() == CollisionShapes::RECTANGLE){
-        CollisionShapes::RectShape& rect = static_cast<CollisionShapes::RectShape&>(this->m_collisionShape);
-        rect.rotate(this->m_position, rotation);
-    }
-    this->m_mesh->rotate(rotation);
+void AbstractGameObject::move(const glm::vec3& position){
+    this->m_position += position;
+    this->m_collisionShape.move(position);
 }
 
-void AbstractGameObject::scale(const float value) {
-    this->m_sizes *= value;
-    this->m_collisionShape.scale(value);
-    this->m_mesh->zoom(glm::vec3(value));
+void AbstractGameObject::rotate(const glm::vec3 &rotation){
+    this->m_rotation += rotation;
+
+    // TODO: refaire la rotation
+}
+
+void AbstractGameObject::zoom(const glm::vec3 &scale){
+    this->m_scale *= scale;
+    this->m_collisionShape.scale(scale);
+}
+
+void AbstractGameObject::zoom(const float& value) {
+    this->zoom(glm::vec3(value));
 }
 
 float AbstractGameObject::removeHealth(const float health){
@@ -58,4 +84,8 @@ bool AbstractGameObject::isCollided(AbstractGameObject &other){
 
 bool AbstractGameObject::isDestroyed() {
     return this->m_health <= 0.f;
+}
+
+void AbstractGameObject::draw(const glm::mat4 & view, const glm::mat4 & projection, GLenum mode) {
+    this->m_object->render(*this->m_program.get(), this->m_modelMatrix, view, projection, mode);
 }
