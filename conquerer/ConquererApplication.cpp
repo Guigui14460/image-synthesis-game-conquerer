@@ -49,17 +49,20 @@ void ConquererApplication::keyCallback(GLFWwindow *window, int key, int scancode
     if (action == GLFW_PRESS){
         switch(key){
           case GLFW_KEY_ENTER:
-            if(app.m_stage->getStageType() == PLAYING){
-                if(not static_cast<PlayingStage*>(app.m_stage.get())->isFinished()) {
-                    std::cout << "ok" << std::endl;
-                    app.nextStage();
-                }
-            } else {
+            if(app.m_stage->getStageType() == START){
                 app.nextStage();
                 return;
+            } else if(app.m_stage->getStageType() == END) {
+                app.shutDown(0);
             }
           default:
             break;
+        }
+    }
+
+    if(app.m_stage->getStageType() == PLAYING){
+        if(static_cast<PlayingStage*>(app.m_stage.get())->isFinished()) {
+            app.nextStage();
         }
     }
     app.m_stage->keyCallback(window, key, scancode, action, mods);

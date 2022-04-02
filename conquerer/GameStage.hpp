@@ -3,7 +3,7 @@
 #include "glApi.hpp"
 #include <GLFW/glfw3.h>
 
-enum stage_t {START, PLAYING};
+enum stage_t {START, PLAYING, END};
 
 /**
  * @brief The GameStage class is an abstract class to be derived by the concrete stages of the Conquerer application.

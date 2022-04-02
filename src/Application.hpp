@@ -48,6 +48,7 @@ private:
    */
   void initOGLContext(int windowWidth, int windowHeight, const char * title);
 
+protected:
   /**
    * @brief Clean up the state and quit
    * @param return_code

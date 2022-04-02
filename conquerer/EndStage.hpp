@@ -29,6 +29,8 @@ public:
      */
     void resize(GLFWwindow* window, int frameBufferWidth, int frameBufferHeight) override;
 
+    stage_t getStageType() override { return END; }
+
     /// Next stage to display
     std::unique_ptr<GameStage> nextStage() const override;
 

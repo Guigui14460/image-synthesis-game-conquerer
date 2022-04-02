@@ -9,7 +9,7 @@ std::unique_ptr<GameStage> StartStage::nextStage() const {
 }
 
 std::unique_ptr<GameStage> PlayingStage::nextStage() const {
-    return std::unique_ptr<GameStage>(new StartStage());
+    return std::unique_ptr<GameStage>(new EndStage(this->m_renderer));
 }
 
 std::unique_ptr<GameStage> EndStage::nextStage() const {

@@ -46,6 +46,7 @@ public:
     void startGame();
     bool isFinished() { return this->m_logic->isFinished(); }
     bool isStarted() { return this->m_logic->isLaunched(); }
+    PlayerObject::player_t getWinner() { return this->m_logic->getWinner(); }
 
 private:
     /// Render part of the screen
