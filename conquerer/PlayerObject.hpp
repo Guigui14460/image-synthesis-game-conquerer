@@ -4,9 +4,10 @@
 #include "glApi.hpp"
 #include "Mesh.hpp"
 #include "RenderObjectConqueror.hpp"
+#include <glm/vec3.hpp>
+#include <glm/mat4x4.hpp>
 
 
-enum player_t {PLAYER1, PLAYER2, COMPUTER};
 
 /**
  * @brief The PlayerObject class
@@ -22,21 +23,9 @@ enum player_t {PLAYER1, PLAYER2, COMPUTER};
 
 class PlayerObject: public AbstractGameObject
 {
-private:
-    player_t m_typePj;
-//    RenderObjectConqueror m_objects;
-    std::shared_ptr<RenderObject> m_object;
-    std::shared_ptr<Program> m_program;//appel du program pour y mettre les objets
-    //std::vector<std::shared_ptr<RenderObjectConqueror>> m_parts;
-    std::shared_ptr<Sampler> m_colormap;
-
-
-    PlayerObject(player_t typePj, std::shared_ptr<RenderObject> object, glm::vec3 position,
-                 std::shared_ptr<Program> program,
-                 //std::vector<std::shared_ptr<RenderObjectConqueror>> parts,
-                 std::shared_ptr<Sampler> m_colormap);
-
 public:
+
+    enum player_t {PLAYER1, PLAYER2, COMPUTER,  NONE};
     PlayerObject() = delete;
     PlayerObject(const PlayerObject &)= delete;
 
@@ -58,7 +47,7 @@ public:
      *
      * draw this object
      */
-    void draw(const glm::mat4 & view, const glm::mat4 & projection);
+    void draw(const glm::mat4 & view, const glm::mat4 & projection, GLenum mode = GL_TRIANGLES) override;
 
     /**
      * @brief update
@@ -67,9 +56,27 @@ public:
      */
     void update(const glm::mat4 & view, const glm::mat4 & projection);
 
-    void update() override {}
+    void update(){}
 
+    void update(float deltaTime) override;
+	
+	 player_t getPlayerType();
+	 
     ~PlayerObject(){}
+
+private:
+    player_t m_typePj;
+//    RenderObjectConqueror m_objects;
+    std::shared_ptr<RenderObject> m_object;
+    std::shared_ptr<Program> m_program;//appel du program pour y mettre les objets
+    //std::vector<std::shared_ptr<RenderObjectConqueror>> m_parts;
+    std::shared_ptr<Sampler> m_colormap;
+
+
+    PlayerObject(player_t typePj, std::shared_ptr<RenderObject> object, glm::vec3 position,
+                 std::shared_ptr<Program> program,
+                 //std::vector<std::shared_ptr<RenderObjectConqueror>> parts,
+                 std::shared_ptr<Sampler> m_colormap);
 };
 
 #endif // __PLAYER_OBJECT_HPP__

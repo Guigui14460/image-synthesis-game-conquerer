@@ -1,14 +1,15 @@
 #ifndef __PLAYING_STAGE_HPP__
 #define __PLAYING_STAGE_HPP__
+#include "glApi.hpp"
 #include "GameStage.hpp"
+#include "Renderer.hpp"
 #include "BackgroundRenderer.hpp"
 #include "PlayerObject.hpp"
 
-class PlayingStage final: public GameStage
-{
+class PlayingStage final: public GameStage {
 public:
     /// Default constructor
-    PlayingStage();
+    PlayingStage(const std::shared_ptr<Renderer>& renderer);
 
     /// Destructor
     ~PlayingStage();
@@ -20,7 +21,10 @@ public:
     void update() override;
 
     /// Key callback
-    void keyCallback(GLFWwindow*, int, int, int, int) override {}
+    void keyCallback(GLFWwindow*, int, int, int, int) override;
+
+    /// For key that update the rendering
+    void continuousKey();
 
     /**
      * @brief Resizes the render screen to fit with the GLFW window screen size.
@@ -34,10 +38,7 @@ public:
     std::unique_ptr<GameStage> nextStage() const override;
 
 private:
-    std::shared_ptr<BackgroundRenderer> m_background_renderer; /// The background space renderer
-    int m_frameBufferWidth; /// The width of the current viewport
-    int m_frameBufferHeight; /// The height of the current viewport
-    std::shared_ptr<PlayerObject> m_player_object;
+    std::shared_ptr<Renderer> m_renderer;
 };
 
 #endif // __PLAYING_STAGE_HPP__

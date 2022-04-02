@@ -265,9 +265,35 @@ CMakeFiles/conquerer.dir/conquerer/Model.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/conquerer.dir/conquerer/Model.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Model.cpp" -o CMakeFiles/conquerer.dir/conquerer/Model.cpp.s
 
+CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.o: CMakeFiles/conquerer.dir/flags.make
+CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.o: ../conquerer/Renderer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.o -c "/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Renderer.cpp"
+
+CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Renderer.cpp" > CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.i
+
+CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Renderer.cpp" -o CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.s
+
+CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.o: CMakeFiles/conquerer.dir/flags.make
+CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.o: ../conquerer/PlanetObject.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.o -c "/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlanetObject.cpp"
+
+CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlanetObject.cpp" > CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.i
+
+CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlanetObject.cpp" -o CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.s
+
 CMakeFiles/conquerer.dir/conquerer/Camera.cpp.o: CMakeFiles/conquerer.dir/flags.make
 CMakeFiles/conquerer.dir/conquerer/Camera.cpp.o: ../conquerer/Camera.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/conquerer.dir/conquerer/Camera.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/conquerer.dir/conquerer/Camera.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/conquerer.dir/conquerer/Camera.cpp.o -c "/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Camera.cpp"
 
 CMakeFiles/conquerer.dir/conquerer/Camera.cpp.i: cmake_force
@@ -280,7 +306,7 @@ CMakeFiles/conquerer.dir/conquerer/Camera.cpp.s: cmake_force
 
 CMakeFiles/conquerer.dir/conquerer/GameOverlay.cpp.o: CMakeFiles/conquerer.dir/flags.make
 CMakeFiles/conquerer.dir/conquerer/GameOverlay.cpp.o: ../conquerer/GameOverlay.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/conquerer.dir/conquerer/GameOverlay.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/conquerer.dir/conquerer/GameOverlay.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/conquerer.dir/conquerer/GameOverlay.cpp.o -c "/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/GameOverlay.cpp"
 
 CMakeFiles/conquerer.dir/conquerer/GameOverlay.cpp.i: cmake_force
@@ -293,7 +319,7 @@ CMakeFiles/conquerer.dir/conquerer/GameOverlay.cpp.s: cmake_force
 
 CMakeFiles/conquerer.dir/conquerer/GameLogic.cpp.o: CMakeFiles/conquerer.dir/flags.make
 CMakeFiles/conquerer.dir/conquerer/GameLogic.cpp.o: ../conquerer/GameLogic.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/conquerer.dir/conquerer/GameLogic.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/conquerer.dir/conquerer/GameLogic.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/conquerer.dir/conquerer/GameLogic.cpp.o -c "/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/GameLogic.cpp"
 
 CMakeFiles/conquerer.dir/conquerer/GameLogic.cpp.i: cmake_force
@@ -306,7 +332,7 @@ CMakeFiles/conquerer.dir/conquerer/GameLogic.cpp.s: cmake_force
 
 CMakeFiles/conquerer.dir/conquerer/GameStage.cpp.o: CMakeFiles/conquerer.dir/flags.make
 CMakeFiles/conquerer.dir/conquerer/GameStage.cpp.o: ../conquerer/GameStage.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/conquerer.dir/conquerer/GameStage.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/conquerer.dir/conquerer/GameStage.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/conquerer.dir/conquerer/GameStage.cpp.o -c "/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/GameStage.cpp"
 
 CMakeFiles/conquerer.dir/conquerer/GameStage.cpp.i: cmake_force
@@ -335,6 +361,8 @@ conquerer_OBJECTS = \
 "CMakeFiles/conquerer.dir/conquerer/objectLoaderConqueror.cpp.o" \
 "CMakeFiles/conquerer.dir/conquerer/RenderObjectConqueror.cpp.o" \
 "CMakeFiles/conquerer.dir/conquerer/Model.cpp.o" \
+"CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.o" \
+"CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.o" \
 "CMakeFiles/conquerer.dir/conquerer/Camera.cpp.o" \
 "CMakeFiles/conquerer.dir/conquerer/GameOverlay.cpp.o" \
 "CMakeFiles/conquerer.dir/conquerer/GameLogic.cpp.o" \
@@ -359,6 +387,8 @@ conquerer: CMakeFiles/conquerer.dir/conquerer/AsteroidObject.cpp.o
 conquerer: CMakeFiles/conquerer.dir/conquerer/objectLoaderConqueror.cpp.o
 conquerer: CMakeFiles/conquerer.dir/conquerer/RenderObjectConqueror.cpp.o
 conquerer: CMakeFiles/conquerer.dir/conquerer/Model.cpp.o
+conquerer: CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.o
+conquerer: CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.o
 conquerer: CMakeFiles/conquerer.dir/conquerer/Camera.cpp.o
 conquerer: CMakeFiles/conquerer.dir/conquerer/GameOverlay.cpp.o
 conquerer: CMakeFiles/conquerer.dir/conquerer/GameLogic.cpp.o
@@ -372,7 +402,7 @@ conquerer: /usr/lib/x86_64-linux-gnu/librt.so
 conquerer: /usr/lib/x86_64-linux-gnu/libm.so
 conquerer: /usr/lib/x86_64-linux-gnu/libX11.so
 conquerer: CMakeFiles/conquerer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Linking CXX executable conquerer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX executable conquerer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/conquerer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

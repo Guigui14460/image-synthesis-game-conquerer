@@ -11,7 +11,7 @@
 
 PlayerObject::PlayerObject(player_t typePj, std::shared_ptr<RenderObject> object, glm::vec3 position,
                            std::shared_ptr<Program> program, //std::vector<std::shared_ptr<RenderObjectConqueror>> parts,
-                           std::shared_ptr<Sampler> colormap): AbstractGameObject(position, 0, 0, CollisionShapes::RECTANGLE, glm::vec3(1)),
+                           std::shared_ptr<Sampler> colormap): AbstractGameObject(position, 0, 0, CollisionShapes::RECTANGLE, 0,glm::vec3(1)),
                     m_typePj(typePj), m_object(object), m_program(program), //m_parts(parts),
                     m_colormap(colormap){
                     }
@@ -134,7 +134,8 @@ std::shared_ptr<PlayerObject> PlayerObject::loadObjs(player_t typePj, const std:
 
 }
 
-void PlayerObject::draw(const glm::mat4 & view, const glm::mat4 & projection){
+void PlayerObject::draw(const glm::mat4 & view, const glm::mat4 & projection, GLenum mode){
+    std::cout<<"poisson"<< std::endl;
     m_program->bind();
     update(view, projection);
 
@@ -163,4 +164,12 @@ void PlayerObject::update(const glm::mat4 & view, const glm::mat4 & projection){
 
     m_program->setUniform("V", view);
     m_program->setUniform("P", projection);
+}
+
+void PlayerObject::update(float deltaTime){
+
+}
+
+PlayerObject::player_t PlayerObject::getPlayerType() {
+    return this->m_typePj;
 }

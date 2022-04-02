@@ -10,7 +10,7 @@ uniform mat4 P;
 out vec2 uv;
 void main(void)
 {
-    vec4 positionH = M * vec4(vertexPosition,1);
-    gl_Position = P * V * positionH;
+    vec4 positionH = vec4(vertexPosition,1);
+    gl_Position = P * V * M * positionH;
     uv = vertexUV;
 }

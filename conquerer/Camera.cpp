@@ -13,11 +13,11 @@ void Camera::rotate(const float &deltaTime, const glm::vec2 &rotation) {
 
     // for pitch (phi for x-axis)
     glm::vec3 right = glm::normalize(glm::cross(this->m_up, this->m_orientation));
-    this->m_orientation = glm::vec3(glm::normalize(glm::rotate(glm::mat4(1), rot.y, right) * glm::vec4(this->m_orientation, 0.f)));
+    this->m_orientation = glm::vec3(glm::normalize(glm::rotate(glm::mat4(1), rot.x, right) * glm::vec4(this->m_orientation, 0.f)));
     this->m_up = glm::normalize(glm::cross(this->m_orientation, right));
 
     // for yaw (theta for y-axis)
-    glm::mat4 rotationMat = glm::rotate(glm::mat4(1), rot.x, this->m_worldUp);
+    glm::mat4 rotationMat = glm::rotate(glm::mat4(1), rot.y, this->m_worldUp);
     this->m_orientation = glm::vec3(glm::normalize(rotationMat * glm::vec4(this->m_orientation, 0.f)));
     this->m_up = glm::vec3(glm::normalize(rotationMat * glm::vec4(this->m_up, 0.f)));
 }

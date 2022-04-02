@@ -26,12 +26,8 @@ TextPrinter::TextPrinter(uint width, uint height, std::string fontFilename)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void TextPrinter::printText(const std::string& text, float x, float y, float fontsize, const glm::vec3& fontColor, const glm::vec4& fillColor, uint padding)
+void TextPrinter::printText(const std::string& key, const std::string& text, float x, float y, float fontsize, const glm::vec3& fontColor, const glm::vec4& fillColor, uint padding)
 {
-    this->m_colors.push_back(fontColor);
-    this->m_fillColors.push_back(fillColor);
-    this->m_vaos.push_back(std::unique_ptr<VAO>(new VAO(2)));
-
     std::vector<glm::vec2> positions;
     std::vector<glm::vec2> uvs;
     std::vector<uint> ibo;
@@ -46,7 +42,7 @@ void TextPrinter::printText(const std::string& text, float x, float y, float fon
     std::string message = text;
     if (padding > text.size()) {
         std::string paddingText(padding - text.size(), ' ');
-        printText(paddingText, x, y, fontsize, fontColor, fillColor);
+        printText(key + "_padding", paddingText, x, y, fontsize, fontColor, fillColor);
         message += paddingText;
     }
     for (char c : message) {
@@ -60,13 +56,16 @@ void TextPrinter::printText(const std::string& text, float x, float y, float fon
         x += 1;
     }
 
-    this->m_vaos.back()->setIBO(ibo);
-    this->m_vaos.back()->setVBO(0, positions);
-    this->m_vaos.back()->setVBO(1, uvs);
+    VAO* vao = new VAO(2);
+    vao->setIBO(ibo);
+    vao->setVBO(0, positions);
+    vao->setVBO(1, uvs);
+
+    this->m_texts[key] = std::unique_ptr<text_t>(new text_t(std::shared_ptr<VAO>(vao), fontColor, fillColor));
 }
 
-void TextPrinter::removeText(uint index){
-    this->m_vaos.erase(this->m_vaos.begin() + index);
+void TextPrinter::removeText(const std::string& key){
+    this->m_texts.erase(key);
 }
 
 void TextPrinter::draw()
@@ -77,25 +76,20 @@ void TextPrinter::draw()
 
     glEnable(GL_BLEND);
     this->m_program.setUniform("wOverH", this->m_wOverH);
-    for (uint k = 0; k < this->m_vaos.size(); ++k) {
-        auto & vao = this->m_vaos[k];
-        glm::vec3 fontColor = this->m_colors[k];
-        glm::vec4 fillColor = this->m_fillColors[k];
+    for (auto const& text: this->m_texts) {
+        glm::vec3 fontColor = text.second->color;
+        glm::vec4 fillColor = text.second->fillColor;
         this->m_program.setUniform("fontColor", fontColor);
         this->m_program.setUniform("fillColor", fillColor);
-        vao->draw();
+        text.second->vao->draw();
     }
     glDisable(GL_BLEND);
 
     this->m_program.unbind();
 }
 
-void TextPrinter::setWOverH(float wOverH)
-{
-    this->m_wOverH = wOverH;
-}
-
 void TextPrinter::resize(uint width, uint height) {
     this->m_width = width;
     this->m_height = height;
+    this->m_wOverH = width / float(height);
 }

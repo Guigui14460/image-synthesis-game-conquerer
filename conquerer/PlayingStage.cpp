@@ -2,46 +2,61 @@
 #include "PlayerObject.hpp"
 #include "glApi.hpp"
 #include <GLFW/glfw3.h>
-#include <glm/ext.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <iostream>
 
-PlayingStage::PlayingStage(): m_background_renderer(new BackgroundRenderer(1000)) {
-    GLFWwindow* window = glfwGetCurrentContext();
-    glfwGetFramebufferSize(window, &this->m_frameBufferWidth, &this->m_frameBufferHeight);
-    m_player_object = PlayerObject::loadObjsPlayer(PLAYER1, {3.f, 3.f, 3.f}, std::make_shared<Program>("conquerer/texture.v.glsl", "conquerer/texture.f.glsl"));
-    glClearColor(1., 0., 1., 1.);
-}
+#include <glm/vec2.hpp>
+
+constexpr float ANGLE_TO_ROTATE = 40.f;
+
+PlayingStage::PlayingStage(const std::shared_ptr<Renderer>& renderer): m_renderer(renderer) {}
 
 PlayingStage::~PlayingStage() {}
 
 void PlayingStage::renderFrame() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-   this->m_background_renderer->renderFrame();
-
-    m_player_object->draw(this->m_background_renderer->getViewMatrix(), this->m_background_renderer->getProjMatrix());
-
-
-    // for the split screen support (to fix with the matrices send as uniform)
-//    this->m_background_renderer->resize(nullptr, this->m_frameBufferWidth/2 - 1, this->m_frameBufferHeight);
-//    glViewport(0, 0, this->m_frameBufferWidth/2, this->m_frameBufferHeight);
-//    this->m_background_renderer->renderFrame();
-
-//    glViewport(this->m_frameBufferWidth/2 + 1, 0, this->m_frameBufferWidth/2, this->m_frameBufferHeight);
-//    this->m_background_renderer->renderFrame();
-
-//    this->m_background_renderer->resize(nullptr, this->m_frameBufferWidth, this->m_frameBufferHeight);
-//    glViewport(0, 0, this->m_frameBufferWidth, this->m_frameBufferHeight);
+    this->m_renderer->renderFrame();
 }
 
 void PlayingStage::update() {
-    this->m_background_renderer->update();
+    this->continuousKey();
+    this->m_renderer->update();
 }
 
 void PlayingStage::resize(GLFWwindow* window, int frameBufferWidth, int frameBufferHeight) {
-    glViewport(0, 0, frameBufferWidth, frameBufferHeight);
-    this->m_frameBufferWidth = frameBufferWidth;
-    this->m_frameBufferHeight = frameBufferHeight;
-
-    this->m_background_renderer->resize(window, frameBufferWidth, frameBufferHeight);
+    this->m_renderer->resize(window, frameBufferWidth, frameBufferHeight);
 }
+
+void PlayingStage::continuousKey() {
+    GLFWwindow* window = glfwGetCurrentContext();
+    glm::vec2 player1CameraAngles(0), player2CameraAngles(0);
+
+    // player 1 keys
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+        player1CameraAngles.x -= ANGLE_TO_ROTATE;
+    }
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+        player1CameraAngles.x += ANGLE_TO_ROTATE;
+    }
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+        player1CameraAngles.y += ANGLE_TO_ROTATE;
+    }
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+        player1CameraAngles.y -= ANGLE_TO_ROTATE;
+    }
+
+    // player 2 keys
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
+        player2CameraAngles.x -= ANGLE_TO_ROTATE;
+    }
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+        player2CameraAngles.x += ANGLE_TO_ROTATE;
+    }
+    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+        player2CameraAngles.y += ANGLE_TO_ROTATE;
+    }
+    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+        player2CameraAngles.y -= ANGLE_TO_ROTATE;
+    }
+
+    this->m_renderer->cameraAnglesUpdate(player1CameraAngles, player2CameraAngles);
+}
+
+void PlayingStage::keyCallback(GLFWwindow*, int /* key */, int, int /* action */, int) {}

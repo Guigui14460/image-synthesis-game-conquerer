@@ -1852,12 +1852,6 @@ detail/setup.hpp
 detail/func_vector_relational.inl
 ../ext/glm/glm/detail/func_vector_relational.inl
 
-../src/Application.hpp
-memory
--
-string
--
-
 ../src/AttributeProperties.hpp
 GL/glew.h
 -
@@ -1884,35 +1878,39 @@ AttributeProperties.hpp
 Image.hpp
 ../src/Image.hpp
 
-../src/utils.hpp
-string
--
-
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/AbstractGameObject.hpp
 glm/vec3.hpp
 -
+glm/mat4x4.hpp
+-
+glApi.hpp
+-
 Mesh.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Mesh.hpp
 CollisionShapes.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/CollisionShapes.hpp
 
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/AsteroidObject.hpp
+glm/vec3.hpp
+-
+glm/mat4x4.hpp
+-
+glApi.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/glApi.hpp
+AbstractGameObject.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/AbstractGameObject.hpp
+RenderObjectConqueror.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/RenderObjectConqueror.hpp
+
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/BackgroundRenderer.hpp
 glApi.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/glApi.hpp
-cmath
--
 vector
 -
+Mesh.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Mesh.hpp
 glm/ext.hpp
 -
-Mesh.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Mesh.hpp
-Camera.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Camera.hpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Camera.cpp
-Camera.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Camera.hpp
 
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Camera.hpp
 glm/vec2.hpp
@@ -1932,199 +1930,111 @@ vector
 glm/vec3.hpp
 -
 
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/ConquererApplication.cpp
-ConquererApplication.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/ConquererApplication.hpp
-GLFW/glfw3.h
--
-StartStage.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/StartStage.hpp
-PlayingStage.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlayingStage.hpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/ConquererApplication.hpp
-FullScreenApplication.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/FullScreenApplication.hpp
-glApi.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/glApi.hpp
-GameStage.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/GameStage.hpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/EndStage.hpp
-GameStage.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/GameStage.hpp
-TextPrinter.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/TextPrinter.hpp
-BackgroundRenderer.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/BackgroundRenderer.hpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/FullScreenApplication.hpp
-glm/vec2.hpp
--
-Application.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Application.hpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/GameOverlay.cpp
-GameOverlay.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/GameOverlay.hpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/GameOverlay.hpp
-TextPrinter.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/TextPrinter.hpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/GameStage.cpp
-StartStage.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/StartStage.hpp
-PlayingStage.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlayingStage.hpp
-EndStage.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/EndStage.hpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/GameStage.hpp
-glApi.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/glApi.hpp
-GLFW/glfw3.h
--
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Mesh.hpp
-iostream
--
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/GameLogic.hpp
 vector
--
-glm/vec3.hpp
--
-glm/mat4x4.hpp
--
-Vertex.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Vertex.hpp
-Primitives.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Primitives.hpp
-Shader.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Shader.hpp
-Texture.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Texture.hpp
-Material.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Material.hpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Model.cpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Model.hpp
-vector
--
-glm/vec3.hpp
--
-Mesh.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Mesh.hpp
-Texture.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Texture.hpp
-Shader.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Shader.hpp
-Material.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Material.hpp
-OBJLoader.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/OBJLoader.hpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/OBJLoader.hpp
-string
--
-iostream
--
-fstream
--
-sstream
--
-algorithm
--
-vector
--
-GLEW/glew.h
--
-GLFW/glfw3.h
--
-glm/glm.hpp
 -
 glm/vec2.hpp
 -
 glm/vec3.hpp
 -
-glm/vec4.hpp
--
-glm/mat4x4.hpp
--
-glm/gtc/matrix_transform.hpp
--
-glm/gtc/type_ptr.hpp
--
-Vertex.h
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Vertex.h
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlayerObject.cpp
+AbstractGameObject.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/AbstractGameObject.hpp
 PlayerObject.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlayerObject.hpp
-OBJLoader.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/OBJLoader.hpp
-CollisionShapes.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/CollisionShapes.hpp
-utils.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/utils.hpp
-glm/gtc/matrix_transform.hpp
--
+AsteroidObject.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/AsteroidObject.hpp
+PlanetObject.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlanetObject.hpp
+ProjectileObject.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/ProjectileObject.hpp
+
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/GameOverlay.hpp
 glm/vec3.hpp
 -
-iostream
+TextPrinter.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/TextPrinter.hpp
+glApi.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/glApi.hpp
+
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Mesh.hpp
+glApi.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/glApi.hpp
+
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlanetObject.hpp
+glm/vec3.hpp
 -
+glm/mat4x4.hpp
+-
+AbstractGameObject.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/AbstractGameObject.hpp
+glApi.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/glApi.hpp
 
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlayerObject.hpp
 AbstractGameObject.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/AbstractGameObject.hpp
 glApi.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/glApi.hpp
-Model.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Model.hpp
+Mesh.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Mesh.hpp
+RenderObjectConqueror.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/RenderObjectConqueror.hpp
+glm/vec3.hpp
+-
+glm/mat4x4.hpp
+-
 
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlayingStage.cpp
-PlayingStage.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlayingStage.hpp
-PlayerObject.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlayerObject.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/ProjectileObject.hpp
+glm/vec3.hpp
+-
+glm/mat4x4.hpp
+-
+AbstractGameObject.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/AbstractGameObject.hpp
+
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/RenderObjectConqueror.hpp
 glApi.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/glApi.hpp
+memory
+-
+glm/vec3.hpp
+-
+glm/mat4x4.hpp
+-
+
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Renderer.cpp
+Renderer.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Renderer.hpp
 GLFW/glfw3.h
 -
-glm/ext.hpp
--
-glm/gtc/matrix_transform.hpp
--
-iostream
--
 
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlayingStage.hpp
-GameStage.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/GameStage.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Renderer.hpp
+glm/mat4x4.hpp
+-
+glm/vec2.hpp
+-
+glApi.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/glApi.hpp
+Camera.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Camera.hpp
+GameLogic.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/GameLogic.hpp
 BackgroundRenderer.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/BackgroundRenderer.hpp
+GameOverlay.hpp
+/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/GameOverlay.hpp
 PlayerObject.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/PlayerObject.hpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/StartStage.hpp
-GameStage.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/GameStage.hpp
-TextPrinter.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/TextPrinter.hpp
-BackgroundRenderer.hpp
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/BackgroundRenderer.hpp
 
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/TextPrinter.hpp
 memory
 -
+string
+-
 vector
+-
+unordered_map
 -
 glApi.hpp
 /home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/glApi.hpp
-
-/home/raphael/Documents/M1/synthèse d'image/image-synthesis-game-conquerer/conquerer/Vertex.hpp
-glm/vec2.hpp
--
-glm/vec3.hpp
--
 

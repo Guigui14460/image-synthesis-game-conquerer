@@ -1,11 +1,9 @@
 #ifndef __BACKGROUND_RENDERER_HPP__
 #define __BACKGROUND_RENDERER_HPP__
 #include "glApi.hpp"
-#include <cmath>
 #include <vector>
-#include <glm/ext.hpp>
 #include "Mesh.hpp"
-#include "Camera.hpp"
+#include <glm/ext.hpp>
 
 // forward declaration
 struct GLFWwindow;
@@ -25,59 +23,41 @@ public:
     /**
      * @brief Constructor.
      * @param numberOfStars
+     * @param universeRadius
      */
-    BackgroundRenderer(uint numberOfStars);
+    BackgroundRenderer(uint numberOfStars, float universeRadius = 1.f);
     BackgroundRenderer(const BackgroundRenderer& o) = delete; /// Copy constructor
     BackgroundRenderer(BackgroundRenderer&& o) = delete; /// Moving constructor
 
     /**
-     * @brief Iniitializes the OpenGL state for this renderer.
-     */
-    void initGLState() const;
-
-    /**
-     * @brief Create the VAO for the renderer
-     * @param numberOfStars
-     */
-    void createVAO(uint numberOfStars);
-
-    /**
-     * @brief Resizes the render screen to fit with the GLFW window screen size.
-     * @param window the GLFW window object
-     * @param frameBufferWidth the new width of the frame buffer to display
-     * @param frameBufferHeight the new height of the frame buffer to display
-     */
-    void resize(GLFWwindow* window, int frameBufferWidth, int frameBufferHeight);
-
-    /**
      * @brief Updates the scene including meshes which is time related.
-     * @param activateContinuousKeys
+     * @param deltaTime
      */
-    void update(bool activateContinuousKeys = true);
-
-    /**
-     * @brief Method which used to interact with the keyboard user.
-     */
-    void continuousKey();
+    void update(float deltaTime);
 
     /**
      * @brief Renders a single frame.
      */
-    void renderFrame();
-
-    glm::mat4 getViewMatrix() { return this->m_view; }
-    glm::mat4 getProjMatrix() { return this->m_proj; }
+    void renderFrame(const glm::mat4 & view, const glm::mat4 & projection);
 
 private:
     /**
+     * @brief Create the VAO for the renderer
+     * @param numberOfStars
+     * @param universeRadius
+     */
+    void createVAO(uint numberOfStars, float universeRadius);
+    
+    /**
      * @brief Generates random stars.
      * @param numberOfStars
+     * @param universeRadius
      * @return a vector of 3D coordinates
      *
      * It generates the random angle, phi and theta to create in the polar coordinates.
      * It applies a mathematicla formula to transpose in the euclidan 3D space.
      */
-    std::vector<glm::vec3> generateRandomStars(uint numberOfStars);
+    std::vector<glm::vec3> generateRandomStars(uint numberOfStars, float universeRadius);
 
     /**
      * @brief Generates random stars sizes.
@@ -93,12 +73,6 @@ private:
     std::vector<std::shared_ptr<Mesh>> m_meshes; /// Meshes (VAO + associated model matrix)
     std::shared_ptr<VAO> m_vao; /// The default VAO (3D sphere)
     Program m_program; /// GLSL Program used for the render of 3D space
-    glm::mat4 m_proj; /// Projection matrix
-    glm::mat4 m_view; /// View matrix
-    Camera m_camera; /// Camera object
-
-    float m_currentTime; /// Current OpenGL time
-    float m_deltaTime; /// Elapsed time between last frame and current showing frame for the animation speed
 };
 
 #endif // __BACKGROUND_RENDERER_HPP__

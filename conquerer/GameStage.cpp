@@ -5,11 +5,11 @@
 GameStage::GameStage() {}
 
 std::unique_ptr<GameStage> StartStage::nextStage() const {
-    return std::unique_ptr<GameStage>(new PlayingStage());
+    return std::unique_ptr<GameStage>(new PlayingStage(this->m_renderer));
 }
 
 std::unique_ptr<GameStage> PlayingStage::nextStage() const {
-    return std::unique_ptr<GameStage>(new EndStage(this->m_background_renderer));
+    return std::unique_ptr<GameStage>(new EndStage(this->m_renderer));
 }
 
 std::unique_ptr<GameStage> EndStage::nextStage() const {

@@ -565,6 +565,33 @@ conquerer/Model.cpp.s:
 	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/Model.cpp.s
 .PHONY : conquerer/Model.cpp.s
 
+conquerer/PlanetObject.o: conquerer/PlanetObject.cpp.o
+
+.PHONY : conquerer/PlanetObject.o
+
+# target to build an object file
+conquerer/PlanetObject.cpp.o:
+	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.o
+.PHONY : conquerer/PlanetObject.cpp.o
+
+conquerer/PlanetObject.i: conquerer/PlanetObject.cpp.i
+
+.PHONY : conquerer/PlanetObject.i
+
+# target to preprocess a source file
+conquerer/PlanetObject.cpp.i:
+	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.i
+.PHONY : conquerer/PlanetObject.cpp.i
+
+conquerer/PlanetObject.s: conquerer/PlanetObject.cpp.s
+
+.PHONY : conquerer/PlanetObject.s
+
+# target to generate assembly for a file
+conquerer/PlanetObject.cpp.s:
+	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/PlanetObject.cpp.s
+.PHONY : conquerer/PlanetObject.cpp.s
+
 conquerer/PlayerObject.o: conquerer/PlayerObject.cpp.o
 
 .PHONY : conquerer/PlayerObject.o
@@ -645,6 +672,33 @@ conquerer/RenderObjectConqueror.s: conquerer/RenderObjectConqueror.cpp.s
 conquerer/RenderObjectConqueror.cpp.s:
 	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/RenderObjectConqueror.cpp.s
 .PHONY : conquerer/RenderObjectConqueror.cpp.s
+
+conquerer/Renderer.o: conquerer/Renderer.cpp.o
+
+.PHONY : conquerer/Renderer.o
+
+# target to build an object file
+conquerer/Renderer.cpp.o:
+	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.o
+.PHONY : conquerer/Renderer.cpp.o
+
+conquerer/Renderer.i: conquerer/Renderer.cpp.i
+
+.PHONY : conquerer/Renderer.i
+
+# target to preprocess a source file
+conquerer/Renderer.cpp.i:
+	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.i
+.PHONY : conquerer/Renderer.cpp.i
+
+conquerer/Renderer.s: conquerer/Renderer.cpp.s
+
+.PHONY : conquerer/Renderer.s
+
+# target to generate assembly for a file
+conquerer/Renderer.cpp.s:
+	$(MAKE) -f CMakeFiles/conquerer.dir/build.make CMakeFiles/conquerer.dir/conquerer/Renderer.cpp.s
+.PHONY : conquerer/Renderer.cpp.s
 
 conquerer/StartStage.o: conquerer/StartStage.cpp.o
 
@@ -1295,6 +1349,9 @@ help:
 	@echo "... conquerer/Model.o"
 	@echo "... conquerer/Model.i"
 	@echo "... conquerer/Model.s"
+	@echo "... conquerer/PlanetObject.o"
+	@echo "... conquerer/PlanetObject.i"
+	@echo "... conquerer/PlanetObject.s"
 	@echo "... conquerer/PlayerObject.o"
 	@echo "... conquerer/PlayerObject.i"
 	@echo "... conquerer/PlayerObject.s"
@@ -1304,6 +1361,9 @@ help:
 	@echo "... conquerer/RenderObjectConqueror.o"
 	@echo "... conquerer/RenderObjectConqueror.i"
 	@echo "... conquerer/RenderObjectConqueror.s"
+	@echo "... conquerer/Renderer.o"
+	@echo "... conquerer/Renderer.i"
+	@echo "... conquerer/Renderer.s"
 	@echo "... conquerer/StartStage.o"
 	@echo "... conquerer/StartStage.i"
 	@echo "... conquerer/StartStage.s"
