@@ -32,6 +32,7 @@ Pour les combats, ils peuvent se battre avec des lasers (type star wars) comme t
 Pour éviter que le jeu dure trop longtemps, un minuteur sera affiché et les joueurs perdront tous les deux car invasion par une autre armée (si les deux joueurs sont en vie, ou que le chronomètre est terminé).
 
 # Aspects techniques
-
-
-
+* rendu de texte à l'écran
+* détection de collision
+* chargement de modèles 3D
+* overlay 2D au-dessus d'un monde 3D

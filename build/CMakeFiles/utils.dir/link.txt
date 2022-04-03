@@ -1,2 +1,0 @@
-/usr/bin/ar qc libutils.a  CMakeFiles/utils.dir/src/glApi.cpp.o CMakeFiles/utils.dir/src/Application.cpp.o CMakeFiles/utils.dir/src/ObjLoader.cpp.o CMakeFiles/utils.dir/src/utils.cpp.o CMakeFiles/utils.dir/src/Serialize.cpp.o
-/usr/bin/ranlib libutils.a
