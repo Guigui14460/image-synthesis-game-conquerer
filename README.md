@@ -1,31 +1,30 @@
-# glitter : GL iterative tutorial tasks on efficient rendering.
-This is an OpenGL Lab for students in the computer science department at
-ENSICAEN, an engineering scool in Caen, Normandy, France. They can of course,
-be used by any other students willing to learn OpenGL (although better
-tutorials probably exist elsewhere). The labs are associated with 3 lectures
-introducing to the basics of OpenGL. The slides are available here:
-* [Lecture 1](http://www.ecole.ensicaen.fr/~simonl/files/OpenGL/Cours/Lesson1)
-* [Lecture 2](http://www.ecole.ensicaen.fr/~simonl/files/OpenGL/Cours/Lesson2)
-* [Lecture 3](http://www.ecole.ensicaen.fr/~simonl/files/OpenGL/Cours/Lesson3)
+# Image Synthesis Project
 
-# Documentation
-The list of tutorials is described in detail in the [web site](https://drlsimon.github.io/glitter/).
-The doxygen documentation is available [here](http://www.ecole.ensicaen.fr/~simonl/files/OpenGL/glitter-doc/annotated.html).
+University project proposed in the subject "Image Synthesis" in 1st year of MSc of Computer Science in Imaging & Machine Learning at the University of Caen Normandy.
 
-# Requirements
-The project relies on the following dependencies
-* Cmake 2.8
-* OpenGL 4.1
-* GLFW 3.0
-* GLM 0.9.2
-* [tinyobjloader](https://github.com/syoyo/tinyobjloader)
-* [stb](https://github.com/nothings/stb)
-* [termcolor](https://github.com/ikalnitsky/termcolor)
+## Table of contents
 
-**Note:** Missing dependencies will be automatically added as git submodules.
+  - [Table of contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Setup](#setup)
+  - [Commands](#commands)
+  - [Authors](#authors)
+  - [License](#license)
 
+## Introduction
+The goal of the project is to realize a game (2D or 3D) with two players on the same keyboard to introduce us to image synthesis with C++ and OpenGL.
 
-# Instructions
+We have chosen to make a combat game in space where the players are represented by sea animals.
+
+## Setup
+You need to have C/C++ compiler and CMake installed in your machien to be able to build and run the project.
+With that, you need have installed OpenGL in your computer.
+
+You recommand to install glxgears (`sudo apt-get install mesa-utils`) to test the FPS, etc.
+
+You can open the project with an editor like QtCreator, Visual Studio, Visual Studio Code, etc.
+
+## Commands
 ## Building
 ```bash
 mkdir build
@@ -34,7 +33,7 @@ cmake .. -DCMAKE_BUILD_TYPE=RELEASE
 make -j4
 ```
 
-## Running
+## Running glitter application
 All the labs, must be launched without any optional argument, from the build root (otherwise the assets/shaders will not be found). For example,
 ```bash
 # running glitter help
@@ -43,29 +42,16 @@ All the labs, must be launched without any optional argument, from the build roo
 ./glitter help pa1
 # running pa1 part 1
 ./glitter pa1 1
-````
+```
 
+## Running project
+```bash
+./conquerer
+```
 
-# Author and License
-The code is published under the MIT License (MIT)
+## Authors
+- [LEMAIRE Raphaëlle](https://github.com/Seirihiri)
+- [LETELLIER Guillaume](https://github.com/Guigui14460)
 
-Copyright (c) 2018 Loic Simon
-Copyright (c) 2018 Sebastien Fourey
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+## License
+Project under the MIT license.
