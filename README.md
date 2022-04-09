@@ -2,6 +2,8 @@
 
 University project proposed in the subject "Image Synthesis" in 1st year of MSc of Computer Science in Imaging & Machine Learning at the University of Caen Normandy.
 
+You can see the glitter based project at [this repository](https://github.com/DrLSimon/glitter) from [Loïc Simon](https://simonl02.users.greyc.fr/).
+
 ## Table of contents
 
   - [Table of contents](#table-of-contents)
