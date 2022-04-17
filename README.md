@@ -16,7 +16,7 @@ You can see the glitter based project at [this repository](https://github.com/Dr
 ## Introduction
 The goal of the project is to realize a game (2D or 3D) with two players on the same keyboard to introduce us to image synthesis with C++ and OpenGL.
 
-We have chosen to make a combat game in space where the players are represented by sea animals.
+We have chosen to make a fighting game in space where the players are represented by sea animals.
 
 ## Setup
 You need to have C/C++ compiler and CMake installed in your machien to be able to build and run the project.
